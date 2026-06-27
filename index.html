@@ -3,23 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showroom Sporty Style</title>
-    <!-- Font Google: Oswald (untuk judul sporty) & Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Lombok Speed Motors - Premium Used Cars</title>
+    
+    <!-- Font Google: Oswald (Sporty) & Poppins (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* --- GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary-red: #ff0000;
+            --dark-bg: #050505;
+            --light-text: #f8f9fa;
+            --gray-text: #b0b0b0;
+            --accent-blue: #4361ee;
+            --accent-pink: #f72585;
+            --card-bg: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         
         body {
-            background-color: #050505;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-text);
+            color: #333;
             overflow-x: hidden;
         }
 
-        /* --- HERO SECTION STYLE REFERENSI --- */
+        h1, h2, h3, .brand-badge, .btn-glow, .hero-title {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,0,0,0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            font-style: italic;
+        }
+        .logo span { color: var(--primary-red); }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: var(--primary-red); }
+
+        /* --- HERO SECTION (SPORTY DARK STYLE) --- */
         .hero-sporty {
             position: relative;
             height: 100vh;
@@ -29,204 +89,437 @@
             justify-content: center;
             background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
             overflow: hidden;
+            padding-top: 80px; /* Offset navbar */
         }
 
-        /* Efek Cahaya Merah Diagonal (Spotlight) */
-        .hero-sporty::before, .hero-sporty::after {
+        /* Efek Cahaya Merah Diagonal */
+        .hero-sporty::before {
             content: '';
             position: absolute;
-            top: -50%;
-            width: 150%;
-            height: 200%;
-            background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 0, 0.15) 50%, transparent 100%);
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255, 0, 0, 0.1) 50%, transparent 60%);
             transform: rotate(-30deg);
             z-index: 1;
             pointer-events: none;
         }
-        
-        .hero-sporty::after {
-            transform: rotate(30deg);
-            background: linear-gradient(90deg, transparent 0%, rgba(255, 0, 0, 0.1) 50%, transparent 100%);
-        }
 
-        /* Garis Neon Merah Atas */
         .neon-line-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, transparent, #ff0000, transparent);
-            box-shadow: 0 0 20px #ff0000;
+            box-shadow: 0 0 15px #ff0000;
             z-index: 10;
         }
 
-        .container-hero {
-            position: relative;
-            z-index: 5;
-            text-align: center;
-            max-width: 1200px;
-            width: 100%;
-            padding: 0 20px;
+        .hero-grid {
+            position: relative; z-index: 5;
             display: grid;
-            grid-template-columns: 1fr 1.5fr 1fr; /* Kiri (Mobil), Tengah (Teks), Kanan (Motor/Mobil) */
+            grid-template-columns: 1fr 1.5fr 1fr;
             align-items: center;
-            gap: 2rem;
+            width: 100%;
+            max-width: 1300px;
+            padding: 0 20px;
         }
 
-        /* Area Gambar Kendaraan */
         .vehicle-img {
             width: 100%;
-            filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.4));
+            filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.3));
             animation: floatVehicle 4s ease-in-out infinite;
         }
 
-        /* Animasi Mengambang Halus */
         @keyframes floatVehicle {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
         }
 
-        /* Konten Teks Tengah */
-        .hero-content {
+        .hero-content { text-align: center; color: white; }
+
+        .brand-badge {
+            background: var(--primary-red);
             color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
         }
 
-        /* Judul Utama Besar & Miring */
         .hero-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: 4.5rem;
+            font-size: 5rem;
             font-weight: 700;
             font-style: italic;
-            line-height: 1.1;
-            text-transform: uppercase;
+            line-height: 1;
             margin-bottom: 1rem;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            background: linear-gradient(to bottom, #ffffff 0%, #cccccc 100%);
+            text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff 0%, #aaa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle {
             font-size: 1.2rem;
-            color: #ccc;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-        }
-
-        /* Badge / Logo Box (Mirip Borecelle di gambar) */
-        .brand-badge {
-            background: #ff0000;
-            color: white;
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
+            color: var(--gray-text);
+            margin-bottom: 2.5rem;
             letter-spacing: 1px;
-            margin-bottom: 2rem;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        /* Tombol CTA */
         .btn-glow {
             padding: 15px 40px;
             background: transparent;
-            border: 2px solid #ff0000;
-            color: #ff0000;
-            font-family: 'Oswald', sans-serif;
+            border: 2px solid var(--primary-red);
+            color: var(--primary-red);
             font-size: 1.2rem;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
             clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
         }
 
         .btn-glow:hover {
-            background: #ff0000;
+            background: var(--primary-red);
             color: white;
-            box-shadow: 0 0 30px #ff0000;
+            box-shadow: 0 0 30px var(--primary-red);
         }
 
-        /* Elemen Dekoratif Sudut */
-        .corner-decor {
+        /* --- PROMO SECTION (BRIGHT & COLORFUL) --- */
+        .promo-section {
+            padding: 4rem 0;
+            background: #fff;
+        }
+
+        .promo-card {
+            background: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 20px 40px rgba(114, 9, 183, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-card::after {
+            content: '';
             position: absolute;
-            width: 100px;
-            height: 100px;
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            z-index: 2;
+            top: -50px; right: -50px;
+            width: 200px; height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
         }
-        .top-left { top: 50px; left: 50px; border-right: none; border-bottom: none; }
-        .bottom-right { bottom: 50px; right: 50px; border-left: none; border-top: none; }
 
-        /* Responsive Mobile */
-        @media (max-width: 992px) {
-            .container-hero {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto auto auto;
-            }
-            .vehicle-img {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-            /* Sembunyikan salah satu kendaraan di mobile agar tidak penuh, atau kecilkan */
-            .vehicle-right { display: none; } 
-            
-            .hero-title { font-size: 3rem; }
-            .corner-decor { display: none; }
+        .promo-content h2 { font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; font-weight: 800; }
+        .promo-image img { width: 100%; border-radius: 15px; transform: rotate(-3deg); border: 5px solid rgba(255,255,255,0.2); }
+
+        /* --- CATALOG SECTION --- */
+        .catalog { padding: 5rem 0; background: #f8f9fa; }
+        
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; color: #333; margin-bottom: 0.5rem; }
+        .section-header span { color: var(--primary-red); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
+
+        .car-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .car-card:hover { transform: translateY(-10px); }
+
+        .car-img { height: 220px; overflow: hidden; position: relative; }
+        .car-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .car-card:hover .car-img img { transform: scale(1.1); }
+
+        .car-tag {
+            position: absolute; top: 15px; left: 15px;
+            background: var(--primary-red); color: white;
+            padding: 5px 12px; border-radius: 4px;
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+        }
+
+        .car-details { padding: 1.5rem; }
+        .car-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .car-price { color: var(--primary-red); font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; }
+
+        .car-specs {
+            display: flex; justify-content: space-between;
+            color: #666; font-size: 0.9rem;
+            border-top: 1px solid #eee; border-bottom: 1px solid #eee;
+            padding: 10px 0; margin-bottom: 1.5rem;
+        }
+        .car-specs div { display: flex; align-items: center; gap: 5px; }
+
+        .btn-card {
+            display: block; width: 100%; text-align: center;
+            padding: 10px; border: 2px solid #333;
+            color: #333; border-radius: 8px;
+            font-weight: 600; transition: 0.3s;
+        }
+        .btn-card:hover { background: #333; color: white; }
+
+        /* --- ABOUT SECTION --- */
+        .about { padding: 5rem 0; background: white; }
+        .about-container {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: center;
+        }
+        .about-img img { border-radius: 20px; box-shadow: var(--shadow); }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .about-list li { margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
+        .about-list i { color: var(--primary-red); }
+
+        /* --- FOOTER --- */
+        footer { background: #111; color: white; padding: 4rem 0 0 0; border-top: 5px solid var(--primary-red); }
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem; margin-bottom: 3rem;
+        }
+        .footer-col h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+        .footer-col h3 span { color: var(--primary-red); }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: #aaa; transition: 0.3s; }
+        .footer-links a:hover { color: var(--primary-red); padding-left: 5px; }
+        
+        .social-icons { display: flex; gap: 15px; margin-top: 1.5rem; }
+        .social-icons a {
+            width: 40px; height: 40px; background: rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; transition: 0.3s;
+        }
+        .social-icons a:hover { background: var(--primary-red); transform: translateY(-5px); }
+
+        .copyright { background: #000; text-align: center; padding: 1.5rem 0; color: #666; font-size: 0.9rem; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .vehicle-left, .vehicle-right { display: none; } /* Hide cars on mobile for cleaner look */
+            .hero-title { font-size: 3.5rem; }
+            .promo-card { grid-template-columns: 1fr; text-align: center; }
+            .promo-image { order: -1; }
+            .about-container { grid-template-columns: 1fr; }
+        }
+        
+        /* Animation Class */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <section class="hero-sporty">
-        <!-- Garis Neon Atas -->
-        <div class="neon-line-top"></div>
-        
-        <!-- Dekorasi Sudut -->
-        <div class="corner-decor top-left"></div>
-        <div class="corner-decor bottom-right"></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">LOMBOK<span>SPEED</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#promo">Promo</a></li>
+                <li><a href="#katalog">Stok</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#kontak">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <div class="container-hero">
-            <!-- Kendaraan Kiri (Mobil) -->
+    <!-- Hero Section (Sporty Dark Style) -->
+    <header id="home" class="hero-sporty">
+        <div class="neon-line-top"></div>
+        <div class="hero-grid">
+            <!-- Left Vehicle (Car) -->
             <div class="vehicle-left">
-                <!-- Menggunakan gambar mobil sport PNG transparan -->
                 <img src="https://purepng.com/public/uploads/large/purepng.com-red-lamborghini-carcarvehicletransportlamborghini-96152466345j25d.png" alt="Sport Car" class="vehicle-img">
             </div>
 
-            <!-- Konten Tengah -->
+            <!-- Center Content -->
             <div class="hero-content">
-                <div class="brand-badge">
-                    <i class="fas fa-tachometer-alt"></i> LOMBOK SPEED
-                </div>
-                <h1 class="hero-title">
-                    AUTOMOTIVE<br>MARKET
-                </h1>
-                <p class="hero-subtitle">Understanding Trends, Seizing Opportunities</p>
-                
-                <button class="btn-glow">
-                    Lihat Koleksi <i class="fas fa-arrow-right"></i>
-                </button>
+                <div class="brand-badge"><i class="fas fa-tachometer-alt"></i> PREMIUM DEALER</div>
+                <h1 class="hero-title">AUTOMOTIVE<br>MARKET</h1>
+                <p class="hero-subtitle">Understanding Trends, Seizing Opportunities in Mataram</p>
+                <a href="#katalog" class="btn-glow">Lihat Koleksi <i class="fas fa-arrow-right"></i></a>
             </div>
 
-            <!-- Kendaraan Kanan (Motor/Mobil Lain) -->
+            <!-- Right Vehicle (Motor/Bike) -->
             <div class="vehicle-right">
-                <!-- Menggunakan gambar motor sport PNG transparan -->
                 <img src="https://purepng.com/public/uploads/large/red-sport-motorcycle-png-12.png" alt="Sport Bike" class="vehicle-img">
+            </div>
+        </div>
+    </header>
+
+    <!-- Promo Section (Bright Colorful) -->
+    <section id="promo" class="promo-section">
+        <div class="container">
+            <div class="promo-card reveal">
+                <div class="promo-content">
+                    <span style="font-weight: 700; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 10px;">Promo Spesial Bulan Ini</span>
+                    <h2>Diskon Hingga Rp 10 Juta!</h2>
+                    <p>Khusus pembelian unit Toyota Fortuner & Pajero Sport minggu ini. Dapatkan bonus service gratis 1 tahun.</p>
+                    <a href="https://wa.me/6281234567890" class="btn" style="background: white; color: #f72585; font-weight: 700; padding: 12px 30px; border-radius: 50px; margin-top: 1rem;">Klaim Promo Sekarang</a>
+                </div>
+                <div class="promo-image">
+                    <img src="https://images.unsplash.com/photo-15493995427e70c8140f3b25c3e5c3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Promo Car">
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Catalog Section -->
+    <section id="katalog" class="catalog">
+        <div class="container">
+            <div class="section-header reveal">
+                <span>Koleksi Terbaru</span>
+                <h2>Mobil Pilihan Berkualitas</h2>
+            </div>
+
+            <div class="car-grid">
+                <!-- Car 1 -->
+                <div class="car-card reveal">
+                    <div class="car-img">
+                        <img src="https://images.unsplash.com/photo-15493995427e70c8140f3b25c3e5c3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fortuner">
+                        <span class="car-tag">Hot Deal</span>
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-title">Toyota Fortuner VRZ</h3>
+                        <p class="car-price">Rp 385.000.000</p>
+                        <div class="car-specs">
+                            <div><i class="fas fa-calendar-alt"></i> 2019</div>
+                            <div><i class="fas fa-tachometer-alt"></i> 45k KM</div>
+                            <div><i class="fas fa-cog"></i> AT</div>
+                        </div>
+                        <a href="#" class="btn-card">Lihat Detail</a>
+                    </div>
+                </div>
+
+                <!-- Car 2 -->
+                <div class="car-card reveal">
+                    <div class="car-img">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Honda Jazz">
+                        <span class="car-tag">Baru Masuk</span>
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-title">Honda Jazz RS</h3>
+                        <p class="car-price">Rp 210.000.000</p>
+                        <div class="car-specs">
+                            <div><i class="fas fa-calendar-alt"></i> 2020</div>
+                            <div><i class="fas fa-tachometer-alt"></i> 20k KM</div>
+                            <div><i class="fas fa-cog"></i> CVT</div>
+                        </div>
+                        <a href="#" class="btn-card">Lihat Detail</a>
+                    </div>
+                </div>
+
+                <!-- Car 3 -->
+                <div class="car-card reveal">
+                    <div class="car-img">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Ertiga">
+                    </div>
+                    <div class="car-details">
+                        <h3 class="car-title">Suzuki Ertiga Turbo</h3>
+                        <p class="car-price">Rp 215.000.000</p>
+                        <div class="car-specs">
+                            <div><i class="fas fa-calendar-alt"></i> 2021</div>
+                            <div><i class="fas fa-tachometer-alt"></i> 15k KM</div>
+                            <div><i class="fas fa-cog"></i> MT</div>
+                        </div>
+                        <a href="#" class="btn-card">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="#" class="btn" style="background: #333; color: white; padding: 12px 30px; border-radius: 50px;">Lihat Semua Stok</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="about">
+        <div class="container about-container">
+            <div class="about-img reveal">
+                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Showroom">
+            </div>
+            <div class="about-text reveal">
+                <span style="color: var(--primary-red); font-weight: 700; text-transform: uppercase;">Tentang Kami</span>
+                <h2>Solusi Mobil Bekas Terpercaya di Mataram</h2>
+                <p style="margin-bottom: 2rem; color: #555;">Kami berkomitmen menyediakan mobil bekas dengan kualitas seperti baru. Setiap unit telah melalui inspeksi ketat untuk kenyamanan berkendara Anda.</p>
+                
+                <ul class="about-list">
+                    <li><i class="fas fa-check-circle"></i> Garansi Mesin & Transmisi</li>
+                    <li><i class="fas fa-check-circle"></i> Dokumen Asli & Legalitas Terjamin</li>
+                    <li><i class="fas fa-check-circle"></i> Bisa Tukar Tambah & Kredit</li>
+                </ul>
+                
+                <a href="#kontak" class="btn" style="background: var(--primary-red); color: white; padding: 12px 30px; border-radius: 50px; margin-top: 2rem;">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>LOMBOK<span>SPEED</span></h3>
+                <p style="color: #aaa; line-height: 1.6;">Dealer mobil bekas terpercaya di Nusa Tenggara Barat. Melayani dengan jujur dan profesional sejak 2015.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Navigasi</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#katalog">Stok Mobil</a></li>
+                    <li><a href="#promo">Promo</a></li>
+                    <li><a href="#tentang">Tentang Kami</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Kontak Kami</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt" style="color: var(--primary-red); margin-right: 10px;"></i> Jl. Pejanggik, Mataram, NTB</li>
+                    <li><i class="fas fa-phone" style="color: var(--primary-red); margin-right: 10px;"></i> +62 812-3456-7890</li>
+                    <li><i class="fas fa-envelope" style="color: var(--primary-red); margin-right: 10px;"></i> info@lombokspped.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Lombok Speed Motors. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script Animasi Scroll -->
+    <script>
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var revealTop = reveals[i].getBoundingClientRect().top;
+                var revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        reveal(); // Trigger once on load
+    </script>
 </body>
 </html>
