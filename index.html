@@ -1,1 +1,679 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lombok Premium Auto - Showroom Mobil Bekas Berkualitas Mataram</title>
+    
+    <!-- Font Google: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Icon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <!-- CSS Internal -->
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Color Variables */
+        :root {
+            --primary-color: #c0392b; /* Merah elegan */
+            --secondary-color: #2c3e50; /* Biru gelap professional */
+            --accent-color: #ecf0f1;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-nav {
+            background: var(--primary-color);
+            color: var(--white) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .btn-nav:hover {
+            background: #a93226;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* Catalog Section */
+        .catalog {
+            padding: 5rem 0;
+            background: #f4f6f7;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .car-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .car-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .car-card:hover .car-image img {
+            transform: scale(1.1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .car-details {
+            padding: 1.5rem;
+        }
+
+        .car-details h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+            color: var(--secondary-color);
+        }
+
+        .year {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: #555;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 0.8rem 0;
+        }
+
+        .specs span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .btn-detail {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .center-btn {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--secondary-color);
+            color: var(--secondary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .about-list {
+            margin-top: 1.5rem;
+        }
+
+        .about-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .about-list i {
+            color: var(--primary-color);
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 4rem 0 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col h3 span {
+            color: var(--primary-color);
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .footer-col p {
+            margin-bottom: 0.8rem;
+            color: #bdc3c7;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-bottom {
+            background: #1a252f;
+            text-align: center;
+            padding: 1.5rem 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Lombok<span>Premium</span>Auto</a>
+            <ul class="nav-links">
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#katalog">Katalog Mobil</a></li>
+                <li><a href="#tentang">Tentang Kami</a></li>
+                <li><a href="#kontak" class="btn-nav">Hubungi Kami</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Mobil Bekas Berkualitas <br>di Jantung Kota Mataram</h1>
+            <p>Temukan mobil impian Anda dengan kondisi prima, harga transparan, dan jaminan kepuasan. Spesialis jual beli mobil second terpercaya di NTB.</p>
+            <div class="hero-buttons">
+                <a href="#katalog" class="btn btn-primary">Lihat Stok Mobil</a>
+                <a href="https://wa.me/6281234567890" class="btn btn-secondary"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>Kualitas Terjamin</h3>
+                <p>Setiap unit telah melalui inspeksi ketat 100+ titik untuk memastikan mesin dan bodi dalam kondisi terbaik.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-file-contract"></i>
+                <h3>Dokumen Lengkap</h3>
+                <p>Jaminan legalitas surat-surat kendaraan (STNK, BPKB) asli dan bebas masalah hukum.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-hand-holding-usd"></i>
+                <h3>Harga Kompetitif</h3>
+                <p>Harga terbaik di Mataram dengan opsi tukar tambah dan kredit yang fleksibel.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section -->
+    <section id="katalog" class="catalog">
+        <div class="container">
+            <div class="section-title">
+                <h2>Koleksi Mobil Pilihan</h2>
+                <p>Stok terbaru minggu ini di Showroom Mataram</p>
+            </div>
+            
+            <div class="car-grid">
+                <!-- Car Item 1 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-15493995427e70c8140f3b25c3e5c3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Toyota Fortuner">
+                        <span class="badge">Hot Deal</span>
+                    </div>
+                    <div class="car-details">
+                        <h3>Toyota Fortuner VRZ</h3>
+                        <p class="year">Tahun 2019</p>
+                        <div class="specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 45.000 KM</span>
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-cog"></i> Automatic</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price">Rp 385.000.000</span>
+                            <a href="#" class="btn-detail">Detail</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Item 2 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Honda Jazz">
+                    </div>
+                    <div class="car-details">
+                        <h3>Honda Jazz RS</h3>
+                        <p class="year">Tahun 2020</p>
+                        <div class="specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 20.000 KM</span>
+                            <span><i class="fas fa-gas-pump"></i> Bensin</span>
+                            <span><i class="fas fa-cog"></i> CVT</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price">Rp 210.000.000</span>
+                            <a href="#" class="btn-detail">Detail</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Item 3 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mitsubishi Pajero">
+                        <span class="badge">Baru Masuk</span>
+                    </div>
+                    <div class="car-details">
+                        <h3>Mitsubishi Pajero Sport</h3>
+                        <p class="year">Tahun 2018</p>
+                        <div class="specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 60.000 KM</span>
+                            <span><i class="fas fa-gas-pump"></i> Diesel</span>
+                            <span><i class="fas fa-cog"></i> Automatic</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price">Rp 350.000.000</span>
+                            <a href="#" class="btn-detail">Detail</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Item 4 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Suzuki Ertiga">
+                    </div>
+                    <div class="car-details">
+                        <h3>Suzuki Ertiga GX</h3>
+                        <p class="year">Tahun 2021</p>
+                        <div class="specs">
+                            <span><i class="fas fa-tachometer-alt"></i> 15.000 KM</span>
+                            <span><i class="fas fa-gas-pump"></i> Bensin</span>
+                            <span><i class="fas fa-cog"></i> Manual</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price">Rp 195.000.000</span>
+                            <a href="#" class="btn-detail">Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="center-btn">
+                <a href="#" class="btn btn-outline">Lihat Semua Koleksi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang" class="about">
+        <div class="container about-container">
+            <div class="about-text">
+                <h2>Tentang Lombok Premium Auto</h2>
+                <p>Kami adalah showroom mobil bekas terbesar dan terpercaya di Mataram, Nusa Tenggara Barat. Berdiri sejak 2015, kami berkomitmen menyediakan kendaraan berkualitas dengan harga yang masuk akal.</p>
+                <p>Dengan tim mekanik berpengalaman, setiap mobil yang masuk ke showroom kami wajib lolos uji kelayakan. Kepuasan pelanggan adalah prioritas utama kami.</p>
+                <ul class="about-list">
+                    <li><i class="fas fa-check"></i> Lokasi Strategis di Mataram</li>
+                    <li><i class="fas fa-check"></i> Bisa Tukar Tambah</li>
+                    <li><i class="fas fa-check"></i> Bantuan Proses Kredit</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Showroom Interior">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Lombok<span>Premium</span>Auto</h3>
+                <p>Solusi terbaik untuk kebutuhan mobil bekas berkualitas di NTB.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Kontak Kami</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Jl. Pejanggik No. 123, Mataram, NTB</p>
+                <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+                <p><i class="fas fa-envelope"></i> sales@lombokpremiumauto.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Jam Operasional</h4>
+                <p>Senin - Sabtu: 08.00 - 17.00 WITA</p>
+                <p>Minggu: Dengan Perjanjian</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Lombok Premium Auto. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
