@@ -164,7 +164,33 @@
 }
 .hero p{margin-left:auto;margin-right:auto}
 .hero-btns{justify-content:center}
-.countdown{justify-content:center}
+
+/* ===== COUNTDOWN COMPACT ===== */
+.countdown{justify-content:center;gap:10px;margin-top:40px}
+.cd-box{width:70px;padding:12px 0;border-radius:14px}
+.cd-num{font-size:1.5rem}
+.cd-label{font-size:.6rem;letter-spacing:1.2px}
+
+/* ===== JUDUL GLOW + GRADASI BERGERAK ===== */
+.hero h1 .grad{
+  background:linear-gradient(90deg,#eb0a1e,#ff6a3d,#ffc648,#ff2d3f,#eb0a1e);
+  background-size:300% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:shine 5s linear infinite;
+  filter:drop-shadow(0 0 20px rgba(235,10,30,.5));
+}
+@keyframes shine{
+  from{background-position:0% 50%}
+  to{background-position:300% 50%}
+}
+
+/* ===== RESPONSIVE HP KECIL ===== */
+@media(max-width:480px){
+  .cd-box{width:60px}
+  .cd-num{font-size:1.25rem}
+}
 
 
 </style>
