@@ -82,13 +82,31 @@
   .car-card .tag{display:inline-block;margin-top:10px;font-size:.68rem;font-weight:700;color:var(--gold);background:rgba(255,198,72,.1);border:1px solid rgba(255,198,72,.25);padding:4px 12px;border-radius:50px;letter-spacing:.5px}
 
   /* ===== Bonus Section ===== */
-  .bonus-sec{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-  .bonus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:52px}
-  .bonus-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:32px 26px;transition:.35s;backdrop-filter:blur(8px)}
-  .bonus-card:hover{transform:translateY(-6px);border-color:rgba(255,198,72,.4);box-shadow:0 16px 40px rgba(255,198,72,.12)}
-  .bonus-icon{width:56px;height:56px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;box-shadow:0 8px 24px rgba(235,10,30,.35)}
-  .bonus-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
-  .bonus-card p{color:var(--muted);font-size:.9rem}
+.bonus-sec{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.bonus-list{max-width:640px;margin:48px auto 0;display:flex;flex-direction:column;gap:14px}
+.bonus-card{
+  display:flex;align-items:center;gap:18px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:18px 22px;
+  transition:.3s;backdrop-filter:blur(8px);
+}
+.bonus-card:hover{
+  transform:translateX(6px);
+  border-color:rgba(255,198,72,.4);
+  background:rgba(255,255,255,.06);
+}
+.bonus-icon{
+  width:46px;height:46px;min-width:46px;
+  border-radius:13px;background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.25rem;
+  box-shadow:0 6px 18px rgba(235,10,30,.3);
+}
+.bonus-card h3{font-size:.95rem;font-weight:700;line-height:1.4}
+.bonus-card h3 small{
+  display:block;font-size:.72rem;font-weight:500;
+  color:var(--muted);margin-top:2px;
+}
 
   /* ===== Why Section ===== */
   .why-flex{display:flex;gap:60px;align-items:center;margin-top:52px;flex-wrap:wrap}
@@ -200,12 +218,25 @@
   <div class="wrap center reveal">
     <span class="sec-tag">🎁 Bonus Spesial</span>
     <h2 class="sec-title">Beli Toyota, Bonusnya Bikin Ngiler</h2>
-    <p class="sec-sub">Hanya selama periode promo Agustus 2026 — selama program & persediaan masih tersedia.</p>
-    <div class="bonus-grid">
-      <div class="bonus-card"><div class="bonus-icon">🏍️</div><h3>FREE Tiket MotoGP Mandalika 2026*</h3><p>Rasakan langsung atmosfer balap kelas dunia di sirkuit kebanggaan Indonesia.</p></div>
-      <div class="bonus-card"><div class="bonus-icon">🏁</div><h3>FREE Track Experience*</h3><p>Pengalaman eksklusif menjajal lintasan balap yang tak terlupakan.</p></div>
-      <div class="bonus-card"><div class="bonus-icon">🔧</div><h3>FREE TCO Parts Upgrade</h3><p>Upgrade parts untuk performa dan tampilan Toyota-mu makin maksimal.</p></div>
-      <div class="bonus-card"><div class="bonus-icon">🛡️</div><h3>FREE Asuransi All Risk</h3><p>Berkendara tenang tanpa khawatir — perlindungan menyeluruh untuk mobil kesayangan.</p></div>
+    <p class="sec-sub">Hanya selama periode promo Agustus 2026.</p>
+
+    <div class="bonus-list">
+      <div class="bonus-card">
+        <div class="bonus-icon">🏍️</div>
+        <h3>FREE Tiket MotoGP Mandalika 2026<small>Saksikan balapan kelas dunia langsung dari sirkuit*</small></h3>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon">🏁</div>
+        <h3>FREE Track Experience<small>Rasakan sensasi eksklusif di lintasan balap*</small></h3>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon">🔧</div>
+        <h3>FREE TCO Parts Upgrade<small>Upgrade parts untuk performa maksimal</small></h3>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-icon">🛡️</div>
+        <h3>FREE Asuransi All Risk<small>Perlindungan menyeluruh, berkendara lebih tenang</small></h3>
+      </div>
     </div>
   </div>
 </section>
