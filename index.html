@@ -1,525 +1,512 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lombok Speed Motors - Premium Used Cars</title>
-    
-    <!-- Font Google: Oswald (Sporty) & Poppins (Body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wuling Lombok NTB | Drive For A Better Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{
+  --wuling-red:#C7000B;
+  --gold:#D4AF37;
+  --gold-light:#F3E5AB;
+  --black:#111111;
+  --dark:#1a1a1a;
+  --gray:#6b7280;
+  --light-gray:#f4f4f5;
+  --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black)}
 
-    <style>
-        /* --- GLOBAL VARIABLES & RESET --- */
-        :root {
-            --primary-red: #ff0000;
-            --dark-bg: #050505;
-            --light-text: #f8f9fa;
-            --gray-text: #b0b0b0;
-            --accent-blue: #4361ee;
-            --accent-pink: #f72585;
-            --card-bg: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+/* ============ NAVBAR ============ */
+.navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;
+  background:rgba(17,17,17,.92);backdrop-filter:blur(12px);
+  padding:14px 6%;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:2px solid var(--gold)}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-badge{width:44px;height:34px;background:var(--wuling-red);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px;
+  box-shadow:0 0 12px rgba(199,0,11,.6)}
+.logo-text{color:#fff;font-weight:800;font-size:20px;letter-spacing:2px}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:#e5e5e5;text-decoration:none;font-size:13px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;transition:.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{background:linear-gradient(135deg,var(--gold),#b8952e);color:var(--black)!important;
+  padding:10px 22px;border-radius:50px;font-weight:800!important;box-shadow:0 4px 15px rgba(212,175,55,.4)}
+.hamburger{display:none;color:#fff;font-size:24px;cursor:pointer;background:none;border:none}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light-text);
-            color: #333;
-            overflow-x: hidden;
-        }
+/* ============ HERO / CAROUSEL ============ */
+.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:var(--black)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;
+  display:flex;align-items:center;justify-content:center}
+.slide.active{opacity:1}
+.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.slide::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.25) 100%)}
+/* Background placeholder — ganti dengan foto asli Anda */
+.bg-1{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),
+  url('images/confero-hero.jpg'),
+  linear-gradient(160deg,#0f0f0f 0%,#2b2b2b 45%,#4a1010 100%);background-blend-mode:normal}
+.bg-2{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),
+  url('images/binguo-hero.jpg'),
+  linear-gradient(160deg,#1c1c0f 0%,#3a3312 50%,#6b5a14 100%)}
+.bg-3{background-image:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15)),
+  url('images/almaz-hero.jpg'),
+  linear-gradient(160deg,#1a1a1a 0%,#3d3d3d 50%,#8a8a8a 100%)}
 
-        h1, h2, h3, .brand-badge, .btn-glow, .hero-title {
-            font-family: 'Oswald', sans-serif;
-        }
+.hero-content{position:relative;z-index:5;max-width:1280px;width:100%;
+  margin:0 auto;padding:0 6%;color:#fff}
+.hero-tag{display:inline-block;background:rgba(212,175,55,.15);border:1px solid var(--gold);
+  color:var(--gold);padding:8px 22px;border-radius:50px;font-size:12px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp .8s ease}
+.hero-title{font-size:clamp(34px,5.5vw,64px);font-weight:900;line-height:1.1;margin-bottom:16px;
+  text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.hero-title .accent{color:var(--gold)}
+.hero-desc{font-size:clamp(14px,1.6vw,18px);color:#d1d5db;max-width:560px;margin-bottom:34px;
+  line-height:1.7;font-weight:400}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn{padding:15px 36px;border-radius:50px;font-weight:800;font-size:14px;text-decoration:none;
+  text-transform:uppercase;letter-spacing:1px;transition:.35s;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none}
+.btn-red{background:linear-gradient(135deg,var(--wuling-red),#8f0008);color:#fff;
+  box-shadow:0 8px 25px rgba(199,0,11,.45)}
+.btn-red:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(199,0,11,.6)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#b8952e);color:var(--black);
+  box-shadow:0 8px 25px rgba(212,175,55,.4)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(212,175,55,.6)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
 
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; }
+/* Carousel dots & progress */
+.hero-dots{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;gap:14px;z-index:10}
+.dot{width:42px;height:5px;background:rgba(255,255,255,.3);border-radius:4px;cursor:pointer;
+  transition:.3s;overflow:hidden;position:relative}
+.dot.active{background:rgba(255,255,255,.25)}
+.dot.active::after{content:'';position:absolute;left:0;top:0;height:100%;width:0;
+  background:var(--gold);border-radius:4px;animation:progress 5s linear forwards}
+@keyframes progress{to{width:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.slide-badge{position:absolute;top:110px;right:6%;z-index:6;text-align:right}
+.slide-badge .model-no{font-size:60px;font-weight:900;color:transparent;
+  -webkit-text-stroke:2px rgba(212,175,55,.5)}
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+/* ============ SECTION UMUM ============ */
+section{padding:90px 6%}
+.section-head{text-align:center;max-width:640px;margin:0 auto 60px}
+.section-sub{color:var(--wuling-red);font-size:13px;font-weight:800;letter-spacing:4px;
+  text-transform:uppercase;margin-bottom:12px;display:block}
+.section-title{font-size:clamp(26px,3.5vw,40px);font-weight:900;line-height:1.25;margin-bottom:16px}
+.section-title .gold{color:var(--gold)}
+.gold-line{width:70px;height:4px;background:linear-gradient(90deg,var(--wuling-red),var(--gold));
+  border-radius:4px;margin:0 auto}
 
-        /* --- NAVBAR --- */
-        .navbar {
-            position: fixed;
-            top: 0; width: 100%;
-            background: rgba(5, 5, 5, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,0,0,0.2);
-        }
+/* ============ PRODUK ============ */
+.products{background:var(--light-gray)}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:32px;max-width:1280px;margin:0 auto}
+.card{background:#fff;border-radius:20px;overflow:hidden;transition:.4s;
+  box-shadow:0 6px 24px rgba(0,0,0,.07);border:1px solid #eee;position:relative}
+.card:hover{transform:translateY(-12px);box-shadow:0 22px 48px rgba(199,0,11,.16);border-color:var(--gold)}
+.card-img{height:210px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.card:hover .card-img img{transform:scale(1.07)}
+/* Placeholder mobil — ganti src dengan foto asli */
+.car-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:20px;gap:8px}
+.car-ph i{font-size:54px;opacity:.9}
+.ph-black{background:linear-gradient(135deg,#1c1c1c,#383838)}
+.ph-yellow{background:linear-gradient(135deg,#8a7210,#d4b020)}
+.ph-white{background:linear-gradient(135deg,#b8b8b8,#e8e8e8);color:#333}
+.card-ribbon{position:absolute;top:16px;left:16px;background:var(--wuling-red);color:#fff;
+  padding:6px 16px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:1px;z-index:2;
+  text-transform:uppercase}
+.card-body{padding:28px}
+.card-cat{font-size:11px;color:var(--gray);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.card-title{font-size:22px;font-weight:900;margin:6px 0 4px}
+.card-price{color:var(--wuling-red);font-weight:800;font-size:15px;margin-bottom:14px}
+.card-price small{color:var(--gray);font-weight:500}
+.card-specs{display:flex;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+.spec{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--gray);font-weight:600}
+.spec i{color:var(--gold);font-size:14px}
+.card-btns{display:flex;gap:10px}
+.card-btns .btn{flex:1;justify-content:center;padding:13px 10px;font-size:12px}
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* ============ SALES CONSULTANT ============ */
+.sales{background:linear-gradient(160deg,var(--black) 0%,#2a0808 60%,var(--dark) 100%);
+  color:#fff;position:relative;overflow:hidden}
+.sales::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,175,55,.12),transparent 70%);top:-150px;right:-150px}
+.sales-box{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;
+  gap:56px;align-items:center;position:relative;z-index:2}
+.sales-photo{position:relative}
+.sales-photo .frame{border-radius:20px;overflow:hidden;border:3px solid var(--gold);
+  box-shadow:0 20px 50px rgba(0,0,0,.5);aspect-ratio:3/4;background:#222}
+.sales-photo img{width:100%;height:100%;object-fit:cover}
+.photo-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:12px;color:#666;background:linear-gradient(160deg,#262626,#1a1a1a)}
+.photo-ph i{font-size:80px}
+.sales-badge-float{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--gold),#b8952e);color:var(--black);
+  padding:10px 26px;border-radius:50px;font-size:12px;font-weight:900;white-space:nowrap;
+  letter-spacing:1px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.sales-info .section-sub{color:var(--gold);text-align:left}
+.sales-info h2{font-size:clamp(26px,3.2vw,38px);font-weight:900;margin-bottom:6px;text-align:left}
+.sales-name{font-size:17px;color:#d1d5db;font-weight:600;margin-bottom:24px}
+.sales-name b{color:var(--gold)}
+.sales-features{list-style:none;margin-bottom:32px;display:grid;gap:14px}
+.sales-features li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#d1d5db;line-height:1.6}
+.sales-features i{color:var(--gold);margin-top:3px;font-size:15px}
+.phone-big{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(212,175,55,.35);border-radius:16px;padding:18px 24px;margin-bottom:22px}
+.phone-big i{font-size:30px;color:var(--gold)}
+.phone-big .label{font-size:11px;color:#9ca3af;text-transform:uppercase;letter-spacing:2px;font-weight:700}
+.phone-big .number{font-size:clamp(20px,2.6vw,28px);font-weight:900;color:#fff;letter-spacing:1px}
+.sales-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-wa{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;
+  box-shadow:0 8px 25px rgba(37,211,102,.35)}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,211,102,.5)}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            font-family: 'Oswald', sans-serif;
-            font-style: italic;
-        }
-        .logo span { color: var(--primary-red); }
+/* ============ MAP ============ */
+.map-section{background:#fff}
+.map-wrap{max-width:1280px;margin:0 auto;border-radius:20px;overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,0,0,.12);border:3px solid var(--gold)}
+.map-wrap iframe{width:100%;height:440px;border:0;display:block}
+.map-info{max-width:1280px;margin:26px auto 0;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.map-chip{background:var(--light-gray);border:1px solid #e5e5e5;border-radius:50px;
+  padding:12px 24px;font-size:13px;font-weight:700;color:var(--dark);display:flex;gap:9px;align-items:center}
+.map-chip i{color:var(--wuling-red)}
 
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a {
-            color: white;
-            font-weight: 500;
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-        .nav-links a:hover { color: var(--primary-red); }
+/* ============ FOOTER ============ */
+footer{background:var(--black);color:#fff;padding:64px 6% 0;position:relative}
+footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
+  background:linear-gradient(90deg,var(--wuling-red),var(--gold),var(--wuling-red))}
+.footer-grid{max-width:1280px;margin:0 auto;display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:48px}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.footer-slogan{font-size:20px;font-weight:800;font-style:italic;margin-bottom:6px}
+.footer-slogan span{color:var(--gold)}
+.footer-loc{color:#9ca3af;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+.footer-desc{color:#9ca3af;font-size:14px;line-height:1.8;margin-top:16px}
+.footer-col h4{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:2px;
+  margin-bottom:22px;color:var(--gold)}
+.footer-col ul{list-style:none;display:grid;gap:13px}
+.footer-col a{color:#d1d5db;text-decoration:none;font-size:14px;transition:.3s;font-weight:500}
+.footer-col a:hover{color:var(--gold);padding-left:6px}
+.footer-col li i{color:var(--wuling-red);width:22px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 6%;text-align:center;
+  color:#6b7280;font-size:12px;letter-spacing:1px}
+.footer-bottom b{color:var(--gold)}
 
-        /* --- HERO SECTION (SPORTY DARK STYLE) --- */
-        .hero-sporty {
-            position: relative;
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-            overflow: hidden;
-            padding-top: 80px; /* Offset navbar */
-        }
+/* WA float */
+.wa-float{position:fixed;bottom:26px;right:26px;width:62px;height:62px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;color:#fff;
+  font-size:30px;text-decoration:none;z-index:999;box-shadow:0 8px 25px rgba(37,211,102,.5);
+  animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}50%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
 
-        /* Efek Cahaya Merah Diagonal */
-        .hero-sporty::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: linear-gradient(45deg, transparent 40%, rgba(255, 0, 0, 0.1) 50%, transparent 60%);
-            transform: rotate(-30deg);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .neon-line-top {
-            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, transparent, #ff0000, transparent);
-            box-shadow: 0 0 15px #ff0000;
-            z-index: 10;
-        }
-
-        .hero-grid {
-            position: relative; z-index: 5;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr 1fr;
-            align-items: center;
-            width: 100%;
-            max-width: 1300px;
-            padding: 0 20px;
-        }
-
-        .vehicle-img {
-            width: 100%;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.3));
-            animation: floatVehicle 4s ease-in-out infinite;
-        }
-
-        @keyframes floatVehicle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .hero-content { text-align: center; color: white; }
-
-        .brand-badge {
-            background: var(--primary-red);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-        }
-
-        .hero-title {
-            font-size: 5rem;
-            font-weight: 700;
-            font-style: italic;
-            line-height: 1;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff 0%, #aaa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray-text);
-            margin-bottom: 2.5rem;
-            letter-spacing: 1px;
-        }
-
-        .btn-glow {
-            padding: 15px 40px;
-            background: transparent;
-            border: 2px solid var(--primary-red);
-            color: var(--primary-red);
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-        }
-
-        .btn-glow:hover {
-            background: var(--primary-red);
-            color: white;
-            box-shadow: 0 0 30px var(--primary-red);
-        }
-
-        /* --- PROMO SECTION (BRIGHT & COLORFUL) --- */
-        .promo-section {
-            padding: 4rem 0;
-            background: #fff;
-        }
-
-        .promo-card {
-            background: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
-            border-radius: 20px;
-            padding: 3rem;
-            color: white;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            align-items: center;
-            gap: 2rem;
-            box-shadow: 0 20px 40px rgba(114, 9, 183, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promo-card::after {
-            content: '';
-            position: absolute;
-            top: -50px; right: -50px;
-            width: 200px; height: 200px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        .promo-content h2 { font-size: 2.5rem; margin-bottom: 1rem; font-family: 'Poppins', sans-serif; font-weight: 800; }
-        .promo-image img { width: 100%; border-radius: 15px; transform: rotate(-3deg); border: 5px solid rgba(255,255,255,0.2); }
-
-        /* --- CATALOG SECTION --- */
-        .catalog { padding: 5rem 0; background: #f8f9fa; }
-        
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 { font-size: 2.5rem; color: #333; margin-bottom: 0.5rem; }
-        .section-header span { color: var(--primary-red); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .car-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .car-card:hover { transform: translateY(-10px); }
-
-        .car-img { height: 220px; overflow: hidden; position: relative; }
-        .car-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .car-card:hover .car-img img { transform: scale(1.1); }
-
-        .car-tag {
-            position: absolute; top: 15px; left: 15px;
-            background: var(--primary-red); color: white;
-            padding: 5px 12px; border-radius: 4px;
-            font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-        }
-
-        .car-details { padding: 1.5rem; }
-        .car-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .car-price { color: var(--primary-red); font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; }
-
-        .car-specs {
-            display: flex; justify-content: space-between;
-            color: #666; font-size: 0.9rem;
-            border-top: 1px solid #eee; border-bottom: 1px solid #eee;
-            padding: 10px 0; margin-bottom: 1.5rem;
-        }
-        .car-specs div { display: flex; align-items: center; gap: 5px; }
-
-        .btn-card {
-            display: block; width: 100%; text-align: center;
-            padding: 10px; border: 2px solid #333;
-            color: #333; border-radius: 8px;
-            font-weight: 600; transition: 0.3s;
-        }
-        .btn-card:hover { background: #333; color: white; }
-
-        /* --- ABOUT SECTION --- */
-        .about { padding: 5rem 0; background: white; }
-        .about-container {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 4rem; align-items: center;
-        }
-        .about-img img { border-radius: 20px; box-shadow: var(--shadow); }
-        .about-text h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-        .about-list li { margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; font-size: 1.1rem; }
-        .about-list i { color: var(--primary-red); }
-
-        /* --- FOOTER --- */
-        footer { background: #111; color: white; padding: 4rem 0 0 0; border-top: 5px solid var(--primary-red); }
-        .footer-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem; margin-bottom: 3rem;
-        }
-        .footer-col h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
-        .footer-col h3 span { color: var(--primary-red); }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: #aaa; transition: 0.3s; }
-        .footer-links a:hover { color: var(--primary-red); padding-left: 5px; }
-        
-        .social-icons { display: flex; gap: 15px; margin-top: 1.5rem; }
-        .social-icons a {
-            width: 40px; height: 40px; background: rgba(255,255,255,0.1);
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; transition: 0.3s;
-        }
-        .social-icons a:hover { background: var(--primary-red); transform: translateY(-5px); }
-
-        .copyright { background: #000; text-align: center; padding: 1.5rem 0; color: #666; font-size: 0.9rem; }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .vehicle-left, .vehicle-right { display: none; } /* Hide cars on mobile for cleaner look */
-            .hero-title { font-size: 3.5rem; }
-            .promo-card { grid-template-columns: 1fr; text-align: center; }
-            .promo-image { order: -1; }
-            .about-container { grid-template-columns: 1fr; }
-        }
-        
-        /* Animation Class */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
+/* ============ RESPONSIVE ============ */
+@media(max-width:960px){
+  .nav-links{position:fixed;top:64px;left:0;width:100%;background:rgba(17,17,17,.98);
+    flex-direction:column;padding:24px 6%;gap:18px;display:none;border-bottom:2px solid var(--gold)}
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .sales-box{grid-template-columns:1fr;gap:44px;text-align:center}
+  .sales-photo{max-width:300px;margin:0 auto}
+  .sales-info .section-sub,.sales-info h2{text-align:center}
+  .sales-features{text-align:left;max-width:440px;margin:0 auto 32px}
+  .phone-big{justify-content:center;flex-wrap:wrap;text-align:center}
+  .sales-btns{justify-content:center}
+  .footer-grid{grid-template-columns:1fr;text-align:center;gap:36px}
+  .footer-logo,.footer-col ul{justify-content:center;justify-items:center}
+}
+@media(max-width:520px){
+  section{padding:64px 5%}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .card-btns{flex-direction:column}
+  .slide-badge{display:none}
+  .map-wrap iframe{height:320px}
+}
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">LOMBOK<span>SPEED</span></a>
-            <ul class="nav-links">
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#promo">Promo</a></li>
-                <li><a href="#katalog">Stok</a></li>
-                <li><a href="#tentang">Tentang</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar">
+  <div class="logo">
+    <div class="logo-badge">W</div>
+    <div class="logo-text">WULING <span>LOMBOK</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">Beranda</a></li>
+    <li><a href="#produk">Model</a></li>
+    <li><a href="#sales">Sales Kami</a></li>
+    <li><a href="#lokasi">Lokasi</a></li>
+    <li><a href="https://wa.me/6281234567890" class="nav-cta"><i class="fab fa-whatsapp"></i> Hubungi Kami</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <i class="fas fa-bars"></i>
+  </button>
+</nav>
+
+<!-- ============ HERO CAROUSEL ============ -->
+<header class="hero" id="hero">
+
+  <div class="slide active">
+    <div class="slide-bg bg-1"></div>
+    <div class="slide-badge"><div class="model-no">01</div></div>
+    <div class="hero-content">
+      <span class="hero-tag">★ MPV Keluarga Terbaik</span>
+      <h1 class="hero-title">Wuling <span class="accent">Confero DB</span></h1>
+      <p class="hero-desc">Kabin lega 8-penumpang dengan kemewahan warna hitam elegan. MPV tangguh untuk keluarga dan perjalanan antar kota di Pulau Lombok.</p>
+      <div class="hero-btns">
+        <a href="#produk" class="btn btn-red"><i class="fas fa-tag"></i> Lihat Promo</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Confero%20DB" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Test Drive</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-bg bg-2"></div>
+    <div class="slide-badge"><div class="model-no">02</div></div>
+    <div class="hero-content">
+      <span class="hero-tag">⚡ The Future Drive</span>
+      <h1 class="hero-title">Wuling <span class="accent">Binguo EV</span></h1>
+      <p class="hero-desc">Mobil listrik ikonik berwarna kuning ceria. Jarak tempuh hingga 410 km, biaya operasional super hemat, ramah lingkungan untuk kota Mataram.</p>
+      <div class="hero-btns">
+        <a href="#produk" class="btn btn-gold"><i class="fas fa-bolt"></i> Lihat Promo EV</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Binguo%20EV" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Konsultasi Gratis</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-bg bg-3"></div>
+    <div class="slide-badge"><div class="model-no">03</div></div>
+    <div class="hero-content">
+      <span class="hero-tag">🏔 Premium SUV</span>
+      <h1 class="hero-title">Wuling <span class="accent">Almaz RS Pro</span></h1>
+      <p class="hero-desc">SUV cerdas berwarna putih mutiara dengan teknologi WIND & ADAS. Nyaman menembus pegunungan Rinjani hingga pantai-pantai eksotis Lombok.</p>
+      <div class="hero-btns">
+        <a href="#produk" class="btn btn-red"><i class="fas fa-crown"></i> Lihat Promo</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Almaz%20RS%20Pro" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Pemesanan</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <div class="dot active" onclick="goSlide(0)"></div>
+    <div class="dot" onclick="goSlide(1)"></div>
+    <div class="dot" onclick="goSlide(2)"></div>
+  </div>
+</header>
+
+<!-- ============ PRODUK ============ -->
+<section class="products" id="produk">
+  <div class="section-head">
+    <span class="section-sub">Pilihan Model Unggulan</span>
+    <h2 class="section-title">Temukan <span class="gold">Wuling</span> Impian Anda</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="product-grid">
+
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="card-img">
+        <span class="card-ribbon">MPV Family</span>
+        <!-- Ganti dengan: <img src="images/confero-db.jpg" alt="Wuling Confero DB"> -->
+        <div class="car-ph ph-black"><i class="fas fa-car-side"></i>CONFERO DB · HITAM</div>
+      </div>
+      <div class="card-body">
+        <span class="card-cat">7-Seater MPV</span>
+        <h3 class="card-title">Wuling Confero DB</h3>
+        <p class="card-price">Mulai Rp 178 jutaan* <small>/OTR Lombok</small></p>
+        <div class="card-specs">
+          <span class="spec"><i class="fas fa-users"></i> 8 Kursi</span>
+          <span class="spec"><i class="fas fa-gas-pump"></i> Bensin 1.5L</span>
+          <span class="spec"><i class="fas fa-gear"></i> Manual</span>
         </div>
-    </nav>
-
-    <!-- Hero Section (Sporty Dark Style) -->
-    <header id="home" class="hero-sporty">
-        <div class="neon-line-top"></div>
-        <div class="hero-grid">
-            <!-- Left Vehicle (Car) -->
-            <div class="vehicle-left">
-                <img src="https://purepng.com/public/uploads/large/purepng.com-red-lamborghini-carcarvehicletransportlamborghini-96152466345j25d.png" alt="Sport Car" class="vehicle-img">
-            </div>
-
-            <!-- Center Content -->
-            <div class="hero-content">
-                <div class="brand-badge"><i class="fas fa-tachometer-alt"></i> PREMIUM DEALER</div>
-                <h1 class="hero-title">AUTOMOTIVE<br>MARKET</h1>
-                <p class="hero-subtitle">Understanding Trends, Seizing Opportunities in Mataram</p>
-                <a href="#katalog" class="btn-glow">Lihat Koleksi <i class="fas fa-arrow-right"></i></a>
-            </div>
-
-            <!-- Right Vehicle (Motor/Bike) -->
-            <div class="vehicle-right">
-                <img src="https://purepng.com/public/uploads/large/red-sport-motorcycle-png-12.png" alt="Sport Bike" class="vehicle-img">
-            </div>
+        <div class="card-btns">
+          <a href="https://wa.me/6281234567890?text=Info%20promo%20Confero%20DB" class="btn btn-red">Lihat Promo</a>
+          <a href="https://wa.me/6281234567890?text=Booking%20Confero%20DB" class="btn btn-gold">Pemesanan</a>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <!-- Promo Section (Bright Colorful) -->
-    <section id="promo" class="promo-section">
-        <div class="container">
-            <div class="promo-card reveal">
-                <div class="promo-content">
-                    <span style="font-weight: 700; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 10px;">Promo Spesial Bulan Ini</span>
-                    <h2>Diskon Hingga Rp 10 Juta!</h2>
-                    <p>Khusus pembelian unit Toyota Fortuner & Pajero Sport minggu ini. Dapatkan bonus service gratis 1 tahun.</p>
-                    <a href="https://wa.me/6281234567890" class="btn" style="background: white; color: #f72585; font-weight: 700; padding: 12px 30px; border-radius: 50px; margin-top: 1rem;">Klaim Promo Sekarang</a>
-                </div>
-                <div class="promo-image">
-                    <img src="https://images.unsplash.com/photo-15493995427e70c8140f3b25c3e5c3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Promo Car">
-                </div>
-            </div>
+    <!-- Card 2 -->
+    <div class="card">
+      <div class="card-img">
+        <span class="card-ribbon" style="background:var(--gold);color:var(--black)">EV Best Seller</span>
+        <!-- Ganti dengan: <img src="images/binguo-ev.jpg" alt="Wuling Binguo EV"> -->
+        <div class="car-ph ph-yellow"><i class="fas fa-bolt"></i>BINGUO EV · KUNING</div>
+      </div>
+      <div class="card-body">
+        <span class="card-cat">Electric Hatchback</span>
+        <h3 class="card-title">Wuling Binguo EV</h3>
+        <p class="card-price">Mulai Rp 317 jutaan* <small>/setelah insentif</small></p>
+        <div class="card-specs">
+          <span class="spec"><i class="fas fa-battery-full"></i> 410 km</span>
+          <span class="spec"><i class="fas fa-plug"></i> 100% Listrik</span>
+          <span class="spec"><i class="fas fa-shield-halved"></i> Garansi 8 Th</span>
         </div>
-    </section>
-
-    <!-- Catalog Section -->
-    <section id="katalog" class="catalog">
-        <div class="container">
-            <div class="section-header reveal">
-                <span>Koleksi Terbaru</span>
-                <h2>Mobil Pilihan Berkualitas</h2>
-            </div>
-
-            <div class="car-grid">
-                <!-- Car 1 -->
-                <div class="car-card reveal">
-                    <div class="car-img">
-                        <img src="https://images.unsplash.com/photo-15493995427e70c8140f3b25c3e5c3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Fortuner">
-                        <span class="car-tag">Hot Deal</span>
-                    </div>
-                    <div class="car-details">
-                        <h3 class="car-title">Toyota Fortuner VRZ</h3>
-                        <p class="car-price">Rp 385.000.000</p>
-                        <div class="car-specs">
-                            <div><i class="fas fa-calendar-alt"></i> 2019</div>
-                            <div><i class="fas fa-tachometer-alt"></i> 45k KM</div>
-                            <div><i class="fas fa-cog"></i> AT</div>
-                        </div>
-                        <a href="#" class="btn-card">Lihat Detail</a>
-                    </div>
-                </div>
-
-                <!-- Car 2 -->
-                <div class="car-card reveal">
-                    <div class="car-img">
-                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Honda Jazz">
-                        <span class="car-tag">Baru Masuk</span>
-                    </div>
-                    <div class="car-details">
-                        <h3 class="car-title">Honda Jazz RS</h3>
-                        <p class="car-price">Rp 210.000.000</p>
-                        <div class="car-specs">
-                            <div><i class="fas fa-calendar-alt"></i> 2020</div>
-                            <div><i class="fas fa-tachometer-alt"></i> 20k KM</div>
-                            <div><i class="fas fa-cog"></i> CVT</div>
-                        </div>
-                        <a href="#" class="btn-card">Lihat Detail</a>
-                    </div>
-                </div>
-
-                <!-- Car 3 -->
-                <div class="car-card reveal">
-                    <div class="car-img">
-                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Ertiga">
-                    </div>
-                    <div class="car-details">
-                        <h3 class="car-title">Suzuki Ertiga Turbo</h3>
-                        <p class="car-price">Rp 215.000.000</p>
-                        <div class="car-specs">
-                            <div><i class="fas fa-calendar-alt"></i> 2021</div>
-                            <div><i class="fas fa-tachometer-alt"></i> 15k KM</div>
-                            <div><i class="fas fa-cog"></i> MT</div>
-                        </div>
-                        <a href="#" class="btn-card">Lihat Detail</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center" style="margin-top: 3rem;">
-                <a href="#" class="btn" style="background: #333; color: white; padding: 12px 30px; border-radius: 50px;">Lihat Semua Stok</a>
-            </div>
+        <div class="card-btns">
+          <a href="https://wa.me/6281234567890?text=Info%20promo%20Binguo%20EV" class="btn btn-red">Lihat Promo</a>
+          <a href="https://wa.me/6281234567890?text=Booking%20Binguo%20EV" class="btn btn-gold">Pemesanan</a>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- About Section -->
-    <section id="tentang" class="about">
-        <div class="container about-container">
-            <div class="about-img reveal">
-                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Showroom">
-            </div>
-            <div class="about-text reveal">
-                <span style="color: var(--primary-red); font-weight: 700; text-transform: uppercase;">Tentang Kami</span>
-                <h2>Solusi Mobil Bekas Terpercaya di Mataram</h2>
-                <p style="margin-bottom: 2rem; color: #555;">Kami berkomitmen menyediakan mobil bekas dengan kualitas seperti baru. Setiap unit telah melalui inspeksi ketat untuk kenyamanan berkendara Anda.</p>
-                
-                <ul class="about-list">
-                    <li><i class="fas fa-check-circle"></i> Garansi Mesin & Transmisi</li>
-                    <li><i class="fas fa-check-circle"></i> Dokumen Asli & Legalitas Terjamin</li>
-                    <li><i class="fas fa-check-circle"></i> Bisa Tukar Tambah & Kredit</li>
-                </ul>
-                
-                <a href="#kontak" class="btn" style="background: var(--primary-red); color: white; padding: 12px 30px; border-radius: 50px; margin-top: 2rem;">Hubungi Kami</a>
-            </div>
+    <!-- Card 3 -->
+    <div class="card">
+      <div class="card-img">
+        <span class="card-ribbon">Premium SUV</span>
+        <!-- Ganti dengan: <img src="images/almaz-rs-pro.jpg" alt="Wuling Almaz RS Pro"> -->
+        <div class="car-ph ph-white"><i class="fas fa-mountain"></i>ALMAZ RS PRO · PUTIH</div>
+      </div>
+      <div class="card-body">
+        <span class="card-cat">Smart Technology SUV</span>
+        <h3 class="card-title">Wuling Almaz RS Pro</h3>
+        <p class="card-price">Mulai Rp 439 jutaan* <small>/OTR Lombok</small></p>
+        <div class="card-specs">
+          <span class="spec"><i class="fas fa-microchip"></i> WIND + ADAS</span>
+          <span class="spec"><i class="fas fa-gas-pump"></i> Turbo 1.5L</span>
+          <span class="spec"><i class="fas fa-camera"></i> 360° Cam</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="kontak">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>LOMBOK<span>SPEED</span></h3>
-                <p style="color: #aaa; line-height: 1.6;">Dealer mobil bekas terpercaya di Nusa Tenggara Barat. Melayani dengan jujur dan profesional sejak 2015.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-col">
-                <h3>Navigasi</h3>
-                <ul class="footer-links">
-                    <li><a href="#home">Beranda</a></li>
-                    <li><a href="#katalog">Stok Mobil</a></li>
-                    <li><a href="#promo">Promo</a></li>
-                    <li><a href="#tentang">Tentang Kami</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h3>Kontak Kami</h3>
-                <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt" style="color: var(--primary-red); margin-right: 10px;"></i> Jl. Pejanggik, Mataram, NTB</li>
-                    <li><i class="fas fa-phone" style="color: var(--primary-red); margin-right: 10px;"></i> +62 812-3456-7890</li>
-                    <li><i class="fas fa-envelope" style="color: var(--primary-red); margin-right: 10px;"></i> info@lombokspped.com</li>
-                </ul>
-            </div>
+        <div class="card-btns">
+          <a href="https://wa.me/6281234567890?text=Info%20promo%20Almaz%20RS%20Pro" class="btn btn-red">Lihat Promo</a>
+          <a href="https://wa.me/6281234567890?text=Booking%20Almaz%20RS%20Pro" class="btn btn-gold">Pemesanan</a>
         </div>
-        <div class="copyright">
-            <p>&copy; 2026 Lombok Speed Motors. All Rights Reserved.</p>
-        </div>
-    </footer>
+      </div>
+    </div>
 
-    <!-- Script Animasi Scroll -->
-    <script>
-        window.addEventListener('scroll', reveal);
-        function reveal() {
-            var reveals = document.querySelectorAll('.reveal');
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var revealTop = reveals[i].getBoundingClientRect().top;
-                var revealPoint = 150;
-                if (revealTop < windowHeight - revealPoint) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-        reveal(); // Trigger once on load
-    </script>
+  </div>
+  <p style="text-align:center;color:var(--gray);font-size:12px;margin-top:30px">*Harga dapat berubah sewaktu-waktu. Hubungi sales consultant untuk penawaran terbaik.</p>
+</section>
+
+<!-- ============ SALES CONSULTANT ============ -->
+<section class="sales" id="sales">
+  <div class="sales-box">
+    <div class="sales-photo">
+      <div class="frame">
+        <!-- Ganti dengan foto Bapak Apriyana: <img src="images/apriyana.jpg" alt="Apriyana - Sales Consultant"> -->
+        <div class="photo-ph"><i class="fas fa-user-tie"></i><span style="font-size:12px;font-weight:700">FOTO BAPAK APRIYANA</span></div>
+      </div>
+      <div class="sales-badge-float">⭐ SALES CONSULTANT TERPERCAYA</div>
+    </div>
+    <div class="sales-info">
+      <span class="section-sub">Kenali Sales Consultant Kami</span>
+      <h2>Siap Melayani Anda <span style="color:var(--gold)">Sepenuh Hati</span></h2>
+      <p class="sales-name">Bapak <b>Apriyana</b> — Sales Consultant Wuling Lombok NTB</p>
+      <ul class="sales-features">
+        <li><i class="fas fa-check-circle"></i> Konsultasi gratis pemilihan model sesuai kebutuhan & budget Anda</li>
+        <li><i class="fas fa-check-circle"></i> Bantuan proses kredit, DP ringan, dan persetujuan cepat</li>
+        <li><i class="fas fa-check-circle"></i> Layanan test drive langsung ke rumah / kantor Anda di seluruh Lombok</li>
+        <li><i class="fas fa-check-circle"></i> Pendampingan penuh hingga kendaraan dikirim ke tangan Anda</li>
+      </ul>
+      <div class="phone-big">
+        <i class="fas fa-phone-volume"></i>
+        <div>
+          <div class="label">Hubungi Langsung</div>
+          <div class="number">0812-3456-7890</div>
+        </div>
+      </div>
+      <div class="sales-btns">
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20ingin%20konsultasi%20mobil%20Wuling" class="btn btn-wa"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+        <a href="tel:+6281234567890" class="btn btn-gold"><i class="fas fa-phone"></i> Telepon Sekarang</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOKASI / MAP ============ -->
+<section class="map-section" id="lokasi">
+  <div class="section-head">
+    <span class="section-sub">Kunjungi Kami</span>
+    <h2 class="section-title">Dealer <span class="gold">Wuling Lombok NTB</span></h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="map-wrap">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63282.92432!2d116.05!3d-8.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc3f6f6b1c5d1%3A0x3019531001b2f00!2sMataram%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="map-info">
+    <div class="map-chip"><i class="fas fa-location-dot"></i> Jl. Selaparang, Mataram, Lombok - NTB</div>
+    <div class="map-chip"><i class="fas fa-clock"></i> Buka Setiap Hari · 08.00 - 17.00 WITA</div>
+    <div class="map-chip"><i class="fas fa-car"></i> Test Drive Tersedia</div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">
+        <div class="logo-badge">W</div>
+        <div class="logo-text">WULING <span style="color:var(--gold)">MOTORS</span></div>
+      </div>
+      <p class="footer-slogan">Drive For A <span>Better Life</span></p>
+      <p class="footer-loc">Lombok — NTB</p>
+      <p class="footer-desc">Dealer resmi Wuling untuk wilayah Lombok dan Nusa Tenggara Barat. Melayani penjualan, servis, dan suku cadang dengan standar global Wuling Motors.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Model Kami</h4>
+      <ul>
+        <li><a href="#produk"><i class="fas fa-angle-right"></i> Confero DB</a></li>
+        <li><a href="#produk"><i class="fas fa-angle-right"></i> Binguo EV</a></li>
+        <li><a href="#produk"><i class="fas fa-angle-right"></i> Almaz RS Pro</a></li>
+        <li><a href="#produk"><i class="fas fa-angle-right"></i> Promo Bulan Ini</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <ul>
+        <li><a href="tel:+6281234567890"><i class="fas fa-phone"></i> 0812-3456-7890 (Pak Apriyana)</a></li>
+        <li><a href="https://wa.me/6281234567890"><i class="fab fa-whatsapp"></i> WhatsApp 24 Jam</a></li>
+        <li><a href="#lokasi"><i class="fas fa-location-dot"></i> Mataram, Lombok - NTB</a></li>
+        <li><a href="mailto:sales@wulinglombok.id"><i class="fas fa-envelope"></i> sales@wulinglombok.id</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">© 2026 <b>Wuling Lombok NTB</b> · Drive For A Better Life · All Rights Reserved</div>
+
+<!-- WA Floating Button -->
+<a href="https://wa.me/6281234567890" class="wa-float" title="Chat WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+/* ===== Auto Carousel ===== */
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+let current = 0, timer;
+
+function goSlide(i){
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = i;
+  slides[current].classList.add('active');
+  // restart animasi progress dot
+  dots[current].classList.remove('active');
+  void dots[current].offsetWidth;
+  dots[current].classList.add('active');
+  resetTimer();
+}
+function nextSlide(){ goSlide((current + 1) % slides.length); }
+function resetTimer(){ clearInterval(timer); timer = setInterval(nextSlide, 5000); }
+resetTimer();
+
+/* ===== Navbar scroll effect ===== */
+window.addEventListener('scroll', () => {
+  document.querySelector('.navbar').style.boxShadow =
+    window.scrollY > 50 ? '0 8px 30px rgba(0,0,0,.4)' : 'none';
+});
+
+/* ===== Tutup menu mobile saat link diklik ===== */
+document.querySelectorAll('.nav-links a').forEach(a =>
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+);
+</script>
 </body>
 </html>
