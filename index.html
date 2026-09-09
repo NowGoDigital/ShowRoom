@@ -61,12 +61,19 @@ img{max-width:100%}
   padding:12px 26px;border-radius:50px;font-weight:800!important;
   box-shadow:0 4px 18px rgba(212,175,55,.35);transition:.3s}
 .nav-cta:hover{transform:translateY(-2px)}
-.hamburger{display:none;color:#fff;font-size:22px;cursor:pointer;background:none;border:none;
-  width:44px;height:44px;z-index:1201}
 
-/* ===== Overlay menu mobile ===== */
-.nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);
-  z-index:1100;opacity:0;visibility:hidden;transition:.4s}
+/* Hamburger — Premium Glass Button */
+.hamburger{display:none;color:var(--gold);font-size:20px;cursor:pointer;
+  width:46px;height:46px;z-index:1201;border-radius:14px;
+  background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.45);
+  backdrop-filter:blur(8px);transition:.35s;
+  align-items:center;justify-content:center}
+.hamburger:active{transform:scale(.92);background:rgba(212,175,55,.2)}
+.navbar.scrolled .hamburger{background:rgba(212,175,55,.12);box-shadow:0 4px 16px rgba(212,175,55,.2)}
+
+/* Overlay */
+.nav-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);
+  z-index:1100;opacity:0;visibility:hidden;transition:.45s}
 .nav-overlay.show{opacity:1;visibility:visible}
 
 /* ============ HERO ============ */
@@ -349,25 +356,55 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:960px){
-  /* Hamburger */
   .hamburger{display:flex;align-items:center;justify-content:center}
-  /* ===== SIDE DRAWER MENU (FIX) ===== */
+
+  /* ===== SIDE DRAWER MENU — PREMIUM EDITION ===== */
   .nav-links{position:fixed;top:0;right:0;height:100vh;height:100dvh;
-    width:min(80vw,320px);max-width:320px;
-    background:rgba(10,10,10,.98);backdrop-filter:blur(20px);
+    width:min(82vw,330px);max-width:330px;
+    background:linear-gradient(200deg,#202020 0%,#121212 45%,#0a0a0a 100%);
     flex-direction:column;align-items:stretch;justify-content:flex-start;
-    padding:110px 28px 40px;gap:0;
-    transform:translateX(105%);transition:transform .45s cubic-bezier(.19,1,.22,1);
-    border-left:1px solid rgba(212,175,55,.3);
-    overflow-y:auto;display:flex;z-index:1200;visibility:visible}
-  .nav-links.open{transform:translateX(0);box-shadow:-20px 0 60px rgba(0,0,0,.6)}
-  .nav-links li{width:100%}
-  .nav-links a{display:block;width:100%;padding:18px 4px;font-size:14px;letter-spacing:2px;
-    border-bottom:1px solid rgba(255,255,255,.08)}
+    padding:0;gap:0;
+    transform:translateX(110%);transition:transform .5s cubic-bezier(.19,1,.22,1);
+    border-left:1px solid rgba(212,175,55,.4);
+    overflow-y:auto;display:flex;z-index:1200;
+    box-shadow:-30px 0 80px rgba(0,0,0,.7)}
+  .nav-links.open{transform:translateX(0)}
+  /* Glow emas & merah dekoratif di dalam drawer */
+  .nav-links::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;
+    border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.14),transparent 65%);
+    pointer-events:none}
+  .nav-links::after{content:'';position:absolute;bottom:-60px;left:-60px;width:220px;height:220px;
+    border-radius:50%;background:radial-gradient(circle,rgba(199,0,11,.12),transparent 65%);
+    pointer-events:none}
+  /* Header drawer */
+  .nav-links li:first-child{margin-top:96px}
+  .nav-links li{width:100%;position:relative;z-index:2;
+    opacity:0;transform:translateX(36px);transition:opacity .5s ease,transform .5s cubic-bezier(.19,1,.22,1)}
+  .nav-links.open li{opacity:1;transform:translateX(0)}
+  .nav-links.open li:nth-child(1){transition-delay:.15s}
+  .nav-links.open li:nth-child(2){transition-delay:.23s}
+  .nav-links.open li:nth-child(3){transition-delay:.31s}
+  .nav-links.open li:nth-child(4){transition-delay:.39s}
+  .nav-links.open li:nth-child(5){transition-delay:.47s}
+  .nav-links a{display:flex;align-items:center;gap:14px;
+    margin:0 22px;padding:19px 16px;width:calc(100% - 44px);
+    font-size:13.5px;font-weight:700;letter-spacing:2.5px;color:#e5e5e5;
+    border-radius:14px;border-bottom:none;position:relative;transition:.35s}
+  /* Nomor urut item menu */
+  .nav-links li:not(:last-child) a::before{
+    font-family:var(--serif);font-style:italic;font-size:15px;font-weight:700;
+    color:var(--gold);opacity:.85;min-width:26px;transition:.35s}
+  .nav-links li:nth-child(1) a::before{content:'01'}
+  .nav-links li:nth-child(2) a::before{content:'02'}
+  .nav-links li:nth-child(3) a::before{content:'03'}
+  .nav-links li:nth-child(4) a::before{content:'04'}
+  .nav-links a:not(.nav-cta):hover,.nav-links a:not(.nav-cta):active{
+    color:var(--gold-2);background:rgba(212,175,55,.07);padding-left:22px}
   .nav-links a:not(.nav-cta)::after{display:none}
-  .nav-links a:not(.nav-cta):hover{color:var(--gold);padding-left:10px}
-  .nav-cta{margin-top:24px;border-bottom:none!important;border-radius:50px;text-align:center;
-    padding:16px 20px!important}
+  .nav-cta{margin:28px 22px 40px!important;border-radius:50px!important;text-align:center;
+    justify-content:center;padding:17px 20px!important;font-size:13px!important;
+    box-shadow:0 10px 28px rgba(212,175,55,.3)}
+  .nav-cta::before{display:none!important}
 
   .stats-inner{grid-template-columns:1fr 1fr;gap:30px;padding:38px 0}
   .stat:nth-child(2)::after{display:none}
@@ -388,6 +425,9 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   .logo-badge{width:40px;height:32px;min-width:40px;font-size:17px}
   .logo-text{font-size:16px;letter-spacing:2px}
   .logo-sub{font-size:7px;letter-spacing:2.5px}
+  .hamburger{width:42px;height:42px;font-size:18px;border-radius:12px}
+  .nav-links li:first-child{margin-top:88px}
+  .nav-links a{font-size:12.5px;letter-spacing:2px;padding:17px 14px}
 
   /* Hero mobile */
   .hero{min-height:560px}
@@ -409,7 +449,7 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
 
   /* Produk mobile */
   .product-grid{grid-template-columns:1fr;gap:28px}
-  .card:hover{transform:none} /* hindari hover aneh di touch */
+  .card:hover{transform:none}
   .card-img{height:190px}
   .card-body{padding:26px 22px}
   .card-btns{flex-direction:column;gap:10px}
@@ -761,7 +801,7 @@ window.addEventListener('load', () => {
   setTimeout(() => document.getElementById('preloader').classList.add('hide'), 800);
 });
 
-/* ===== Mobile Menu: Side Drawer + Overlay ===== */
+/* ===== Mobile Menu: Premium Side Drawer ===== */
 const navLinks = document.getElementById('navLinks');
 const hamburger = document.getElementById('hamburger');
 const hamIcon = document.getElementById('hamIcon');
@@ -773,7 +813,7 @@ function toggleMenu(forceClose){
   navLinks.classList.toggle('open', !shouldClose);
   navOverlay.classList.toggle('show', !shouldClose);
   hamIcon.className = shouldClose ? 'fas fa-bars' : 'fas fa-times';
-  document.body.style.overflow = shouldClose ? '' : 'hidden'; // kunci scroll saat menu terbuka
+  document.body.style.overflow = shouldClose ? '' : 'hidden';
 }
 hamburger.addEventListener('click', () => toggleMenu());
 navOverlay.addEventListener('click', () => toggleMenu(true));
@@ -799,7 +839,7 @@ function goSlide(i){
 function resetTimer(){ clearInterval(timer); timer = setInterval(() => goSlide((current+1)%slides.length), 6000); }
 resetTimer();
 
-/* ===== Swipe di HP (bonus) ===== */
+/* ===== Swipe di HP ===== */
 let touchX = 0;
 document.querySelector('.hero').addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
 document.querySelector('.hero').addEventListener('touchend', e => {
