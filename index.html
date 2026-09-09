@@ -4,242 +4,396 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wuling Lombok NTB | Drive For A Better Life</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{
-  --wuling-red:#C7000B;
-  --gold:#D4AF37;
-  --gold-light:#F3E5AB;
-  --black:#111111;
-  --dark:#1a1a1a;
-  --gray:#6b7280;
-  --light-gray:#f4f4f5;
-  --white:#ffffff;
+  --red:#C7000B; --red-dark:#8f0008;
+  --gold:#D4AF37; --gold-2:#F5D76E; --gold-dark:#a8861f;
+  --black:#0a0a0a; --dark:#141414; --panel:#1b1b1b;
+  --gray:#9ca3af; --light:#f6f6f4; --white:#fff;
+  --serif:'Playfair Display',serif;
+  --sans:'Montserrat',sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:var(--sans)}
 html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--black)}
+body{background:var(--white);color:var(--black);overflow-x:hidden}
+
+/* ============ PRELOADER ============ */
+.preloader{position:fixed;inset:0;background:var(--black);z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  transition:opacity .8s ease,visibility .8s}
+.preloader.hide{opacity:0;visibility:hidden}
+.pl-logo{width:80px;height:60px;background:linear-gradient(135deg,var(--red),var(--red-dark));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:900;font-size:34px;font-family:var(--sans);
+  animation:plPulse 1.4s ease infinite;box-shadow:0 0 40px rgba(199,0,11,.5)}
+@keyframes plPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.pl-bar{width:180px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.pl-bar::after{content:'';display:block;width:40%;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-2));
+  animation:plSlide 1.2s ease infinite}
+@keyframes plSlide{from{transform:translateX(-100%)}to{transform:translateX(350%)}}
+.pl-text{color:var(--gold);font-size:11px;letter-spacing:6px;text-transform:uppercase;font-weight:700}
 
 /* ============ NAVBAR ============ */
 .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;
-  background:rgba(17,17,17,.92);backdrop-filter:blur(12px);
-  padding:14px 6%;display:flex;align-items:center;justify-content:space-between;
-  border-bottom:2px solid var(--gold)}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-badge{width:44px;height:34px;background:var(--wuling-red);border-radius:5px;
-  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px;
-  box-shadow:0 0 12px rgba(199,0,11,.6)}
-.logo-text{color:#fff;font-weight:800;font-size:20px;letter-spacing:2px}
+  padding:20px 6%;display:flex;align-items:center;justify-content:space-between;
+  transition:.45s ease}
+.navbar.scrolled{background:rgba(10,10,10,.94);backdrop-filter:blur(16px);
+  padding:13px 6%;border-bottom:1px solid rgba(212,175,55,.35);
+  box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-badge{width:46px;height:36px;background:linear-gradient(135deg,var(--red),var(--red-dark));
+  border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;
+  font-weight:900;font-size:19px;box-shadow:0 0 18px rgba(199,0,11,.55)}
+.logo-text{color:#fff;font-weight:800;font-size:19px;letter-spacing:3px}
 .logo-text span{color:var(--gold)}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:#e5e5e5;text-decoration:none;font-size:13px;font-weight:600;
-  text-transform:uppercase;letter-spacing:1px;transition:.3s}
-.nav-links a:hover{color:var(--gold)}
-.nav-cta{background:linear-gradient(135deg,var(--gold),#b8952e);color:var(--black)!important;
-  padding:10px 22px;border-radius:50px;font-weight:800!important;box-shadow:0 4px 15px rgba(212,175,55,.4)}
+.logo-sub{display:block;font-size:8px;letter-spacing:4px;color:var(--gray);font-weight:600}
+.nav-links{display:flex;gap:34px;list-style:none;align-items:center}
+.nav-links a{color:#e5e5e5;text-decoration:none;font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:2px;transition:.3s;position:relative}
+.nav-links a:not(.nav-cta)::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-2));transition:.35s}
+.nav-links a:not(.nav-cta):hover::after{width:100%}
+.nav-links a:not(.nav-cta):hover{color:var(--gold)}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:var(--black)!important;
+  padding:12px 26px;border-radius:50px;font-weight:800!important;
+  box-shadow:0 4px 18px rgba(212,175,55,.35);transition:.3s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(212,175,55,.55)}
 .hamburger{display:none;color:#fff;font-size:24px;cursor:pointer;background:none;border:none}
 
-/* ============ HERO / CAROUSEL ============ */
-.hero{position:relative;height:100vh;min-height:620px;overflow:hidden;background:var(--black)}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;
-  display:flex;align-items:center;justify-content:center}
-.slide.active{opacity:1}
-.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+/* ============ HERO ============ */
+.hero{position:relative;height:100vh;min-height:660px;overflow:hidden;background:var(--black)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease;
+  display:flex;align-items:center;pointer-events:none}
+.slide.active{opacity:1;pointer-events:auto}
+.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;
+  transform:scale(1.12)}
+.slide.active .slide-bg{animation:kenburns 6.5s ease forwards}
+@keyframes kenburns{from{transform:scale(1.12)}to{transform:scale(1)}}
 .slide::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(105deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.25) 100%)}
-/* Background placeholder — ganti dengan foto asli Anda */
-.bg-1{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),
-  url('images/confero-hero.jpg'),
-  linear-gradient(160deg,#0f0f0f 0%,#2b2b2b 45%,#4a1010 100%);background-blend-mode:normal}
-.bg-2{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),
-  url('images/binguo-hero.jpg'),
-  linear-gradient(160deg,#1c1c0f 0%,#3a3312 50%,#6b5a14 100%)}
-.bg-3{background-image:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15)),
-  url('images/almaz-hero.jpg'),
-  linear-gradient(160deg,#1a1a1a 0%,#3d3d3d 50%,#8a8a8a 100%)}
+  background:linear-gradient(100deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.2) 100%)}
+.slide::before{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;z-index:1;
+  background:linear-gradient(transparent,rgba(10,10,10,.9))}
+.bg-1{background-image:url('images/confero-hero.jpg'),linear-gradient(150deg,#080808,#232323 45%,#4d0d0d)}
+.bg-2{background-image:url('images/binguo-hero.jpg'),linear-gradient(150deg,#14140a,#3b3413 50%,#7a6614)}
+.bg-3{background-image:url('images/almaz-hero.jpg'),linear-gradient(150deg,#141414,#3f3f3f 50%,#949494)}
 
-.hero-content{position:relative;z-index:5;max-width:1280px;width:100%;
-  margin:0 auto;padding:0 6%;color:#fff}
-.hero-tag{display:inline-block;background:rgba(212,175,55,.15);border:1px solid var(--gold);
-  color:var(--gold);padding:8px 22px;border-radius:50px;font-size:12px;font-weight:700;
-  letter-spacing:3px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp .8s ease}
-.hero-title{font-size:clamp(34px,5.5vw,64px);font-weight:900;line-height:1.1;margin-bottom:16px;
-  text-shadow:0 4px 30px rgba(0,0,0,.6)}
-.hero-title .accent{color:var(--gold)}
-.hero-desc{font-size:clamp(14px,1.6vw,18px);color:#d1d5db;max-width:560px;margin-bottom:34px;
-  line-height:1.7;font-weight:400}
-.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
-.btn{padding:15px 36px;border-radius:50px;font-weight:800;font-size:14px;text-decoration:none;
-  text-transform:uppercase;letter-spacing:1px;transition:.35s;display:inline-flex;align-items:center;gap:10px;cursor:pointer;border:none}
-.btn-red{background:linear-gradient(135deg,var(--wuling-red),#8f0008);color:#fff;
-  box-shadow:0 8px 25px rgba(199,0,11,.45)}
-.btn-red:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(199,0,11,.6)}
-.btn-gold{background:linear-gradient(135deg,var(--gold),#b8952e);color:var(--black);
-  box-shadow:0 8px 25px rgba(212,175,55,.4)}
-.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(212,175,55,.6)}
-.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5)}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-content{position:relative;z-index:5;max-width:1320px;width:100%;margin:0 auto;padding:0 6%;color:#fff}
+.hero-content > *{opacity:0;transform:translateY(38px)}
+.slide.active .hero-content > *{animation:fadeUp .9s cubic-bezier(.19,1,.22,1) forwards}
+.slide.active .hero-content > *:nth-child(1){animation-delay:.25s}
+.slide.active .hero-content > *:nth-child(2){animation-delay:.4s}
+.slide.active .hero-content > *:nth-child(3){animation-delay:.55s}
+.slide.active .hero-content > *:nth-child(4){animation-delay:.7s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
-/* Carousel dots & progress */
-.hero-dots{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  display:flex;gap:14px;z-index:10}
-.dot{width:42px;height:5px;background:rgba(255,255,255,.3);border-radius:4px;cursor:pointer;
-  transition:.3s;overflow:hidden;position:relative}
-.dot.active{background:rgba(255,255,255,.25)}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;
+  background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.5);backdrop-filter:blur(8px);
+  color:var(--gold-2);padding:10px 26px;border-radius:50px;font-size:11px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;margin-bottom:26px}
+.hero-tag i{font-size:9px}
+.hero-title{font-size:clamp(38px,6vw,76px);font-weight:900;line-height:1.05;margin-bottom:20px;
+  text-shadow:0 6px 40px rgba(0,0,0,.7)}
+.hero-title .line2{display:block;font-family:var(--serif);font-style:italic;font-weight:700;
+  background:linear-gradient(120deg,var(--gold-2),var(--gold),#fff5cf,var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  background-size:200% auto;animation:goldShine 4s linear infinite}
+@keyframes goldShine{to{background-position:200% center}}
+.hero-desc{font-size:clamp(14px,1.5vw,17px);color:#cbd5e1;max-width:560px;margin-bottom:38px;
+  line-height:1.85;font-weight:300}
+.hero-btns{display:flex;gap:18px;flex-wrap:wrap}
+
+.btn{padding:17px 40px;border-radius:50px;font-weight:800;font-size:13px;text-decoration:none;
+  text-transform:uppercase;letter-spacing:2px;transition:.4s cubic-bezier(.19,1,.22,1);
+  display:inline-flex;align-items:center;gap:12px;cursor:pointer;border:none;position:relative;overflow:hidden}
+.btn-red{background:linear-gradient(135deg,var(--red),var(--red-dark));color:#fff;
+  box-shadow:0 10px 30px rgba(199,0,11,.4)}
+.btn-red:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(199,0,11,.6)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold),var(--gold-dark));color:var(--black);
+  box-shadow:0 10px 30px rgba(212,175,55,.4)}
+.btn-gold:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(212,175,55,.6)}
+.btn-ghost{background:rgba(255,255,255,.05);color:#fff;border:1.5px solid rgba(255,255,255,.35);
+  backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.08)}
+/* shine effect */
+.btn::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-25deg);transition:.6s}
+.btn:hover::after{left:130%}
+
+/* Carousel UI */
+.hero-side{position:absolute;right:6%;bottom:120px;z-index:6;display:flex;flex-direction:column;
+  gap:16px;align-items:flex-end}
+.hero-side .v-line{width:1px;height:70px;background:linear-gradient(rgba(212,175,55,0),var(--gold))}
+.slide-counter{color:#fff;font-weight:800;font-size:14px;letter-spacing:3px}
+.slide-counter b{color:var(--gold);font-size:30px;font-family:var(--serif)}
+.hero-dots{position:absolute;bottom:44px;left:6%;display:flex;gap:16px;z-index:10}
+.dot{width:56px;height:4px;background:rgba(255,255,255,.22);border-radius:4px;cursor:pointer;
+  position:relative;overflow:hidden;transition:.3s}
+.dot:hover{background:rgba(255,255,255,.4)}
 .dot.active::after{content:'';position:absolute;left:0;top:0;height:100%;width:0;
-  background:var(--gold);border-radius:4px;animation:progress 5s linear forwards}
-@keyframes progress{to{width:100%}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.slide-badge{position:absolute;top:110px;right:6%;z-index:6;text-align:right}
-.slide-badge .model-no{font-size:60px;font-weight:900;color:transparent;
-  -webkit-text-stroke:2px rgba(212,175,55,.5)}
+  background:linear-gradient(90deg,var(--gold),var(--gold-2));border-radius:4px;
+  animation:dProgress 6s linear forwards}
+@keyframes dProgress{to{width:100%}}
+.scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:6;
+  color:rgba(255,255,255,.5);font-size:10px;letter-spacing:4px;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-hint .mouse{width:22px;height:36px;border:2px solid rgba(255,255,255,.4);border-radius:12px;position:relative}
+.scroll-hint .mouse::after{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);
+  width:3px;height:7px;background:var(--gold);border-radius:3px;animation:scrollDot 1.8s infinite}
+@keyframes scrollDot{0%{opacity:1;top:6px}100%{opacity:0;top:18px}}
+
+/* ============ STATS BAR ============ */
+.stats-bar{background:linear-gradient(135deg,var(--black),var(--panel));padding:0 6%;
+  border-bottom:1px solid rgba(212,175,55,.2)}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);
+  gap:20px;padding:44px 0}
+.stat{text-align:center;position:relative}
+.stat:not(:last-child)::after{content:'';position:absolute;right:-10px;top:15%;height:70%;width:1px;
+  background:linear-gradient(rgba(212,175,55,0),rgba(212,175,55,.4),rgba(212,175,55,0))}
+.stat .num{font-size:clamp(30px,3.4vw,44px);font-weight:900;font-family:var(--serif);
+  background:linear-gradient(120deg,var(--gold-2),var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .lbl{color:var(--gray);font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  font-weight:600;margin-top:8px}
 
 /* ============ SECTION UMUM ============ */
-section{padding:90px 6%}
-.section-head{text-align:center;max-width:640px;margin:0 auto 60px}
-.section-sub{color:var(--wuling-red);font-size:13px;font-weight:800;letter-spacing:4px;
-  text-transform:uppercase;margin-bottom:12px;display:block}
-.section-title{font-size:clamp(26px,3.5vw,40px);font-weight:900;line-height:1.25;margin-bottom:16px}
-.section-title .gold{color:var(--gold)}
-.gold-line{width:70px;height:4px;background:linear-gradient(90deg,var(--wuling-red),var(--gold));
-  border-radius:4px;margin:0 auto}
+section{padding:110px 6%}
+.section-head{text-align:center;max-width:680px;margin:0 auto 74px}
+.section-sub{display:inline-flex;align-items:center;gap:14px;color:var(--red);font-size:12px;
+  font-weight:800;letter-spacing:5px;text-transform:uppercase;margin-bottom:18px}
+.section-sub::before,.section-sub::after{content:'';width:36px;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--gold))}
+.section-sub::after{background:linear-gradient(90deg,var(--gold),transparent)}
+.section-title{font-size:clamp(28px,4vw,46px);font-weight:900;line-height:1.2;margin-bottom:20px}
+.section-title .serif{font-family:var(--serif);font-style:italic;font-weight:700;color:var(--gold-dark)}
+.section-desc{color:var(--gray);font-size:15px;line-height:1.85;font-weight:400}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(46px);transition:opacity .9s cubic-bezier(.19,1,.22,1),
+  transform .9s cubic-bezier(.19,1,.22,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.12s}.reveal-d2{transition-delay:.24s}.reveal-d3{transition-delay:.36s}
 
 /* ============ PRODUK ============ */
-.products{background:var(--light-gray)}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:32px;max-width:1280px;margin:0 auto}
-.card{background:#fff;border-radius:20px;overflow:hidden;transition:.4s;
-  box-shadow:0 6px 24px rgba(0,0,0,.07);border:1px solid #eee;position:relative}
-.card:hover{transform:translateY(-12px);box-shadow:0 22px 48px rgba(199,0,11,.16);border-color:var(--gold)}
-.card-img{height:210px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.card-img img{width:100%;height:100%;object-fit:cover;transition:.5s}
-.card:hover .card-img img{transform:scale(1.07)}
-/* Placeholder mobil — ganti src dengan foto asli */
+.products{background:var(--light);position:relative}
+.products::before{content:'WULING';position:absolute;top:40px;left:50%;transform:translateX(-50%);
+  font-size:clamp(80px,14vw,190px);font-weight:900;color:rgba(0,0,0,.03);letter-spacing:20px;
+  white-space:nowrap;pointer-events:none}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:36px;max-width:1320px;margin:0 auto;position:relative;z-index:2}
+.card{background:#fff;border-radius:24px;overflow:hidden;transition:.5s cubic-bezier(.19,1,.22,1);
+  box-shadow:0 8px 30px rgba(0,0,0,.06);border:1px solid #ececec;position:relative}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;z-index:3;
+  background:linear-gradient(90deg,var(--red),var(--gold),var(--red));
+  transform:scaleX(0);transition:.5s;transform-origin:left}
+.card:hover::before{transform:scaleX(1)}
+.card:hover{transform:translateY(-16px);box-shadow:0 30px 60px rgba(0,0,0,.16)}
+.card-img{height:230px;position:relative;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:.7s cubic-bezier(.19,1,.22,1)}
+.card:hover .card-img img{transform:scale(1.09)}
 .car-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  color:#fff;font-weight:800;font-size:20px;gap:8px}
-.car-ph i{font-size:54px;opacity:.9}
-.ph-black{background:linear-gradient(135deg,#1c1c1c,#383838)}
-.ph-yellow{background:linear-gradient(135deg,#8a7210,#d4b020)}
-.ph-white{background:linear-gradient(135deg,#b8b8b8,#e8e8e8);color:#333}
-.card-ribbon{position:absolute;top:16px;left:16px;background:var(--wuling-red);color:#fff;
-  padding:6px 16px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:1px;z-index:2;
-  text-transform:uppercase}
-.card-body{padding:28px}
-.card-cat{font-size:11px;color:var(--gray);font-weight:700;letter-spacing:2px;text-transform:uppercase}
-.card-title{font-size:22px;font-weight:900;margin:6px 0 4px}
-.card-price{color:var(--wuling-red);font-weight:800;font-size:15px;margin-bottom:14px}
-.card-price small{color:var(--gray);font-weight:500}
-.card-specs{display:flex;gap:16px;margin-bottom:22px;flex-wrap:wrap}
-.spec{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--gray);font-weight:600}
-.spec i{color:var(--gold);font-size:14px}
-.card-btns{display:flex;gap:10px}
-.card-btns .btn{flex:1;justify-content:center;padding:13px 10px;font-size:12px}
+  color:#fff;font-weight:800;font-size:17px;gap:10px;letter-spacing:2px}
+.car-ph i{font-size:56px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.4))}
+.ph-black{background:radial-gradient(circle at 30% 25%,#3d3d3d,#141414 70%)}
+.ph-yellow{background:radial-gradient(circle at 30% 25%,#f0c93a,#8a7210 75%)}
+.ph-white{background:radial-gradient(circle at 30% 25%,#ffffff,#b5b5b5 80%);color:#333}
+.card-ribbon{position:absolute;top:18px;left:18px;background:rgba(10,10,10,.85);backdrop-filter:blur(8px);
+  border:1px solid rgba(212,175,55,.6);color:var(--gold-2);padding:8px 20px;border-radius:50px;
+  font-size:10px;font-weight:800;letter-spacing:2px;z-index:2;text-transform:uppercase}
+.card-body{padding:34px 30px}
+.card-cat{font-size:10px;color:var(--gray);font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.card-title{font-size:24px;font-weight:900;margin:8px 0 6px}
+.card-price{color:var(--red);font-weight:800;font-size:16px;margin-bottom:20px}
+.card-price small{color:var(--gray);font-weight:500;font-size:12px}
+.card-specs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+.spec{background:var(--light);border:1px solid #e8e8e8;border-radius:10px;padding:9px 14px;
+  font-size:11px;color:#4b5563;font-weight:700;display:flex;align-items:center;gap:7px;transition:.3s}
+.spec:hover{border-color:var(--gold);color:var(--gold-dark)}
+.spec i{color:var(--gold);font-size:12px}
+.card-btns{display:flex;gap:12px}
+.card-btns .btn{flex:1;justify-content:center;padding:15px 10px;font-size:11px;letter-spacing:1px}
+.note-price{text-align:center;color:var(--gray);font-size:12px;margin-top:36px;font-weight:400}
 
-/* ============ SALES CONSULTANT ============ */
-.sales{background:linear-gradient(160deg,var(--black) 0%,#2a0808 60%,var(--dark) 100%);
+/* ============ MARQUEE ============ */
+.marquee{background:var(--black);padding:26px 0;overflow:hidden;
+  border-top:1px solid rgba(212,175,55,.25);border-bottom:1px solid rgba(212,175,55,.25)}
+.marquee-track{display:flex;gap:70px;white-space:nowrap;animation:marquee 22s linear infinite;width:max-content}
+.marquee-track span{color:rgba(255,255,255,.85);font-size:15px;font-weight:800;letter-spacing:4px;
+  text-transform:uppercase;display:flex;align-items:center;gap:70px}
+.marquee-track span i{color:var(--gold);font-size:11px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ============ SALES ============ */
+.sales{background:radial-gradient(ellipse at 20% 20%,#2c0a0a 0%,var(--black) 55%);
   color:#fff;position:relative;overflow:hidden}
-.sales::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(circle,rgba(212,175,55,.12),transparent 70%);top:-150px;right:-150px}
-.sales-box{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;
-  gap:56px;align-items:center;position:relative;z-index:2}
+.sales .deco-ring{position:absolute;border-radius:50%;border:1px solid rgba(212,175,55,.14);pointer-events:none}
+.ring1{width:560px;height:560px;top:-220px;right:-180px}
+.ring2{width:380px;height:380px;bottom:-160px;left:-120px}
+.ring3{width:240px;height:240px;top:30%;left:44%;border-color:rgba(212,175,55,.08)}
+.sales-box{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:370px 1fr;
+  gap:70px;align-items:center;position:relative;z-index:2}
 .sales-photo{position:relative}
-.sales-photo .frame{border-radius:20px;overflow:hidden;border:3px solid var(--gold);
-  box-shadow:0 20px 50px rgba(0,0,0,.5);aspect-ratio:3/4;background:#222}
+.sales-photo .frame{border-radius:24px;overflow:hidden;aspect-ratio:3/4;background:#181818;
+  position:relative;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.frame::before{content:'';position:absolute;inset:0;border-radius:24px;padding:3px;z-index:3;
+  background:linear-gradient(150deg,var(--gold-2),transparent 40%,transparent 60%,var(--gold));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 .sales-photo img{width:100%;height:100%;object-fit:cover}
-.photo-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:12px;color:#666;background:linear-gradient(160deg,#262626,#1a1a1a)}
-.photo-ph i{font-size:80px}
-.sales-badge-float{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--gold),#b8952e);color:var(--black);
-  padding:10px 26px;border-radius:50px;font-size:12px;font-weight:900;white-space:nowrap;
-  letter-spacing:1px;box-shadow:0 8px 20px rgba(0,0,0,.4)}
-.sales-info .section-sub{color:var(--gold);text-align:left}
-.sales-info h2{font-size:clamp(26px,3.2vw,38px);font-weight:900;margin-bottom:6px;text-align:left}
-.sales-name{font-size:17px;color:#d1d5db;font-weight:600;margin-bottom:24px}
-.sales-name b{color:var(--gold)}
-.sales-features{list-style:none;margin-bottom:32px;display:grid;gap:14px}
-.sales-features li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:#d1d5db;line-height:1.6}
-.sales-features i{color:var(--gold);margin-top:3px;font-size:15px}
-.phone-big{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.06);
-  border:1px solid rgba(212,175,55,.35);border-radius:16px;padding:18px 24px;margin-bottom:22px}
-.phone-big i{font-size:30px;color:var(--gold)}
-.phone-big .label{font-size:11px;color:#9ca3af;text-transform:uppercase;letter-spacing:2px;font-weight:700}
-.phone-big .number{font-size:clamp(20px,2.6vw,28px);font-weight:900;color:#fff;letter-spacing:1px}
-.sales-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-wa{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;
-  box-shadow:0 8px 25px rgba(37,211,102,.35)}
-.btn-wa:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,211,102,.5)}
+.photo-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:14px;color:#555;background:linear-gradient(160deg,#242424,#151515)}
+.photo-ph i{font-size:88px}
+.photo-ph span{font-size:11px;font-weight:700;letter-spacing:3px}
+.sales-badge-float{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--gold-2),var(--gold),var(--gold-dark));color:var(--black);
+  padding:13px 32px;border-radius:50px;font-size:11px;font-weight:900;white-space:nowrap;
+  letter-spacing:2px;box-shadow:0 14px 34px rgba(0,0,0,.5);display:flex;gap:9px;align-items:center}
+.sales-info .section-sub{color:var(--gold-2);justify-content:flex-start}
+.sales-info .section-sub::before{display:none}
+.sales-info h2{font-size:clamp(30px,3.6vw,46px);font-weight:900;margin-bottom:10px;line-height:1.2}
+.sales-info h2 .serif{font-family:var(--serif);font-style:italic;
+  background:linear-gradient(120deg,var(--gold-2),var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sales-name{font-size:16px;color:#cbd5e1;font-weight:400;margin-bottom:30px;line-height:1.7}
+.sales-name b{color:var(--gold-2);font-weight:800}
+.sales-features{list-style:none;margin-bottom:38px;display:grid;gap:16px}
+.sales-features li{display:flex;gap:16px;align-items:flex-start;font-size:14px;color:#cbd5e1;
+  line-height:1.65;font-weight:300}
+.sales-features li i{color:var(--gold);margin-top:3px;font-size:13px;
+  width:26px;height:26px;min-width:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35)}
+.phone-big{display:flex;align-items:center;gap:22px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.3);backdrop-filter:blur(10px);
+  border-radius:20px;padding:24px 30px;margin-bottom:26px;transition:.4s}
+.phone-big:hover{border-color:var(--gold);background:rgba(212,175,55,.07);transform:translateY(-3px)}
+.phone-big .p-icon{width:58px;height:58px;border-radius:16px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  display:flex;align-items:center;justify-content:center;color:var(--black);font-size:24px;
+  box-shadow:0 8px 22px rgba(212,175,55,.35)}
+.phone-big .label{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:3px;font-weight:700}
+.phone-big .number{font-size:clamp(22px,2.8vw,32px);font-weight:900;color:#fff;letter-spacing:1.5px;
+  font-family:var(--serif)}
+.sales-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-wa{background:linear-gradient(135deg,#25D366,#0f9d58);color:#fff;
+  box-shadow:0 10px 30px rgba(37,211,102,.3)}
+.btn-wa:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(37,211,102,.5)}
 
 /* ============ MAP ============ */
 .map-section{background:#fff}
-.map-wrap{max-width:1280px;margin:0 auto;border-radius:20px;overflow:hidden;
-  box-shadow:0 12px 40px rgba(0,0,0,.12);border:3px solid var(--gold)}
-.map-wrap iframe{width:100%;height:440px;border:0;display:block}
-.map-info{max-width:1280px;margin:26px auto 0;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
-.map-chip{background:var(--light-gray);border:1px solid #e5e5e5;border-radius:50px;
-  padding:12px 24px;font-size:13px;font-weight:700;color:var(--dark);display:flex;gap:9px;align-items:center}
-.map-chip i{color:var(--wuling-red)}
+.map-wrap{max-width:1320px;margin:0 auto;border-radius:26px;overflow:hidden;position:relative;
+  box-shadow:0 24px 60px rgba(0,0,0,.14)}
+.map-wrap::before{content:'';position:absolute;inset:0;border-radius:26px;padding:3px;z-index:2;
+  background:linear-gradient(135deg,var(--gold),transparent 35%,transparent 65%,var(--red));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.map-wrap iframe{width:100%;height:470px;border:0;display:block;filter:grayscale(.25) contrast(1.05)}
+.map-info{max-width:1320px;margin:30px auto 0;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.map-chip{background:var(--light);border:1px solid #e8e8e8;border-radius:50px;
+  padding:15px 28px;font-size:13px;font-weight:700;color:var(--dark);display:flex;gap:11px;
+  align-items:center;transition:.35s}
+.map-chip:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px rgba(212,175,55,.15)}
+.map-chip i{color:var(--red)}
 
 /* ============ FOOTER ============ */
-footer{background:var(--black);color:#fff;padding:64px 6% 0;position:relative}
+footer{background:var(--black);color:#fff;padding:84px 6% 0;position:relative}
 footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
-  background:linear-gradient(90deg,var(--wuling-red),var(--gold),var(--wuling-red))}
-.footer-grid{max-width:1280px;margin:0 auto;display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:48px}
-.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
-.footer-slogan{font-size:20px;font-weight:800;font-style:italic;margin-bottom:6px}
-.footer-slogan span{color:var(--gold)}
-.footer-loc{color:#9ca3af;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
-.footer-desc{color:#9ca3af;font-size:14px;line-height:1.8;margin-top:16px}
-.footer-col h4{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:2px;
-  margin-bottom:22px;color:var(--gold)}
-.footer-col ul{list-style:none;display:grid;gap:13px}
-.footer-col a{color:#d1d5db;text-decoration:none;font-size:14px;transition:.3s;font-weight:500}
-.footer-col a:hover{color:var(--gold);padding-left:6px}
-.footer-col li i{color:var(--wuling-red);width:22px}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding:22px 6%;text-align:center;
-  color:#6b7280;font-size:12px;letter-spacing:1px}
+  background:linear-gradient(90deg,var(--red),var(--gold),var(--red))}
+.footer-grid{max-width:1320px;margin:0 auto;display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:52px;padding-bottom:56px}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.footer-slogan{font-size:21px;font-weight:700;font-family:var(--serif);font-style:italic;margin-bottom:8px}
+.footer-slogan span{background:linear-gradient(120deg,var(--gold-2),var(--gold));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.footer-loc{color:var(--gray);font-size:11px;letter-spacing:4px;text-transform:uppercase;font-weight:700}
+.footer-desc{color:#9ca3af;font-size:13.5px;line-height:1.9;margin-top:18px;font-weight:300}
+.footer-col h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:3px;
+  margin-bottom:26px;color:var(--gold);display:flex;align-items:center;gap:10px}
+.footer-col h4::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(212,175,55,.4),transparent)}
+.footer-col ul{list-style:none;display:grid;gap:15px}
+.footer-col a{color:#cbd5e1;text-decoration:none;font-size:13.5px;transition:.3s;font-weight:400;
+  display:flex;align-items:center;gap:10px}
+.footer-col a:hover{color:var(--gold-2);padding-left:8px}
+.footer-col li i{color:var(--red);width:18px;font-size:12px}
+.footer-social{display:flex;gap:12px;margin-top:24px}
+.footer-social a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-size:15px;transition:.35s}
+.footer-social a:hover{background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:var(--black);border-color:var(--gold);transform:translateY(-4px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:26px 6%;text-align:center;
+  color:#6b7280;font-size:11.5px;letter-spacing:2px}
 .footer-bottom b{color:var(--gold)}
 
 /* WA float */
-.wa-float{position:fixed;bottom:26px;right:26px;width:62px;height:62px;border-radius:50%;
-  background:#25D366;display:flex;align-items:center;justify-content:center;color:#fff;
-  font-size:30px;text-decoration:none;z-index:999;box-shadow:0 8px 25px rgba(37,211,102,.5);
-  animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}50%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+.wa-float{position:fixed;bottom:30px;right:30px;width:66px;height:66px;border-radius:50%;
+  background:linear-gradient(135deg,#25D366,#0f9d58);display:flex;align-items:center;
+  justify-content:center;color:#fff;font-size:32px;text-decoration:none;z-index:999;
+  box-shadow:0 12px 34px rgba(37,211,102,.45);animation:pulse 2.2s infinite;transition:.3s}
+.wa-float:hover{transform:scale(1.1)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}50%{box-shadow:0 0 0 22px rgba(37,211,102,0)}}
+
+/* Back to top */
+.to-top{position:fixed;bottom:30px;left:30px;width:50px;height:50px;border-radius:50%;
+  background:rgba(10,10,10,.85);border:1px solid rgba(212,175,55,.5);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;text-decoration:none;z-index:998;
+  opacity:0;visibility:hidden;transition:.4s;backdrop-filter:blur(8px)}
+.to-top.show{opacity:1;visibility:visible}
+.to-top:hover{background:var(--gold);color:var(--black)}
 
 /* ============ RESPONSIVE ============ */
+@media(max-width:1024px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
 @media(max-width:960px){
-  .nav-links{position:fixed;top:64px;left:0;width:100%;background:rgba(17,17,17,.98);
-    flex-direction:column;padding:24px 6%;gap:18px;display:none;border-bottom:2px solid var(--gold)}
+  .nav-links{position:fixed;top:68px;left:0;width:100%;background:rgba(10,10,10,.98);
+    backdrop-filter:blur(16px);flex-direction:column;padding:30px 6%;gap:22px;display:none;
+    border-bottom:1px solid rgba(212,175,55,.35)}
   .nav-links.open{display:flex}
   .hamburger{display:block}
-  .sales-box{grid-template-columns:1fr;gap:44px;text-align:center}
-  .sales-photo{max-width:300px;margin:0 auto}
-  .sales-info .section-sub,.sales-info h2{text-align:center}
-  .sales-features{text-align:left;max-width:440px;margin:0 auto 32px}
+  .stats-inner{grid-template-columns:1fr 1fr;gap:34px}
+  .stat:nth-child(2)::after{display:none}
+  .sales-box{grid-template-columns:1fr;gap:56px;text-align:center}
+  .sales-photo{max-width:320px;margin:0 auto}
+  .sales-info .section-sub{justify-content:center}
+  .sales-info .section-sub::before{display:block}
+  .sales-features{text-align:left;max-width:460px;margin:0 auto 38px}
   .phone-big{justify-content:center;flex-wrap:wrap;text-align:center}
   .sales-btns{justify-content:center}
-  .footer-grid{grid-template-columns:1fr;text-align:center;gap:36px}
-  .footer-logo,.footer-col ul{justify-content:center;justify-items:center}
+  .hero-side{display:none}
+  .scroll-hint{display:none}
 }
-@media(max-width:520px){
-  section{padding:64px 5%}
+@media(max-width:560px){
+  section{padding:76px 5%}
   .hero-btns .btn{width:100%;justify-content:center}
   .card-btns{flex-direction:column}
-  .slide-badge{display:none}
-  .map-wrap iframe{height:320px}
+  .map-wrap iframe{height:330px}
+  .footer-grid{grid-template-columns:1fr;text-align:center;gap:40px}
+  .footer-logo,.footer-col ul,.footer-col h4{justify-content:center}
+  .footer-col h4::after{display:none}
+  .footer-col a{justify-content:center}
+  .footer-social{justify-content:center}
+  .wa-float{width:58px;height:58px;font-size:28px;bottom:22px;right:22px}
 }
 </style>
 </head>
 <body>
 
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="pl-logo">W</div>
+  <div class="pl-bar"></div>
+  <div class="pl-text">Wuling Lombok NTB</div>
+</div>
+
 <!-- ============ NAVBAR ============ -->
-<nav class="navbar">
+<nav class="navbar" id="navbar">
   <div class="logo">
     <div class="logo-badge">W</div>
-    <div class="logo-text">WULING <span>LOMBOK</span></div>
+    <div>
+      <div class="logo-text">WULING <span>LOMBOK</span></div>
+      <span class="logo-sub">DRIVE FOR A BETTER LIFE</span>
+    </div>
   </div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#hero">Beranda</a></li>
@@ -258,44 +412,46 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
 
   <div class="slide active">
     <div class="slide-bg bg-1"></div>
-    <div class="slide-badge"><div class="model-no">01</div></div>
     <div class="hero-content">
-      <span class="hero-tag">★ MPV Keluarga Terbaik</span>
-      <h1 class="hero-title">Wuling <span class="accent">Confero DB</span></h1>
-      <p class="hero-desc">Kabin lega 8-penumpang dengan kemewahan warna hitam elegan. MPV tangguh untuk keluarga dan perjalanan antar kota di Pulau Lombok.</p>
+      <span class="hero-tag"><i class="fas fa-circle"></i> MPV Keluarga Premium</span>
+      <h1 class="hero-title">Wuling<span class="line2">Confero DB</span></h1>
+      <p class="hero-desc">Kabin lega 8-penumpang dalam balutan hitam yang berwibawa. Kemewahan sejati untuk setiap perjalanan keluarga Anda di Pulau Lombok.</p>
       <div class="hero-btns">
         <a href="#produk" class="btn btn-red"><i class="fas fa-tag"></i> Lihat Promo</a>
-        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Confero%20DB" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Test Drive</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Confero%20DB" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Test Drive</a>
       </div>
     </div>
   </div>
 
   <div class="slide">
     <div class="slide-bg bg-2"></div>
-    <div class="slide-badge"><div class="model-no">02</div></div>
     <div class="hero-content">
-      <span class="hero-tag">⚡ The Future Drive</span>
-      <h1 class="hero-title">Wuling <span class="accent">Binguo EV</span></h1>
-      <p class="hero-desc">Mobil listrik ikonik berwarna kuning ceria. Jarak tempuh hingga 410 km, biaya operasional super hemat, ramah lingkungan untuk kota Mataram.</p>
+      <span class="hero-tag"><i class="fas fa-circle"></i> The Future Drive — Electric</span>
+      <h1 class="hero-title">Wuling<span class="line2">Binguo EV</span></h1>
+      <p class="hero-desc">Ikon mobilitas masa depan berwarna kuning memukau. Jarak tempuh 410 km dengan biaya operasional super hemat — cerdas dan bergaya.</p>
       <div class="hero-btns">
         <a href="#produk" class="btn btn-gold"><i class="fas fa-bolt"></i> Lihat Promo EV</a>
-        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Binguo%20EV" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Konsultasi Gratis</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Binguo%20EV" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Konsultasi Gratis</a>
       </div>
     </div>
   </div>
 
   <div class="slide">
     <div class="slide-bg bg-3"></div>
-    <div class="slide-badge"><div class="model-no">03</div></div>
     <div class="hero-content">
-      <span class="hero-tag">🏔 Premium SUV</span>
-      <h1 class="hero-title">Wuling <span class="accent">Almaz RS Pro</span></h1>
-      <p class="hero-desc">SUV cerdas berwarna putih mutiara dengan teknologi WIND & ADAS. Nyaman menembus pegunungan Rinjani hingga pantai-pantai eksotis Lombok.</p>
+      <span class="hero-tag"><i class="fas fa-circle"></i> Flagship Smart SUV</span>
+      <h1 class="hero-title">Wuling<span class="line2">Almaz RS Pro</span></h1>
+      <p class="hero-desc">SUV cerdas berbalut putih mutiara dengan teknologi WIND & ADAS. Taklukkan pegunungan Rinjani hingga pesisir Lombok dengan penuh gaya.</p>
       <div class="hero-btns">
         <a href="#produk" class="btn btn-red"><i class="fas fa-crown"></i> Lihat Promo</a>
-        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Almaz%20RS%20Pro" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Pemesanan</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Almaz%20RS%20Pro" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Pemesanan</a>
       </div>
     </div>
+  </div>
+
+  <div class="hero-side">
+    <div class="slide-counter"><b id="slideNum">01</b> / 03</div>
+    <div class="v-line"></div>
   </div>
 
   <div class="hero-dots">
@@ -303,32 +459,47 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
     <div class="dot" onclick="goSlide(1)"></div>
     <div class="dot" onclick="goSlide(2)"></div>
   </div>
+
+  <div class="scroll-hint">
+    <div class="mouse"></div>
+    Scroll
+  </div>
 </header>
+
+<!-- ============ STATS BAR ============ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat reveal"><div class="num" data-count="1500">0</div><div class="lbl">Unit Terjual</div></div>
+    <div class="stat reveal reveal-d1"><div class="num" data-count="12">0</div><div class="lbl">Tahun Pengalaman</div></div>
+    <div class="stat reveal reveal-d2"><div class="num" data-count="98">0</div><div class="lbl">% Kepuasan Customer</div></div>
+    <div class="stat reveal reveal-d3"><div class="num" data-count="24">0</div><div class="lbl">Jam Layanan Konsultasi</div></div>
+  </div>
+</div>
 
 <!-- ============ PRODUK ============ -->
 <section class="products" id="produk">
-  <div class="section-head">
+  <div class="section-head reveal">
     <span class="section-sub">Pilihan Model Unggulan</span>
-    <h2 class="section-title">Temukan <span class="gold">Wuling</span> Impian Anda</h2>
-    <div class="gold-line"></div>
+    <h2 class="section-title">Temukan Wuling <span class="serif">Impian Anda</span></h2>
+    <p class="section-desc">Tiga model terbaik yang siap menemani setiap perjalanan Anda — dari MPV keluarga, mobil listrik masa depan, hingga SUV premium cerdas.</p>
   </div>
   <div class="product-grid">
 
-    <!-- Card 1 -->
-    <div class="card">
+    <div class="card reveal">
       <div class="card-img">
         <span class="card-ribbon">MPV Family</span>
-        <!-- Ganti dengan: <img src="images/confero-db.jpg" alt="Wuling Confero DB"> -->
+        <!-- Ganti: <img src="images/confero-db.jpg" alt="Wuling Confero DB"> -->
         <div class="car-ph ph-black"><i class="fas fa-car-side"></i>CONFERO DB · HITAM</div>
       </div>
       <div class="card-body">
-        <span class="card-cat">7-Seater MPV</span>
+        <span class="card-cat">8-Seater MPV</span>
         <h3 class="card-title">Wuling Confero DB</h3>
         <p class="card-price">Mulai Rp 178 jutaan* <small>/OTR Lombok</small></p>
         <div class="card-specs">
           <span class="spec"><i class="fas fa-users"></i> 8 Kursi</span>
           <span class="spec"><i class="fas fa-gas-pump"></i> Bensin 1.5L</span>
           <span class="spec"><i class="fas fa-gear"></i> Manual</span>
+          <span class="spec"><i class="fas fa-suitcase"></i> Bagasi Lega</span>
         </div>
         <div class="card-btns">
           <a href="https://wa.me/6281234567890?text=Info%20promo%20Confero%20DB" class="btn btn-red">Lihat Promo</a>
@@ -337,11 +508,10 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
       </div>
     </div>
 
-    <!-- Card 2 -->
-    <div class="card">
+    <div class="card reveal reveal-d1">
       <div class="card-img">
-        <span class="card-ribbon" style="background:var(--gold);color:var(--black)">EV Best Seller</span>
-        <!-- Ganti dengan: <img src="images/binguo-ev.jpg" alt="Wuling Binguo EV"> -->
+        <span class="card-ribbon">⚡ EV Best Seller</span>
+        <!-- Ganti: <img src="images/binguo-ev.jpg" alt="Wuling Binguo EV"> -->
         <div class="car-ph ph-yellow"><i class="fas fa-bolt"></i>BINGUO EV · KUNING</div>
       </div>
       <div class="card-body">
@@ -352,6 +522,7 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
           <span class="spec"><i class="fas fa-battery-full"></i> 410 km</span>
           <span class="spec"><i class="fas fa-plug"></i> 100% Listrik</span>
           <span class="spec"><i class="fas fa-shield-halved"></i> Garansi 8 Th</span>
+          <span class="spec"><i class="fas fa-leaf"></i> Zero Emisi</span>
         </div>
         <div class="card-btns">
           <a href="https://wa.me/6281234567890?text=Info%20promo%20Binguo%20EV" class="btn btn-red">Lihat Promo</a>
@@ -360,11 +531,10 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
       </div>
     </div>
 
-    <!-- Card 3 -->
-    <div class="card">
+    <div class="card reveal reveal-d2">
       <div class="card-img">
-        <span class="card-ribbon">Premium SUV</span>
-        <!-- Ganti dengan: <img src="images/almaz-rs-pro.jpg" alt="Wuling Almaz RS Pro"> -->
+        <span class="card-ribbon">👑 Flagship SUV</span>
+        <!-- Ganti: <img src="images/almaz-rs-pro.jpg" alt="Wuling Almaz RS Pro"> -->
         <div class="car-ph ph-white"><i class="fas fa-mountain"></i>ALMAZ RS PRO · PUTIH</div>
       </div>
       <div class="card-body">
@@ -375,6 +545,7 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
           <span class="spec"><i class="fas fa-microchip"></i> WIND + ADAS</span>
           <span class="spec"><i class="fas fa-gas-pump"></i> Turbo 1.5L</span>
           <span class="spec"><i class="fas fa-camera"></i> 360° Cam</span>
+          <span class="spec"><i class="fas fa-sun"></i> Panoramic</span>
         </div>
         <div class="card-btns">
           <a href="https://wa.me/6281234567890?text=Info%20promo%20Almaz%20RS%20Pro" class="btn btn-red">Lihat Promo</a>
@@ -384,31 +555,42 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
     </div>
 
   </div>
-  <p style="text-align:center;color:var(--gray);font-size:12px;margin-top:30px">*Harga dapat berubah sewaktu-waktu. Hubungi sales consultant untuk penawaran terbaik.</p>
+  <p class="note-price reveal">*Harga dapat berubah sewaktu-waktu. Hubungi sales consultant kami untuk penawaran eksklusif bulan ini.</p>
 </section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>Confero DB <i class="fas fa-diamond"></i> Binguo EV <i class="fas fa-diamond"></i> Almaz RS Pro <i class="fas fa-diamond"></i> Drive For A Better Life <i class="fas fa-diamond"></i> Wuling Lombok NTB <i class="fas fa-diamond"></i></span>
+    <span>Confero DB <i class="fas fa-diamond"></i> Binguo EV <i class="fas fa-diamond"></i> Almaz RS Pro <i class="fas fa-diamond"></i> Drive For A Better Life <i class="fas fa-diamond"></i> Wuling Lombok NTB <i class="fas fa-diamond"></i></span>
+  </div>
+</div>
 
 <!-- ============ SALES CONSULTANT ============ -->
 <section class="sales" id="sales">
+  <div class="deco-ring ring1"></div>
+  <div class="deco-ring ring2"></div>
+  <div class="deco-ring ring3"></div>
   <div class="sales-box">
-    <div class="sales-photo">
+    <div class="sales-photo reveal">
       <div class="frame">
-        <!-- Ganti dengan foto Bapak Apriyana: <img src="images/apriyana.jpg" alt="Apriyana - Sales Consultant"> -->
-        <div class="photo-ph"><i class="fas fa-user-tie"></i><span style="font-size:12px;font-weight:700">FOTO BAPAK APRIYANA</span></div>
+        <!-- Ganti dengan foto: <img src="images/apriyana.jpg" alt="Apriyana - Sales Consultant Wuling Lombok"> -->
+        <div class="photo-ph"><i class="fas fa-user-tie"></i><span>FOTO BAPAK APRIYANA</span></div>
       </div>
-      <div class="sales-badge-float">⭐ SALES CONSULTANT TERPERCAYA</div>
+      <div class="sales-badge-float"><i class="fas fa-star"></i> SALES CONSULTANT TERPERCAYA</div>
     </div>
-    <div class="sales-info">
+    <div class="sales-info reveal reveal-d1">
       <span class="section-sub">Kenali Sales Consultant Kami</span>
-      <h2>Siap Melayani Anda <span style="color:var(--gold)">Sepenuh Hati</span></h2>
-      <p class="sales-name">Bapak <b>Apriyana</b> — Sales Consultant Wuling Lombok NTB</p>
+      <h2>Melayani Anda <span class="serif">Sepenuh Hati</span></h2>
+      <p class="sales-name">Bapak <b>Apriyana</b> — Sales Consultant Resmi<br>Dealer Wuling Lombok NTB</p>
       <ul class="sales-features">
-        <li><i class="fas fa-check-circle"></i> Konsultasi gratis pemilihan model sesuai kebutuhan & budget Anda</li>
-        <li><i class="fas fa-check-circle"></i> Bantuan proses kredit, DP ringan, dan persetujuan cepat</li>
-        <li><i class="fas fa-check-circle"></i> Layanan test drive langsung ke rumah / kantor Anda di seluruh Lombok</li>
-        <li><i class="fas fa-check-circle"></i> Pendampingan penuh hingga kendaraan dikirim ke tangan Anda</li>
+        <li><i class="fas fa-check"></i> Konsultasi gratis pemilihan model sesuai kebutuhan & budget Anda</li>
+        <li><i class="fas fa-check"></i> Bantuan proses kredit — DP ringan, bunga kompetitif, approval cepat</li>
+        <li><i class="fas fa-check"></i> Test drive diantar langsung ke rumah/kantor di seluruh Pulau Lombok</li>
+        <li><i class="fas fa-check"></i> Pendampingan penuh dari pemesanan hingga kendaraan tiba di tangan Anda</li>
       </ul>
       <div class="phone-big">
-        <i class="fas fa-phone-volume"></i>
+        <div class="p-icon"><i class="fas fa-phone-volume"></i></div>
         <div>
           <div class="label">Hubungi Langsung</div>
           <div class="number">0812-3456-7890</div>
@@ -422,36 +604,43 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   </div>
 </section>
 
-<!-- ============ LOKASI / MAP ============ -->
+<!-- ============ LOKASI ============ -->
 <section class="map-section" id="lokasi">
-  <div class="section-head">
-    <span class="section-sub">Kunjungi Kami</span>
-    <h2 class="section-title">Dealer <span class="gold">Wuling Lombok NTB</span></h2>
-    <div class="gold-line"></div>
+  <div class="section-head reveal">
+    <span class="section-sub">Kunjungi Showroom Kami</span>
+    <h2 class="section-title">Dealer <span class="serif">Wuling Lombok NTB</span></h2>
+    <p class="section-desc">Nikmati pengalaman langsung melihat dan mencoba unit display kami di showroom resmi.</p>
   </div>
-  <div class="map-wrap">
+  <div class="map-wrap reveal">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63282.92432!2d116.05!3d-8.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc3f6f6b1c5d1%3A0x3019531001b2f00!2sMataram%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen loading="lazy"></iframe>
   </div>
-  <div class="map-info">
+  <div class="map-info reveal">
     <div class="map-chip"><i class="fas fa-location-dot"></i> Jl. Selaparang, Mataram, Lombok - NTB</div>
     <div class="map-chip"><i class="fas fa-clock"></i> Buka Setiap Hari · 08.00 - 17.00 WITA</div>
-    <div class="map-chip"><i class="fas fa-car"></i> Test Drive Tersedia</div>
+    <div class="map-chip"><i class="fas fa-car"></i> Unit Test Drive Tersedia</div>
+    <div class="map-chip"><i class="fas fa-mug-hot"></i> Free Coffee & Snack</div>
   </div>
 </section>
 
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-col">
+    <div class="footer-col reveal">
       <div class="footer-logo">
         <div class="logo-badge">W</div>
-        <div class="logo-text">WULING <span style="color:var(--gold)">MOTORS</span></div>
+        <div class="logo-text">WULING <span>MOTORS</span></div>
       </div>
       <p class="footer-slogan">Drive For A <span>Better Life</span></p>
       <p class="footer-loc">Lombok — NTB</p>
-      <p class="footer-desc">Dealer resmi Wuling untuk wilayah Lombok dan Nusa Tenggara Barat. Melayani penjualan, servis, dan suku cadang dengan standar global Wuling Motors.</p>
+      <p class="footer-desc">Dealer resmi Wuling untuk wilayah Lombok dan Nusa Tenggara Barat. Melayani penjualan, purna jual, dan suku cadang dengan standar global Wuling Motors.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/6281234567890" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
     </div>
-    <div class="footer-col">
+    <div class="footer-col reveal reveal-d1">
       <h4>Model Kami</h4>
       <ul>
         <li><a href="#produk"><i class="fas fa-angle-right"></i> Confero DB</a></li>
@@ -460,7 +649,16 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
         <li><a href="#produk"><i class="fas fa-angle-right"></i> Promo Bulan Ini</a></li>
       </ul>
     </div>
-    <div class="footer-col">
+    <div class="footer-col reveal reveal-d2">
+      <h4>Navigasi</h4>
+      <ul>
+        <li><a href="#hero"><i class="fas fa-angle-right"></i> Beranda</a></li>
+        <li><a href="#sales"><i class="fas fa-angle-right"></i> Sales Consultant</a></li>
+        <li><a href="#lokasi"><i class="fas fa-angle-right"></i> Lokasi Dealer</a></li>
+        <li><a href="https://wa.me/6281234567890"><i class="fas fa-angle-right"></i> Test Drive</a></li>
+      </ul>
+    </div>
+    <div class="footer-col reveal reveal-d3">
       <h4>Kontak</h4>
       <ul>
         <li><a href="tel:+6281234567890"><i class="fas fa-phone"></i> 0812-3456-7890 (Pak Apriyana)</a></li>
@@ -471,15 +669,22 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
     </div>
   </div>
 </footer>
-<div class="footer-bottom">© 2026 <b>Wuling Lombok NTB</b> · Drive For A Better Life · All Rights Reserved</div>
+<div class="footer-bottom">© 2026 <b>WULING LOMBOK NTB</b> · DRIVE FOR A BETTER LIFE · ALL RIGHTS RESERVED</div>
 
-<!-- WA Floating Button -->
+<!-- Floating buttons -->
 <a href="https://wa.me/6281234567890" class="wa-float" title="Chat WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<a href="#hero" class="to-top" id="toTop" title="Kembali ke atas"><i class="fas fa-arrow-up"></i></a>
 
 <script>
-/* ===== Auto Carousel ===== */
+/* ===== Preloader ===== */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('preloader').classList.add('hide'), 900);
+});
+
+/* ===== Hero Carousel + Ken Burns ===== */
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
+const slideNum = document.getElementById('slideNum');
 let current = 0, timer;
 
 function goSlide(i){
@@ -487,23 +692,56 @@ function goSlide(i){
   dots[current].classList.remove('active');
   current = i;
   slides[current].classList.add('active');
-  // restart animasi progress dot
   dots[current].classList.remove('active');
-  void dots[current].offsetWidth;
+  void dots[current].offsetWidth; // restart animasi
   dots[current].classList.add('active');
+  slideNum.textContent = String(current + 1).padStart(2, '0');
   resetTimer();
 }
-function nextSlide(){ goSlide((current + 1) % slides.length); }
-function resetTimer(){ clearInterval(timer); timer = setInterval(nextSlide, 5000); }
+function resetTimer(){ clearInterval(timer); timer = setInterval(() => goSlide((current+1)%slides.length), 6000); }
 resetTimer();
 
-/* ===== Navbar scroll effect ===== */
+/* ===== Navbar & Back-to-top on scroll ===== */
+const navbar = document.getElementById('navbar');
+const toTop = document.getElementById('toTop');
 window.addEventListener('scroll', () => {
-  document.querySelector('.navbar').style.boxShadow =
-    window.scrollY > 50 ? '0 8px 30px rgba(0,0,0,.4)' : 'none';
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  toTop.classList.toggle('show', window.scrollY > 500);
 });
 
-/* ===== Tutup menu mobile saat link diklik ===== */
+/* ===== Scroll Reveal ===== */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ===== Animated Counters ===== */
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = +el.dataset.count;
+    const duration = 2000;
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      el.textContent = Math.round(eased * target).toLocaleString('id-ID') + (p === 1 && target >= 98 && target !== 24 ? '' : '');
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target.toLocaleString('id-ID') + (target === 1500 ? '+' : '');
+    }
+    requestAnimationFrame(tick);
+    counterObs.unobserve(el);
+  });
+}, { threshold: 0.6 });
+document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+/* ===== Tutup menu mobile saat diklik ===== */
 document.querySelectorAll('.nav-links a').forEach(a =>
   a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
 );
