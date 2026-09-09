@@ -314,22 +314,6 @@ section{padding:110px 6%}
   background:linear-gradient(135deg,var(--gold),transparent 35%,transparent 65%,var(--red));
   -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
-
-/* ===== HEAD FRAME PETA — WARNA FRAME (EMAS→MERAH) + JUDUL ===== */
-.map-head{display:flex;align-items:center;gap:16px;
-  padding:18px 28px;
-  background:linear-gradient(100deg,var(--gold-2) 0%,var(--gold) 42%,var(--red) 118%);
-  border-bottom:2px solid rgba(10,10,10,.28);
-  position:relative;z-index:1}
-.map-head .mh-icon{width:42px;height:42px;min-width:42px;border-radius:12px;
-  background:rgba(10,10,10,.88);color:var(--gold-2);font-size:16px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 18px rgba(0,0,0,.35)}
-.map-head h3{font-size:clamp(15px,2vw,21px);font-weight:900;letter-spacing:4px;
-  text-transform:uppercase;color:#0a0a0a;line-height:1.2}
-.map-head .mh-sub{margin-left:auto;font-size:11px;font-weight:800;letter-spacing:2.5px;
-  text-transform:uppercase;color:rgba(10,10,10,.72);white-space:nowrap}
-
 .map-wrap iframe{width:100%;height:470px;border:0;display:block;filter:grayscale(.25) contrast(1.05)}
 .map-info{max-width:1320px;margin:30px auto 0;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
 .map-chip{background:var(--light);border:1px solid #e8e8e8;border-radius:50px;
@@ -454,10 +438,6 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   .sales-btns{justify-content:center}
   .hero-side{display:none}
   .scroll-hint{display:none}
-
-  /* Tablet: head frame sedikit lebih kompak */
-  .map-head{padding:15px 22px;gap:13px}
-  .map-head .mh-icon{width:38px;height:38px;min-width:38px;font-size:15px}
 }
 @media(max-width:560px){
   section{padding:70px 5%}
@@ -510,24 +490,19 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   .sales-btns{flex-direction:column;width:100%;max-width:480px;margin:0 auto}
   .sales-btns .btn{width:100%}
 
-  /* ===== HP: FRAME PETA + HEAD FULL-BLEED SELEBAR LAYAR ===== */
-  .map-wrap{border-radius:0;width:100vw;max-width:100vw;
-    margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
-  .map-wrap::before{border-radius:0}
-  .map-head{padding:13px 16px;gap:10px}
-  .map-head .mh-icon{width:34px;height:34px;min-width:34px;font-size:13px;border-radius:10px}
-  .map-head h3{font-size:14px;letter-spacing:2.5px}
-  .map-head .mh-sub{display:none}
+  .map-wrap{border-radius:18px}
   .map-wrap iframe{height:300px}
   .map-info{gap:10px}
   .map-chip{font-size:11.5px;padding:11px 18px;gap:8px}
 
+  /* ===== FOOTER MOBILE — MODEL KAMI & NAVIGASI BERSEBELAHAN ===== */
   footer{padding-top:60px}
   .footer-grid{grid-template-columns:1fr 1fr;text-align:center;gap:42px 14px;padding-bottom:44px}
-  .footer-col:nth-child(1){grid-column:1 / -1}
-  .footer-col:nth-child(2){grid-column:1}
-  .footer-col:nth-child(3){grid-column:2}
-  .footer-col:nth-child(4){grid-column:1 / -1}
+  .footer-col:nth-child(1){grid-column:1 / -1}  /* brand/logo tetap full width */
+  .footer-col:nth-child(2){grid-column:1}      /* Model Kami → kolom kiri */
+  .footer-col:nth-child(3){grid-column:2}      /* Navigasi  → kolom kanan */
+  .footer-col:nth-child(4){grid-column:1 / -1} /* Kontak tetap full width di bawah */
+  /* sedikit kompak agar muat berdampingan di layar sempit */
   .footer-col:nth-child(2) h4,.footer-col:nth-child(3) h4{font-size:11px;letter-spacing:2px;margin-bottom:20px}
   .footer-col:nth-child(2) a,.footer-col:nth-child(3) a{font-size:12.5px;gap:7px}
   .footer-col:nth-child(2) ul,.footer-col:nth-child(3) ul{gap:13px}
@@ -548,7 +523,6 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   .hero-title{font-size:27px}
   .footer-col:nth-child(2) a,.footer-col:nth-child(3) a{font-size:11.5px;gap:5px}
   .footer-col:nth-child(2) h4,.footer-col:nth-child(3) h4{font-size:10px;letter-spacing:1.5px}
-  .map-head h3{font-size:12.5px;letter-spacing:2px}
 }
 </style>
 </head>
@@ -686,7 +660,7 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
 
     <div class="card reveal reveal-d1">
       <div class="card-img">
-        <span class="card-ribbon"> EV Best Seller</span>
+        <span class="card-ribbon">⚡ EV Best Seller</span>
         <!-- Ganti: <img src="images/binguo-ev.jpg" alt="Wuling Binguo EV"> -->
         <div class="car-ph ph-yellow"><i class="fas fa-bolt"></i>BINGUO EV · KUNING</div>
       </div>
@@ -788,12 +762,6 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
     <p class="section-desc">Nikmati pengalaman langsung melihat dan mencoba unit display kami di showroom resmi.</p>
   </div>
   <div class="map-wrap reveal">
-    <!-- HEAD FRAME PETA : warna frame (emas→merah) + judul -->
-    <div class="map-head">
-      <span class="mh-icon"><i class="fas fa-location-dot"></i></span>
-      <h3>Lokasi Kami</h3>
-      <span class="mh-sub">Dealer Wuling Lombok NTB</span>
-    </div>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63282.92432!2d116.05!3d-8.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc3f6f6b1c5d1%3A0x3019531001b2f00!2sMataram%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen loading="lazy"></iframe>
   </div>
   <div class="map-info reveal">
