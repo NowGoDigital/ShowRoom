@@ -10,16 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Wuling Lombok NTB">
 <meta property="og:title" content="Wuling Lombok NTB | Drive For A Better Life">
-<meta property="og:description" content="Dealer resmi Wuling Lombok NTB — Confero DB, Binguo EV, Almaz RS Pro. Promo terbaik, test drive gratis, konsultasi bersama Pak Apriyana.">
-<!-- Gambar preview (OG.png sefolder dengan index.html).
-     SETELAH UPLOAD KE HOSTING: ganti isi content di bawah menjadi URL absolut,
-     contoh: content="https://domainmu.com/OG.png" -->
+<meta property="og:description" content="Dealer resmi Wuling Lombok NTB — Confero DB, Binguo EV, Almaz RS Pro. Promo terbaik bulan ini, test drive gratis, konsultasi bersama Pak Apriyana.">
 <meta property="og:image" content="OG.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Wuling Lombok NTB — Drive For A Better Life">
-<!-- SETELAH UPLOAD KE HOSTING: isi dengan alamat website, contoh: https://domainmu.com/ -->
 <meta property="og:url" content="">
 <meta property="og:locale" content="id_ID">
 <meta name="twitter:card" content="summary_large_image">
@@ -27,8 +23,6 @@
 <meta name="twitter:description" content="Dealer resmi Wuling Lombok NTB — Confero DB, Binguo EV, Almaz RS Pro. Promo terbaik & test drive gratis.">
 <meta name="twitter:image" content="OG.png">
 <!-- ============ /OPEN GRAPH ============ -->
-
-  
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -110,22 +104,6 @@ img{max-width:100%}
   background-repeat:no-repeat;background-size:cover,cover,cover}
 .slide.active .slide-bg{animation:kenburns 6.5s ease forwards}
 @keyframes kenburns{from{transform:scale(1.12)}to{transform:scale(1)}}
-
-.bg-1{background-image:
-    linear-gradient(105deg, rgba(10,10,10,.62) 0%, rgba(199,0,11,.14) 52%, rgba(199,0,11,.30) 100%),
-    url('hero1.png'),
-    linear-gradient(150deg,#080808,#232323 45%,#4d0d0d);
-  background-position:center,70% center,center}
-.bg-2{background-image:
-    linear-gradient(105deg, rgba(10,10,10,.62) 0%, rgba(212,175,55,.12) 52%, rgba(212,175,55,.26) 100%),
-    url('hero2.png'),
-    linear-gradient(150deg,#14140a,#3b3413 50%,#7a6614);
-  background-position:center,70% center,center}
-.bg-3{background-image:
-    linear-gradient(105deg, rgba(10,10,10,.62) 0%, rgba(148,148,148,.12) 52%, rgba(148,148,148,.24) 100%),
-    url('hero3.png'),
-    linear-gradient(150deg,#141414,#3f3f3f 50%,#949494);
-  background-position:center,70% center,center}
 
 .slide::after{content:'';position:absolute;inset:0;
   background:linear-gradient(100deg,rgba(0,0,0,.9) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.18) 100%)}
@@ -524,11 +502,10 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   /* ===== FOOTER MOBILE — MODEL KAMI & NAVIGASI BERSEBELAHAN ===== */
   footer{padding-top:60px}
   .footer-grid{grid-template-columns:1fr 1fr;text-align:center;gap:42px 14px;padding-bottom:44px}
-  .footer-col:nth-child(1){grid-column:1 / -1}  /* brand/logo tetap full width */
-  .footer-col:nth-child(2){grid-column:1}      /* Model Kami → kolom kiri */
-  .footer-col:nth-child(3){grid-column:2}      /* Navigasi  → kolom kanan */
-  .footer-col:nth-child(4){grid-column:1 / -1} /* Kontak tetap full width di bawah */
-  /* sedikit kompak agar muat berdampingan di layar sempit */
+  .footer-col:nth-child(1){grid-column:1 / -1}
+  .footer-col:nth-child(2){grid-column:1}
+  .footer-col:nth-child(3){grid-column:2}
+  .footer-col:nth-child(4){grid-column:1 / -1}
   .footer-col:nth-child(2) h4,.footer-col:nth-child(3) h4{font-size:11px;letter-spacing:2px;margin-bottom:20px}
   .footer-col:nth-child(2) a,.footer-col:nth-child(3) a{font-size:12.5px;gap:7px}
   .footer-col:nth-child(2) ul,.footer-col:nth-child(3) ul{gap:13px}
@@ -558,7 +535,7 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
 <div class="preloader" id="preloader">
   <div class="pl-logo">W</div>
   <div class="pl-bar"></div>
-  <div class="pl-text">Wuling Lombok NTB</div>
+  <div class="pl-text" id="plText">Wuling Lombok NTB</div>
 </div>
 
 <!-- NAVBAR -->
@@ -566,17 +543,11 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   <div class="logo">
     <div class="logo-badge">W</div>
     <div>
-      <div class="logo-text">WULING <span>LOMBOK</span></div>
-      <span class="logo-sub">DRIVE FOR A BETTER LIFE</span>
+      <div class="logo-text" id="logoText">WULING <span>LOMBOK</span></div>
+      <span class="logo-sub" id="logoSub">DRIVE FOR A BETTER LIFE</span>
     </div>
   </div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#hero">Beranda</a></li>
-    <li><a href="#produk">Model</a></li>
-    <li><a href="#sales">Sales Kami</a></li>
-    <li><a href="#lokasi">Lokasi</a></li>
-    <li><a href="https://wa.me/6281234567890" class="nav-cta"><i class="fab fa-whatsapp"></i> Hubungi Kami</a></li>
-  </ul>
+  <ul class="nav-links" id="navLinks"></ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <i class="fas fa-bars" id="hamIcon"></i>
   </button>
@@ -585,161 +556,37 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
 
 <!-- HERO -->
 <header class="hero" id="hero">
-
-  <!-- SLIDE 1 : CONFERO DB -->
-  <div class="slide active">
-    <div class="slide-bg bg-1"></div>
-    <div class="hero-content">
-      <span class="hero-tag"><i class="fas fa-circle"></i> MPV Keluarga Premium</span>
-      <h1 class="hero-title">Wuling<span class="line2">Confero DB</span></h1>
-      <p class="hero-desc">Kabin lega 8-penumpang dalam balutan hitam yang berwibawa. Kemewahan sejati untuk setiap perjalanan keluarga Anda di Pulau Lombok.</p>
-      <div class="hero-btns">
-        <a href="#produk" class="btn btn-red"><i class="fas fa-tag"></i> Lihat Promo</a>
-        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Confero%20DB" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Test Drive</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 2 : BINGUO EV -->
-  <div class="slide">
-    <div class="slide-bg bg-2"></div>
-    <div class="hero-content">
-      <span class="hero-tag"><i class="fas fa-circle"></i> The Future Drive — Electric</span>
-      <h1 class="hero-title">Wuling<span class="line2">Binguo EV</span></h1>
-      <p class="hero-desc">Ikon mobilitas masa depan berwarna kuning memukau. Jarak tempuh 410 km dengan biaya operasional super hemat — cerdas dan bergaya.</p>
-      <div class="hero-btns">
-        <a href="#produk" class="btn btn-gold"><i class="fas fa-bolt"></i> Lihat Promo EV</a>
-        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Binguo%20EV" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Konsultasi Gratis</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 3 : ALMAZ RS PRO -->
-  <div class="slide">
-    <div class="slide-bg bg-3"></div>
-    <div class="hero-content">
-      <span class="hero-tag"><i class="fas fa-circle"></i> Flagship Smart SUV</span>
-      <h1 class="hero-title">Wuling<span class="line2">Almaz RS Pro</span></h1>
-      <p class="hero-desc">SUV cerdas berbalut putih mutiara dengan teknologi WIND & ADAS. Taklukkan pegunungan Rinjani hingga pesisir Lombok dengan penuh gaya.</p>
-      <div class="hero-btns">
-        <a href="#produk" class="btn btn-red"><i class="fas fa-crown"></i> Lihat Promo</a>
-        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20tertarik%20dengan%20Wuling%20Almaz%20RS%20Pro" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Pemesanan</a>
-      </div>
-    </div>
-  </div>
+  <div id="slidesWrap" style="display:contents"></div>
 
   <div class="hero-side">
-    <div class="slide-counter"><b id="slideNum">01</b> / 03</div>
+    <div class="slide-counter"><b id="slideNum">01</b> / <span id="slideTotal">03</span></div>
     <div class="v-line"></div>
   </div>
 
-  <div class="hero-dots">
-    <div class="dot active" onclick="goSlide(0)"></div>
-    <div class="dot" onclick="goSlide(1)"></div>
-    <div class="dot" onclick="goSlide(2)"></div>
-  </div>
+  <div class="hero-dots" id="heroDots"></div>
 
   <div class="scroll-hint"><div class="mouse"></div>Scroll</div>
 </header>
 
 <!-- STATS -->
 <div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat reveal"><div class="num" data-count="1500">0</div><div class="lbl">Unit Terjual</div></div>
-    <div class="stat reveal reveal-d1"><div class="num" data-count="12">0</div><div class="lbl">Tahun Pengalaman</div></div>
-    <div class="stat reveal reveal-d2"><div class="num" data-count="98">0</div><div class="lbl">% Kepuasan Customer</div></div>
-    <div class="stat reveal reveal-d3"><div class="num" data-count="24">0</div><div class="lbl">Jam Layanan Konsultasi</div></div>
-  </div>
+  <div class="stats-inner" id="statsInner"></div>
 </div>
 
 <!-- PRODUK -->
 <section class="products" id="produk">
   <div class="section-head reveal">
-    <span class="section-sub">Pilihan Model Unggulan</span>
-    <h2 class="section-title">Temukan Wuling <span class="serif">Impian Anda</span></h2>
-    <p class="section-desc">Tiga model terbaik yang siap menemani setiap perjalanan Anda — dari MPV keluarga, mobil listrik masa depan, hingga SUV premium cerdas.</p>
+    <span class="section-sub" id="prodSub"></span>
+    <h2 class="section-title" id="prodTitle"></h2>
+    <p class="section-desc" id="prodDesc"></p>
   </div>
-  <div class="product-grid">
-
-    <div class="card reveal">
-      <div class="card-img">
-        <span class="card-ribbon">MPV Family</span>
-        <!-- Ganti: <img src="images/confero-db.jpg" alt="Wuling Confero DB"> -->
-        <div class="car-ph ph-black"><i class="fas fa-car-side"></i>CONFERO DB · HITAM</div>
-      </div>
-      <div class="card-body">
-        <span class="card-cat">8-Seater MPV</span>
-        <h3 class="card-title">Wuling Confero DB</h3>
-        <p class="card-price">Mulai Rp 178 jutaan* <small>/OTR Lombok</small></p>
-        <div class="card-specs">
-          <span class="spec"><i class="fas fa-users"></i> 8 Kursi</span>
-          <span class="spec"><i class="fas fa-gas-pump"></i> Bensin 1.5L</span>
-          <span class="spec"><i class="fas fa-gear"></i> Manual</span>
-          <span class="spec"><i class="fas fa-suitcase"></i> Bagasi Lega</span>
-        </div>
-        <div class="card-btns">
-          <a href="https://wa.me/6281234567890?text=Info%20promo%20Confero%20DB" class="btn btn-red">Lihat Promo</a>
-          <a href="https://wa.me/6281234567890?text=Booking%20Confero%20DB" class="btn btn-gold">Pemesanan</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card reveal reveal-d1">
-      <div class="card-img">
-        <span class="card-ribbon">⚡ EV Best Seller</span>
-        <!-- Ganti: <img src="images/binguo-ev.jpg" alt="Wuling Binguo EV"> -->
-        <div class="car-ph ph-yellow"><i class="fas fa-bolt"></i>BINGUO EV · KUNING</div>
-      </div>
-      <div class="card-body">
-        <span class="card-cat">Electric Hatchback</span>
-        <h3 class="card-title">Wuling Binguo EV</h3>
-        <p class="card-price">Mulai Rp 317 jutaan* <small>/setelah insentif</small></p>
-        <div class="card-specs">
-          <span class="spec"><i class="fas fa-battery-full"></i> 410 km</span>
-          <span class="spec"><i class="fas fa-plug"></i> 100% Listrik</span>
-          <span class="spec"><i class="fas fa-shield-halved"></i> Garansi 8 Th</span>
-          <span class="spec"><i class="fas fa-leaf"></i> Zero Emisi</span>
-        </div>
-        <div class="card-btns">
-          <a href="https://wa.me/6281234567890?text=Info%20promo%20Binguo%20EV" class="btn btn-red">Lihat Promo</a>
-          <a href="https://wa.me/6281234567890?text=Booking%20Binguo%20EV" class="btn btn-gold">Pemesanan</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card reveal reveal-d2">
-      <div class="card-img">
-        <span class="card-ribbon">👑 Flagship SUV</span>
-        <!-- Ganti: <img src="images/almaz-rs-pro.jpg" alt="Wuling Almaz RS Pro"> -->
-        <div class="car-ph ph-white"><i class="fas fa-mountain"></i>ALMAZ RS PRO · PUTIH</div>
-      </div>
-      <div class="card-body">
-        <span class="card-cat">Smart Technology SUV</span>
-        <h3 class="card-title">Wuling Almaz RS Pro</h3>
-        <p class="card-price">Mulai Rp 439 jutaan* <small>/OTR Lombok</small></p>
-        <div class="card-specs">
-          <span class="spec"><i class="fas fa-microchip"></i> WIND + ADAS</span>
-          <span class="spec"><i class="fas fa-gas-pump"></i> Turbo 1.5L</span>
-          <span class="spec"><i class="fas fa-camera"></i> 360° Cam</span>
-          <span class="spec"><i class="fas fa-sun"></i> Panoramic</span>
-        </div>
-        <div class="card-btns">
-          <a href="https://wa.me/6281234567890?text=Info%20promo%20Almaz%20RS%20Pro" class="btn btn-red">Lihat Promo</a>
-          <a href="https://wa.me/6281234567890?text=Booking%20Almaz%20RS%20Pro" class="btn btn-gold">Pemesanan</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <p class="note-price reveal">*Harga dapat berubah sewaktu-waktu. Hubungi sales consultant kami untuk penawaran eksklusif bulan ini.</p>
+  <div class="product-grid" id="productGrid"></div>
+  <p class="note-price reveal" id="notePrice"></p>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee">
-  <div class="marquee-track">
-    <span>Confero DB <i class="fas fa-diamond"></i> Binguo EV <i class="fas fa-diamond"></i> Almaz RS Pro <i class="fas fa-diamond"></i> Drive For A Better Life <i class="fas fa-diamond"></i> Wuling Lombok NTB <i class="fas fa-diamond"></i></span>
-    <span>Confero DB <i class="fas fa-diamond"></i> Binguo EV <i class="fas fa-diamond"></i> Almaz RS Pro <i class="fas fa-diamond"></i> Drive For A Better Life <i class="fas fa-diamond"></i> Wuling Lombok NTB <i class="fas fa-diamond"></i></span>
-  </div>
+  <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
 <!-- SALES -->
@@ -749,33 +596,22 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
   <div class="deco-ring ring3"></div>
   <div class="sales-box">
     <div class="sales-photo reveal">
-      <div class="frame">
-        <!-- Ganti: <img src="images/apriyana.jpg" alt="Apriyana - Sales Consultant Wuling Lombok"> -->
-        <div class="photo-ph"><i class="fas fa-user-tie"></i><span>FOTO BAPAK APRIYANA</span></div>
-      </div>
-      <div class="sales-badge-float"><i class="fas fa-star"></i> SALES CONSULTANT TERPERCAYA</div>
+      <div class="frame" id="salesFrame"></div>
+      <div class="sales-badge-float"><i class="fas fa-star"></i> <span id="salesBadge"></span></div>
     </div>
     <div class="sales-info reveal reveal-d1">
-      <span class="section-sub">Kenali Sales Consultant Kami</span>
-      <h2>Melayani Anda <span class="serif">Sepenuh Hati</span></h2>
-      <p class="sales-name">Bapak <b>Apriyana</b> — Sales Consultant Resmi<br>Dealer Wuling Lombok NTB</p>
-      <ul class="sales-features">
-        <li><i class="fas fa-check"></i> Konsultasi gratis pemilihan model sesuai kebutuhan & budget Anda</li>
-        <li><i class="fas fa-check"></i> Bantuan proses kredit — DP ringan, bunga kompetitif, approval cepat</li>
-        <li><i class="fas fa-check"></i> Test drive diantar langsung ke rumah/kantor di seluruh Pulau Lombok</li>
-        <li><i class="fas fa-check"></i> Pendampingan penuh dari pemesanan hingga kendaraan tiba di tangan Anda</li>
-      </ul>
+      <span class="section-sub" id="salesSub"></span>
+      <h2 id="salesTitle"></h2>
+      <p class="sales-name" id="salesName"></p>
+      <ul class="sales-features" id="salesFeatures"></ul>
       <div class="phone-big">
         <div class="p-icon"><i class="fas fa-phone-volume"></i></div>
         <div>
-          <div class="label">Hubungi Langsung</div>
-          <div class="number">0812-3456-7890</div>
+          <div class="label" id="phoneLabel"></div>
+          <div class="number" id="phoneNumber"></div>
         </div>
       </div>
-      <div class="sales-btns">
-        <a href="https://wa.me/6281234567890?text=Halo%20Pak%20Apriyana,%20saya%20ingin%20konsultasi%20mobil%20Wuling" class="btn btn-wa"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
-        <a href="tel:+6281234567890" class="btn btn-gold"><i class="fas fa-phone"></i> Telepon Sekarang</a>
-      </div>
+      <div class="sales-btns" id="salesBtns"></div>
     </div>
   </div>
 </section>
@@ -783,160 +619,358 @@ footer::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;
 <!-- MAP -->
 <section class="map-section" id="lokasi">
   <div class="section-head reveal">
-    <span class="section-sub">Kunjungi Showroom Kami</span>
-    <h2 class="section-title">Dealer <span class="serif">Wuling Lombok NTB</span></h2>
-    <p class="section-desc">Nikmati pengalaman langsung melihat dan mencoba unit display kami di showroom resmi.</p>
+    <span class="section-sub" id="mapSub"></span>
+    <h2 class="section-title" id="mapTitle"></h2>
+    <p class="section-desc" id="mapDesc"></p>
   </div>
   <div class="map-wrap reveal">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63282.92432!2d116.05!3d-8.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc3f6f6b1c5d1%3A0x3019531001b2f00!2sMataram%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1700000000000" allowfullscreen loading="lazy"></iframe>
+    <iframe id="mapFrame" allowfullscreen loading="lazy"></iframe>
   </div>
-  <div class="map-info reveal">
-    <div class="map-chip"><i class="fas fa-location-dot"></i> Jl. Selaparang, Mataram, Lombok - NTB</div>
-    <div class="map-chip"><i class="fas fa-clock"></i> Buka Setiap Hari · 08.00 - 17.00 WITA</div>
-    <div class="map-chip"><i class="fas fa-car"></i> Unit Test Drive Tersedia</div>
-    <div class="map-chip"><i class="fas fa-mug-hot"></i> Free Coffee & Snack</div>
-  </div>
+  <div class="map-info reveal" id="mapChips"></div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-col reveal">
-      <div class="footer-logo">
-        <div class="logo-badge">W</div>
-        <div class="logo-text">WULING <span style="color:var(--gold)">MOTORS</span></div>
-      </div>
-      <p class="footer-slogan">Drive For A <span>Better Life</span></p>
-      <p class="footer-loc">Lombok — NTB</p>
-      <p class="footer-desc">Dealer resmi Wuling untuk wilayah Lombok dan Nusa Tenggara Barat. Melayani penjualan, purna jual, dan suku cadang dengan standar global Wuling Motors.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="https://wa.me/6281234567890" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
-    <div class="footer-col reveal reveal-d1">
-      <h4>Model Kami</h4>
-      <ul>
-        <li><a href="#produk"><i class="fas fa-angle-right"></i> Confero DB</a></li>
-        <li><a href="#produk"><i class="fas fa-angle-right"></i> Binguo EV</a></li>
-        <li><a href="#produk"><i class="fas fa-angle-right"></i> Almaz RS Pro</a></li>
-        <li><a href="#produk"><i class="fas fa-angle-right"></i> Promo Bulan Ini</a></li>
-      </ul>
-    </div>
-    <div class="footer-col reveal reveal-d2">
-      <h4>Navigasi</h4>
-      <ul>
-        <li><a href="#hero"><i class="fas fa-angle-right"></i> Beranda</a></li>
-        <li><a href="#sales"><i class="fas fa-angle-right"></i> Sales Consultant</a></li>
-        <li><a href="#lokasi"><i class="fas fa-angle-right"></i> Lokasi Dealer</a></li>
-        <li><a href="https://wa.me/6281234567890"><i class="fas fa-angle-right"></i> Test Drive</a></li>
-      </ul>
-    </div>
-    <div class="footer-col reveal reveal-d3">
-      <h4>Kontak</h4>
-      <ul>
-        <li><a href="tel:+6281234567890"><i class="fas fa-phone"></i> 0812-3456-7890 (Pak Apriyana)</a></li>
-        <li><a href="https://wa.me/6281234567890"><i class="fab fa-whatsapp"></i> WhatsApp 24 Jam</a></li>
-        <li><a href="#lokasi"><i class="fas fa-location-dot"></i> Mataram, Lombok - NTB</a></li>
-        <li><a href="mailto:sales@wulinglombok.id"><i class="fas fa-envelope"></i> sales@wulinglombok.id</a></li>
-      </ul>
-    </div>
-  </div>
+  <div class="footer-grid" id="footerGrid"></div>
 </footer>
-<div class="footer-bottom">© 2026 <b>WULING LOMBOK NTB</b><br>DRIVE FOR A BETTER LIFE · ALL RIGHTS RESERVED</div>
+<div class="footer-bottom" id="footerBottom"></div>
 
-<a href="https://wa.me/6281234567890" class="wa-float" title="Chat WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<a href="#" class="wa-float" id="waFloat" title="Chat WhatsApp"><i class="fab fa-whatsapp"></i></a>
 <a href="#hero" class="to-top" id="toTop" title="Kembali ke atas"><i class="fas fa-arrow-up"></i></a>
 
 <script>
-/* ===== Preloader ===== */
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('preloader').classList.add('hide'), 800);
-});
+/* =====================================================================
+   CMS RUNTIME — semua konten dirender dari object CONTENT.
+   Sumber: content.json (server) > ?draft=1 (draft admin) > DEFAULT.
+   ===================================================================== */
+const $=(s,c=document)=>c.querySelector(s);
+const $$=(s,c=document)=>[...c.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const clone=o=>JSON.parse(JSON.stringify(o));
+function deepMerge(a,b){for(const k in b){if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])){a[k]=deepMerge((a[k]&&typeof a[k]==='object'&&!Array.isArray(a[k]))?a[k]:{},b[k]);}else a[k]=b[k];}return a;}
 
-/* ===== Mobile Menu ===== */
-const navLinks = document.getElementById('navLinks');
-const hamburger = document.getElementById('hamburger');
-const hamIcon = document.getElementById('hamIcon');
-const navOverlay = document.getElementById('navOverlay');
+/* ===== KONTEN DEFAULT (cerminan isi website saat ini) ===== */
+const DEFAULT_CONTENT={
+  site:{
+    title:'Wuling Lombok NTB | Drive For A Better Life',
+    description:'Dealer resmi Wuling Lombok NTB — Confero DB, Binguo EV, Almaz RS Pro. Promo terbaik bulan ini, test drive gratis, konsultasi bersama Pak Apriyana.',
+    ogImage:'OG.png', ogUrl:'',
+    wa:'6281234567890', waDisplay:'0812-3456-7890'
+  },
+  brand:{a:'WULING',b:'LOMBOK',sub:'DRIVE FOR A BETTER LIFE',preloader:'Wuling Lombok NTB'},
+  navCta:'Hubungi Kami',
+  nav:[
+    {label:'Beranda',href:'#hero'},
+    {label:'Model',href:'#produk'},
+    {label:'Sales Kami',href:'#sales'},
+    {label:'Lokasi',href:'#lokasi'}
+  ],
+  slides:[
+    {tag:'MPV Keluarga Premium',t1:'Wuling',t2:'Confero DB',
+     desc:'Kabin lega 8-penumpang dalam balutan hitam yang berwibawa. Kemewahan sejati untuk setiap perjalanan keluarga Anda di Pulau Lombok.',
+     tint:'red',image:'hero1.png',
+     btn1:{label:'Lihat Promo',icon:'fa-tag',style:'red',href:'#produk'},
+     btn2:{label:'Test Drive',waText:'Halo Pak Apriyana, saya tertarik dengan Wuling Confero DB'}},
+    {tag:'The Future Drive — Electric',t1:'Wuling',t2:'Binguo EV',
+     desc:'Ikon mobilitas masa depan berwarna kuning memukau. Jarak tempuh 410 km dengan biaya operasional super hemat — cerdas dan bergaya.',
+     tint:'gold',image:'hero2.png',
+     btn1:{label:'Lihat Promo EV',icon:'fa-bolt',style:'gold',href:'#produk'},
+     btn2:{label:'Konsultasi Gratis',waText:'Halo Pak Apriyana, saya tertarik dengan Wuling Binguo EV'}},
+    {tag:'Flagship Smart SUV',t1:'Wuling',t2:'Almaz RS Pro',
+     desc:'SUV cerdas berbalut putih mutiara dengan teknologi WIND & ADAS. Taklukkan pegunungan Rinjani hingga pesisir Lombok dengan penuh gaya.',
+     tint:'silver',image:'hero3.png',
+     btn1:{label:'Lihat Promo',icon:'fa-crown',style:'red',href:'#produk'},
+     btn2:{label:'Pemesanan',waText:'Halo Pak Apriyana, saya tertarik dengan Wuling Almaz RS Pro'}}
+  ],
+  stats:[
+    {v:1500,label:'Unit Terjual'},
+    {v:12,label:'Tahun Pengalaman'},
+    {v:98,label:'% Kepuasan Customer'},
+    {v:24,label:'Jam Layanan Konsultasi'}
+  ],
+  productsHead:{sub:'Pilihan Model Unggulan',t1:'Temukan Wuling ',t2:'Impian Anda',
+    desc:'Tiga model terbaik yang siap menemani setiap perjalanan Anda — dari MPV keluarga, mobil listrik masa depan, hingga SUV premium cerdas.'},
+  products:[
+    {ribbon:'MPV Family',img:'',ph:{cls:'ph-black',icon:'fa-car-side',label:'CONFERO DB · HITAM'},
+     cat:'8-Seater MPV',name:'Wuling Confero DB',price:'Mulai Rp 178 jutaan*',note:'/OTR Lombok',
+     specs:[{icon:'fa-users',label:'8 Kursi'},{icon:'fa-gas-pump',label:'Bensin 1.5L'},{icon:'fa-gear',label:'Manual'},{icon:'fa-suitcase',label:'Bagasi Lega'}],
+     promo:'Info promo Confero DB',order:'Booking Confero DB'},
+    {ribbon:'⚡ EV Best Seller',img:'',ph:{cls:'ph-yellow',icon:'fa-bolt',label:'BINGUO EV · KUNING'},
+     cat:'Electric Hatchback',name:'Wuling Binguo EV',price:'Mulai Rp 317 jutaan*',note:'/setelah insentif',
+     specs:[{icon:'fa-battery-full',label:'410 km'},{icon:'fa-plug',label:'100% Listrik'},{icon:'fa-shield-halved',label:'Garansi 8 Th'},{icon:'fa-leaf',label:'Zero Emisi'}],
+     promo:'Info promo Binguo EV',order:'Booking Binguo EV'},
+    {ribbon:'👑 Flagship SUV',img:'',ph:{cls:'ph-white',icon:'fa-mountain',label:'ALMAZ RS PRO · PUTIH'},
+     cat:'Smart Technology SUV',name:'Wuling Almaz RS Pro',price:'Mulai Rp 439 jutaan*',note:'/OTR Lombok',
+     specs:[{icon:'fa-microchip',label:'WIND + ADAS'},{icon:'fa-gas-pump',label:'Turbo 1.5L'},{icon:'fa-camera',label:'360° Cam'},{icon:'fa-sun',label:'Panoramic'}],
+     promo:'Info promo Almaz RS Pro',order:'Booking Almaz RS Pro'}
+  ],
+  notePrice:'*Harga dapat berubah sewaktu-waktu. Hubungi sales consultant kami untuk penawaran eksklusif bulan ini.',
+  marquee:[{text:'Confero DB'},{text:'Binguo EV'},{text:'Almaz RS Pro'},{text:'Drive For A Better Life'},{text:'Wuling Lombok NTB'}],
+  sales:{
+    sub:'Kenali Sales Consultant Kami',t1:'Melayani Anda ',t2:'Sepenuh Hati',
+    prefix:'Bapak',name:'Apriyana',role:'Sales Consultant Resmi',company:'Dealer Wuling Lombok NTB',
+    badge:'SALES CONSULTANT TERPERCAYA',
+    photo:'',phIcon:'fa-user-tie',phLabel:'FOTO BAPAK APRIYANA',
+    features:[
+      {text:'Konsultasi gratis pemilihan model sesuai kebutuhan & budget Anda'},
+      {text:'Bantuan proses kredit — DP ringan, bunga kompetitif, approval cepat'},
+      {text:'Test drive diantar langsung ke rumah/kantor di seluruh Pulau Lombok'},
+      {text:'Pendampingan penuh dari pemesanan hingga kendaraan tiba di tangan Anda'}
+    ],
+    phoneLabel:'Hubungi Langsung',
+    waText:'Halo Pak Apriyana, saya ingin konsultasi mobil Wuling',
+    btnWa:'Chat WhatsApp',btnCall:'Telepon Sekarang'
+  },
+  map:{
+    sub:'Kunjungi Showroom Kami',t1:'Dealer ',t2:'Wuling Lombok NTB',
+    desc:'Nikmati pengalaman langsung melihat dan mencoba unit display kami di showroom resmi.',
+    src:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63282.92432!2d116.05!3d-8.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc3f6f6b1c5d1%3A0x3019531001b2f00!2sMataram%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1700000000000',
+    chips:[
+      {icon:'fa-location-dot',label:'Jl. Selaparang, Mataram, Lombok - NTB'},
+      {icon:'fa-clock',label:'Buka Setiap Hari · 08.00 - 17.00 WITA'},
+      {icon:'fa-car',label:'Unit Test Drive Tersedia'},
+      {icon:'fa-mug-hot',label:'Free Coffee & Snack'}
+    ]
+  },
+  footer:{
+    logoA:'WULING',logoB:'MOTORS',
+    slogan1:'Drive For A ',slogan2:'Better Life',
+    loc:'Lombok — NTB',
+    desc:'Dealer resmi Wuling untuk wilayah Lombok dan Nusa Tenggara Barat. Melayani penjualan, purna jual, dan suku cadang dengan standar global Wuling Motors.',
+    socials:[
+      {icon:'fa-instagram',label:'Instagram',href:'#',wa:false},
+      {icon:'fa-facebook-f',label:'Facebook',href:'#',wa:false},
+      {icon:'fa-tiktok',label:'TikTok',href:'#',wa:false},
+      {icon:'fa-whatsapp',label:'WhatsApp',href:'',wa:true}
+    ],
+    cols:[
+      {title:'Model Kami',links:[
+        {icon:'fa-angle-right',label:'Confero DB',href:'#produk',wa:false},
+        {icon:'fa-angle-right',label:'Binguo EV',href:'#produk',wa:false},
+        {icon:'fa-angle-right',label:'Almaz RS Pro',href:'#produk',wa:false},
+        {icon:'fa-angle-right',label:'Promo Bulan Ini',href:'#produk',wa:false}]},
+      {title:'Navigasi',links:[
+        {icon:'fa-angle-right',label:'Beranda',href:'#hero',wa:false},
+        {icon:'fa-angle-right',label:'Sales Consultant',href:'#sales',wa:false},
+        {icon:'fa-angle-right',label:'Lokasi Dealer',href:'#lokasi',wa:false},
+        {icon:'fa-angle-right',label:'Test Drive',href:'',wa:true}]},
+      {title:'Kontak',links:[
+        {icon:'fa-phone',label:'0812-3456-7890 (Pak Apriyana)',href:'tel:+6281234567890',wa:false},
+        {icon:'fa-whatsapp',label:'WhatsApp 24 Jam',href:'',wa:true},
+        {icon:'fa-location-dot',label:'Mataram, Lombok - NTB',href:'#lokasi',wa:false},
+        {icon:'fa-envelope',label:'sales@wulinglombok.id',href:'mailto:sales@wulinglombok.id',wa:false}]}
+    ],
+    bottom:'© 2026 <b>WULING LOMBOK NTB</b><br>DRIVE FOR A BETTER LIFE · ALL RIGHTS RESERVED'
+  }
+};
 
-function toggleMenu(forceClose){
-  const isOpen = navLinks.classList.contains('open');
-  const shouldClose = forceClose === true || isOpen;
-  navLinks.classList.toggle('open', !shouldClose);
-  navOverlay.classList.toggle('show', !shouldClose);
-  document.body.classList.toggle('menu-open', !shouldClose);
-  hamIcon.className = shouldClose ? 'fas fa-bars' : 'fas fa-times';
-  document.body.style.overflow = shouldClose ? '' : 'hidden';
+/* ===== TINT DEGRADASI PER SLIDE ===== */
+const TINTS={
+  red:{t:'linear-gradient(105deg, rgba(10,10,10,.62) 0%, rgba(199,0,11,.14) 52%, rgba(199,0,11,.30) 100%)',b:'linear-gradient(150deg,#080808,#232323 45%,#4d0d0d)'},
+  gold:{t:'linear-gradient(105deg, rgba(10,10,10,.62) 0%, rgba(212,175,55,.12) 52%, rgba(212,175,55,.26) 100%)',b:'linear-gradient(150deg,#14140a,#3b3413 50%,#7a6614)'},
+  silver:{t:'linear-gradient(105deg, rgba(10,10,10,.62) 0%, rgba(148,148,148,.12) 52%, rgba(148,148,148,.24) 100%)',b:'linear-gradient(150deg,#141414,#3f3f3f 50%,#949494)'}
+};
+
+let C=null;
+const waLink=t=>`https://wa.me/${C.site.wa}${t?`?text=${encodeURIComponent(t)}`:''}`;
+const serif=(a,b)=>`${esc(a)}<span class="serif">${esc(b)}</span>`;
+
+/* ===== RENDER ===== */
+function setMeta(attr,key,val){let m=document.head.querySelector(`meta[${attr}="${key}"]`);if(!m){m=document.createElement('meta');m.setAttribute(attr,key);document.head.appendChild(m);}m.setAttribute('content',val||'');}
+function renderMeta(){
+  document.title=C.site.title;
+  setMeta('name','description',C.site.description);
+  setMeta('property','og:title',C.site.title);
+  setMeta('property','og:description',C.site.description);
+  setMeta('property','og:image',C.site.ogImage);
+  setMeta('property','og:url',C.site.ogUrl);
+  setMeta('name','twitter:title',C.site.title);
+  setMeta('name','twitter:description',C.site.description);
+  setMeta('name','twitter:image',C.site.ogImage);
 }
-hamburger.addEventListener('click', () => toggleMenu());
-navOverlay.addEventListener('click', () => toggleMenu(true));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(true)));
+function renderStatic(){
+  $('#plText').textContent=C.brand.preloader;
+  $('#logoText').innerHTML=`${esc(C.brand.a)} <span>${esc(C.brand.b)}</span>`;
+  $('#logoSub').textContent=C.brand.sub;
+  $('#waFloat').href=waLink();
+  $('#slideTotal').textContent=String(C.slides.length).padStart(2,'0');
+}
+function renderNav(){
+  $('#navLinks').innerHTML=C.nav.map(n=>`<li><a href="${esc(n.href)}">${esc(n.label)}</a></li>`).join('')
+   +`<li><a href="${waLink()}" class="nav-cta"><i class="fab fa-whatsapp"></i> ${esc(C.navCta)}</a></li>`;
+}
+function renderSlides(){
+  $('#slidesWrap').innerHTML=C.slides.map((s,i)=>{
+    const tn=TINTS[s.tint]||TINTS.red;
+    const img=s.image?`url('${esc(s.image)}')`:tn.b;
+    return `<div class="slide${i===0?' active':''}">
+      <div class="slide-bg" style="background-image:${tn.t},${img},${tn.b};background-position:center,70% center,center"></div>
+      <div class="hero-content">
+        <span class="hero-tag"><i class="fas fa-circle"></i> ${esc(s.tag)}</span>
+        <h1 class="hero-title">${esc(s.t1)}<span class="line2">${esc(s.t2)}</span></h1>
+        <p class="hero-desc">${esc(s.desc)}</p>
+        <div class="hero-btns">
+          <a href="${esc(s.btn1.href||'#produk')}" class="btn btn-${esc(s.btn1.style||'red')}"><i class="fas ${esc(s.btn1.icon||'fa-tag')}"></i> ${esc(s.btn1.label)}</a>
+          <a href="${waLink(s.btn2.waText)}" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> ${esc(s.btn2.label)}</a>
+        </div>
+      </div></div>`;}).join('');
+  $('#heroDots').innerHTML=C.slides.map((_,i)=>`<div class="dot${i===0?' active':''}" data-i="${i}"></div>`).join('');
+}
+function renderStats(){
+  const dc=['','reveal-d1','reveal-d2','reveal-d3'];
+  $('#statsInner').innerHTML=C.stats.map((s,i)=>`<div class="stat reveal ${dc[i%4]}"><div class="num" data-count="${+s.v||0}">0</div><div class="lbl">${esc(s.label)}</div></div>`).join('');
+}
+function renderProducts(){
+  const h=C.productsHead;
+  $('#prodSub').textContent=h.sub;
+  $('#prodTitle').innerHTML=serif(h.t1,h.t2);
+  $('#prodDesc').textContent=h.desc;
+  $('#notePrice').textContent=C.notePrice;
+  const dc=['','reveal-d1','reveal-d2'];
+  $('#productGrid').innerHTML=C.products.map((p,i)=>{
+    const media=p.img?`<img src="${esc(p.img)}" alt="${esc(p.name)}">`
+      :`<div class="car-ph ${esc(p.ph.cls)}"><i class="fas ${esc(p.ph.icon)}"></i>${esc(p.ph.label)}</div>`;
+    return `<div class="card reveal ${dc[i%3]}">
+      <div class="card-img"><span class="card-ribbon">${esc(p.ribbon)}</span>${media}</div>
+      <div class="card-body">
+        <span class="card-cat">${esc(p.cat)}</span>
+        <h3 class="card-title">${esc(p.name)}</h3>
+        <p class="card-price">${esc(p.price)} <small>${esc(p.note)}</small></p>
+        <div class="card-specs">${p.specs.map(s=>`<span class="spec"><i class="fas ${esc(s.icon)}"></i> ${esc(s.label)}</span>`).join('')}</div>
+        <div class="card-btns">
+          <a href="${waLink(p.promo)}" class="btn btn-red">Lihat Promo</a>
+          <a href="${waLink(p.order)}" class="btn btn-gold">Pemesanan</a>
+        </div>
+      </div></div>`;}).join('');
+}
+function renderMarquee(){
+  const one=`<span>${C.marquee.map(m=>`${esc(m.text)} <i class="fas fa-diamond"></i>`).join(' ')}</span>`;
+  $('#marqueeTrack').innerHTML=one+one;
+}
+function renderSales(){
+  const s=C.sales;
+  $('#salesFrame').innerHTML=s.photo?`<img src="${esc(s.photo)}" alt="${esc(s.name)}">`
+    :`<div class="photo-ph"><i class="fas ${esc(s.phIcon)}"></i><span>${esc(s.phLabel)}</span></div>`;
+  $('#salesBadge').textContent=s.badge;
+  $('#salesSub').textContent=s.sub;
+  $('#salesTitle').innerHTML=serif(s.t1,s.t2);
+  $('#salesName').innerHTML=`${esc(s.prefix)} <b>${esc(s.name)}</b> — ${esc(s.role)}<br>${esc(s.company)}`;
+  $('#salesFeatures').innerHTML=s.features.map(f=>`<li><i class="fas fa-check"></i> ${esc(f.text)}</li>`).join('');
+  $('#phoneLabel').textContent=s.phoneLabel;
+  $('#phoneNumber').textContent=C.site.waDisplay;
+  $('#salesBtns').innerHTML=`<a href="${waLink(s.waText)}" class="btn btn-wa"><i class="fab fa-whatsapp"></i> ${esc(s.btnWa)}</a>
+    <a href="tel:+${esc(C.site.wa)}" class="btn btn-gold"><i class="fas fa-phone"></i> ${esc(s.btnCall)}</a>`;
+}
+function renderMap(){
+  const m=C.map;
+  $('#mapSub').textContent=m.sub;
+  $('#mapTitle').innerHTML=serif(m.t1,m.t2);
+  $('#mapDesc').textContent=m.desc;
+  $('#mapFrame').src=m.src;
+  $('#mapChips').innerHTML=m.chips.map(c=>`<div class="map-chip"><i class="fas ${esc(c.icon)}"></i> ${esc(c.label)}</div>`).join('');
+}
+function renderFooter(){
+  const f=C.footer;
+  const dc=['','reveal-d1','reveal-d2','reveal-d3'];
+  const brand=`<div class="footer-col reveal">
+    <div class="footer-logo"><div class="logo-badge">W</div>
+      <div class="logo-text">${esc(f.logoA)} <span style="color:var(--gold)">${esc(f.logoB)}</span></div></div>
+    <p class="footer-slogan">${esc(f.slogan1)}<span>${esc(f.slogan2)}</span></p>
+    <p class="footer-loc">${esc(f.loc)}</p>
+    <p class="footer-desc">${esc(f.desc)}</p>
+    <div class="footer-social">${f.socials.map(s=>`<a href="${s.wa?waLink():esc(s.href)}" aria-label="${esc(s.label)}"><i class="fab ${esc(s.icon)}"></i></a>`).join('')}</div>
+  </div>`;
+  const cols=f.cols.map((c,i)=>`<div class="footer-col reveal ${dc[(i+1)%4]}">
+    <h4>${esc(c.title)}</h4>
+    <ul>${c.links.map(l=>`<li><a href="${l.wa?waLink():esc(l.href)}"><i class="fas ${esc(l.icon)}"></i> ${esc(l.label)}</a></li>`).join('')}</ul>
+  </div>`).join('');
+  $('#footerGrid').innerHTML=brand+cols;
+  $('#footerBottom').innerHTML=f.bottom;
+}
+function renderAll(){
+  renderMeta();renderStatic();renderNav();renderSlides();renderStats();
+  renderProducts();renderMarquee();renderSales();renderMap();renderFooter();
+}
 
-/* ===== Hero Carousel ===== */
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
-const slideNum = document.getElementById('slideNum');
-let current = 0, timer;
+/* ===== LOAD CONTENT ===== */
+async function loadContent(){
+  let data=null;
+  const wantDraft=new URLSearchParams(location.search).has('draft');
+  if(wantDraft){try{const raw=localStorage.getItem('wlg_draft');if(raw)data=JSON.parse(raw);}catch(e){}}
+  if(!data){try{const r=await fetch('content.json?v='+Date.now(),{cache:'no-store'});if(r.ok)data=await r.json();}catch(e){}}
+  C=clone(DEFAULT_CONTENT);
+  if(data)deepMerge(C,data);
+  renderAll();
+}
 
-function goSlide(i){
-  slides[current].classList.remove('active');
-  dots[current].classList.remove('active');
-  current = i;
-  slides[current].classList.add('active');
-  dots[current].classList.remove('active');
-  void dots[current].offsetWidth;
-  dots[current].classList.add('active');
-  slideNum.textContent = String(current + 1).padStart(2, '0');
+/* ===== INIT INTERAKSI ===== */
+function initAll(){
+  /* Menu */
+  const navLinks=$('#navLinks'),navOverlay=$('#navOverlay'),hamburger=$('#hamburger'),hamIcon=$('#hamIcon');
+  function toggleMenu(forceClose){
+    const isOpen=navLinks.classList.contains('open');
+    const shouldClose=forceClose===true||isOpen;
+    navLinks.classList.toggle('open',!shouldClose);
+    navOverlay.classList.toggle('show',!shouldClose);
+    document.body.classList.toggle('menu-open',!shouldClose);
+    hamIcon.className=shouldClose?'fas fa-bars':'fas fa-times';
+    document.body.style.overflow=shouldClose?'':'hidden';
+  }
+  hamburger.addEventListener('click',()=>toggleMenu());
+  navOverlay.addEventListener('click',()=>toggleMenu(true));
+  navLinks.addEventListener('click',e=>{if(e.target.closest('a'))toggleMenu(true);});
+
+  /* Carousel */
+  window.current=0;let timer;
+  const slides=()=>$$('.slide'),dots=()=>$$('.dot');
+  window.goSlide=function(i){
+    const S=slides(),D=dots();if(!S.length)return;
+    S[window.current]?.classList.remove('active');D[window.current]?.classList.remove('active');
+    window.current=(i+S.length)%S.length;
+    S[window.current].classList.add('active');
+    const d=D[window.current];if(d){d.classList.remove('active');void d.offsetWidth;d.classList.add('active');}
+    $('#slideNum').textContent=String(window.current+1).padStart(2,'0');
+    resetTimer();
+  };
+  function resetTimer(){clearInterval(timer);timer=setInterval(()=>goSlide((window.current+1)%slides().length),6000);}
   resetTimer();
-}
-function resetTimer(){ clearInterval(timer); timer = setInterval(() => goSlide((current+1)%slides.length), 6000); }
-resetTimer();
+  $('#heroDots').addEventListener('click',e=>{const d=e.target.closest('.dot');if(d)goSlide(+d.dataset.i);});
 
-/* ===== Swipe di HP ===== */
-let touchX = 0;
-document.querySelector('.hero').addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
-document.querySelector('.hero').addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - touchX;
-  if (Math.abs(dx) > 50) goSlide(dx < 0 ? (current+1)%slides.length : (current-1+slides.length)%slides.length);
-}, {passive:true});
+  /* Swipe */
+  let touchX=0;
+  $('#hero').addEventListener('touchstart',e=>touchX=e.touches[0].clientX,{passive:true});
+  $('#hero').addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-touchX;
+    if(Math.abs(dx)>50)goSlide(dx<0?(window.current+1)%slides().length:(window.current-1+slides().length)%slides().length);
+  },{passive:true});
 
-/* ===== Navbar & Back-to-top ===== */
-const navbar = document.getElementById('navbar');
-const toTop = document.getElementById('toTop');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-  toTop.classList.toggle('show', window.scrollY > 500);
-}, {passive:true});
+  /* Navbar & to-top */
+  window.addEventListener('scroll',()=>{
+    $('#navbar').classList.toggle('scrolled',window.scrollY>60);
+    $('#toTop').classList.toggle('show',window.scrollY>500);
+  },{passive:true});
 
-/* ===== Scroll Reveal ===== */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  /* Reveal */
+  const observer=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.12});
+  $$('.reveal').forEach(el=>observer.observe(el));
 
-/* ===== Animated Counters ===== */
-const counterObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    const el = e.target, target = +el.dataset.count;
-    const start = performance.now();
-    function tick(now){
-      const p = Math.min((now - start) / 2000, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target).toLocaleString('id-ID');
-      if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = target.toLocaleString('id-ID') + (target >= 1000 ? '+' : '');
-    }
-    requestAnimationFrame(tick);
+  /* Counters */
+  const counterObs=new IntersectionObserver(es=>{es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.dataset.count,start=performance.now();
+    (function tick(now){
+      const p=Math.min((now-start)/2000,1),eased=1-Math.pow(1-p,3);
+      el.textContent=Math.round(eased*target).toLocaleString('id-ID');
+      if(p<1)requestAnimationFrame(tick);
+      else el.textContent=target.toLocaleString('id-ID')+(target>=1000?'+':'');
+    })(start);
     counterObs.unobserve(el);
-  });
-}, { threshold: 0.6 });
-document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+  });},{threshold:0.6});
+  $$('[data-count]').forEach(el=>counterObs.observe(el));
+}
+
+loadContent().then(initAll);
+window.addEventListener('load',()=>{setTimeout(()=>$('#preloader').classList.add('hide'),800);});
 </script>
 </body>
 </html>
