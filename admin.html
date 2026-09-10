@@ -8,7 +8,6 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
 body{background:#0d0d0d;color:#e8e8e8;min-height:100vh}
-/* LOGIN */
 #login{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#1c1c1c,#0a0a0a);display:flex;align-items:center;justify-content:center;z-index:99}
 .login-box{background:#161616;border:1px solid rgba(212,175,55,.4);border-radius:20px;padding:40px;width:min(92vw,380px);text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6)}
 .login-box .lg{width:64px;height:50px;margin:0 auto 18px;background:linear-gradient(135deg,#C7000B,#8f0008);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:26px}
@@ -18,7 +17,6 @@ body{background:#0d0d0d;color:#e8e8e8;min-height:100vh}
 .login-box input:focus{border-color:#D4AF37}
 .login-box button{width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#F5D76E,#D4AF37,#a8861f);color:#0a0a0a;font-weight:800;letter-spacing:2px;cursor:pointer;font-size:13px}
 #loginErr{color:#ff6b6b;font-size:12px;margin-top:10px;min-height:16px}
-/* APP */
 #app{display:none;height:100vh}
 .topbar{position:fixed;top:0;left:0;right:0;height:58px;background:#111;border-bottom:1px solid rgba(212,175,55,.3);display:flex;align-items:center;gap:10px;padding:0 16px;z-index:10;flex-wrap:nowrap;overflow-x:auto}
 .topbar .brand{font-weight:900;letter-spacing:2px;color:#D4AF37;font-size:14px;white-space:nowrap;margin-right:8px}
@@ -82,7 +80,7 @@ label.chk input{width:auto;margin:0}
   </div>
   <div class="side" id="tabs"></div>
   <div class="main">
-    <div class="hint">✏️ Semua perubahan <b>tersimpan otomatis sebagai draft</b> di browser ini. Agar tampil di website publik: klik <b>PUBLISH</b> (butuh save.php di hosting) atau <b>Ekspor content.json</b> lalu upload file itu sejajar dengan index.html. Gambar diisi nama file (cth: <b>hero1.png</b>) atau URL lengkap.</div>
+    <div class="hint">✏️ Perubahan <b>autosave sebagai draft</b> di browser ini. Di GitHub Pages: setel tab <b>🐙 GitHub</b> sekali saja, lalu <b>PUBLISH</b> = commit content.json otomatis ke repo → Pages deploy ±1 menit. Alternatif tanpa token: <b>Ekspor content.json</b> lalu upload/commit manual ke repo. Gambar diisi nama file (cth: <b>hero1.png</b>) atau URL lengkap.</div>
     <div id="panel"></div>
   </div>
 </div>
@@ -96,11 +94,11 @@ const get=(o,p)=>p.split('.').reduce((a,k)=>a==null?a:a[k],o);
 const set=(o,p,v)=>{const ks=p.split('.');let a=o;for(let i=0;i<ks.length-1;i++)a=a[ks[i]];a[ks[ks.length-1]]=v;};
 const hash=s=>{let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h)^s.charCodeAt(i);return (h>>>0).toString(16);};
 const PASS_KEY='wlg_pass',DRAFT='wlg_draft';
+const GH={repo:'wlg_gh_repo',branch:'wlg_gh_branch',token:'wlg_gh_token',path:'wlg_gh_path'};
+const ghGet=k=>localStorage.getItem(GH[k])||(k==='branch'?'main':k==='path'?'content.json':'');
 
-/* DEFAULT = cerminan index.html (jangan beda sendiri) */
 const DEFAULT_CONTENT={site:{title:'Wuling Lombok NTB | Drive For A Better Life',description:'Dealer resmi Wuling Lombok NTB — Confero DB, Binguo EV, Almaz RS Pro. Promo terbaik bulan ini, test drive gratis, konsultasi bersama Pak Apriyana.',ogImage:'OG.png',ogUrl:'',wa:'6281234567890',waDisplay:'0812-3456-7890'},brand:{a:'WULING',b:'LOMBOK',sub:'DRIVE FOR A BETTER LIFE',preloader:'Wuling Lombok NTB'},navCta:'Hubungi Kami',nav:[{label:'Beranda',href:'#hero'},{label:'Model',href:'#produk'},{label:'Sales Kami',href:'#sales'},{label:'Lokasi',href:'#lokasi'}],slides:[{tag:'MPV Keluarga Premium',t1:'Wuling',t2:'Confero DB',desc:'Kabin lega 8-penumpang dalam balutan hitam yang berwibawa. Kemewahan sejati untuk setiap perjalanan keluarga Anda di Pulau Lombok.',tint:'red',image:'hero1.png',btn1:{label:'Lihat Promo',icon:'fa-tag',style:'red',href:'#produk'},btn2:{label:'Test Drive',waText:'Halo Pak Apriyana, saya tertarik dengan Wuling Confero DB'}},{tag:'The Future Drive — Electric',t1:'Wuling',t2:'Binguo EV',desc:'Ikon mobilitas masa depan berwarna kuning memukau. Jarak tempuh 410 km dengan biaya operasional super hemat — cerdas dan bergaya.',tint:'gold',image:'hero2.png',btn1:{label:'Lihat Promo EV',icon:'fa-bolt',style:'gold',href:'#produk'},btn2:{label:'Konsultasi Gratis',waText:'Halo Pak Apriyana, saya tertarik dengan Wuling Binguo EV'}},{tag:'Flagship Smart SUV',t1:'Wuling',t2:'Almaz RS Pro',desc:'SUV cerdas berbalut putih mutiara dengan teknologi WIND & ADAS. Taklukkan pegunungan Rinjani hingga pesisir Lombok dengan penuh gaya.',tint:'silver',image:'hero3.png',btn1:{label:'Lihat Promo',icon:'fa-crown',style:'red',href:'#produk'},btn2:{label:'Pemesanan',waText:'Halo Pak Apriyana, saya tertarik dengan Wuling Almaz RS Pro'}}],stats:[{v:1500,label:'Unit Terjual'},{v:12,label:'Tahun Pengalaman'},{v:98,label:'% Kepuasan Customer'},{v:24,label:'Jam Layanan Konsultasi'}],productsHead:{sub:'Pilihan Model Unggulan',t1:'Temukan Wuling ',t2:'Impian Anda',desc:'Tiga model terbaik yang siap menemani setiap perjalanan Anda — dari MPV keluarga, mobil listrik masa depan, hingga SUV premium cerdas.'},products:[{ribbon:'MPV Family',img:'',ph:{cls:'ph-black',icon:'fa-car-side',label:'CONFERO DB · HITAM'},cat:'8-Seater MPV',name:'Wuling Confero DB',price:'Mulai Rp 178 jutaan*',note:'/OTR Lombok',specs:[{icon:'fa-users',label:'8 Kursi'},{icon:'fa-gas-pump',label:'Bensin 1.5L'},{icon:'fa-gear',label:'Manual'},{icon:'fa-suitcase',label:'Bagasi Lega'}],promo:'Info promo Confero DB',order:'Booking Confero DB'},{ribbon:'⚡ EV Best Seller',img:'',ph:{cls:'ph-yellow',icon:'fa-bolt',label:'BINGUO EV · KUNING'},cat:'Electric Hatchback',name:'Wuling Binguo EV',price:'Mulai Rp 317 jutaan*',note:'/setelah insentif',specs:[{icon:'fa-battery-full',label:'410 km'},{icon:'fa-plug',label:'100% Listrik'},{icon:'fa-shield-halved',label:'Garansi 8 Th'},{icon:'fa-leaf',label:'Zero Emisi'}],promo:'Info promo Binguo EV',order:'Booking Binguo EV'},{ribbon:'👑 Flagship SUV',img:'',ph:{cls:'ph-white',icon:'fa-mountain',label:'ALMAZ RS PRO · PUTIH'},cat:'Smart Technology SUV',name:'Wuling Almaz RS Pro',price:'Mulai Rp 439 jutaan*',note:'/OTR Lombok',specs:[{icon:'fa-microchip',label:'WIND + ADAS'},{icon:'fa-gas-pump',label:'Turbo 1.5L'},{icon:'fa-camera',label:'360° Cam'},{icon:'fa-sun',label:'Panoramic'}],promo:'Info promo Almaz RS Pro',order:'Booking Almaz RS Pro'}],notePrice:'*Harga dapat berubah sewaktu-waktu. Hubungi sales consultant kami untuk penawaran eksklusif bulan ini.',marquee:[{text:'Confero DB'},{text:'Binguo EV'},{text:'Almaz RS Pro'},{text:'Drive For A Better Life'},{text:'Wuling Lombok NTB'}],sales:{sub:'Kenali Sales Consultant Kami',t1:'Melayani Anda ',t2:'Sepenuh Hati',prefix:'Bapak',name:'Apriyana',role:'Sales Consultant Resmi',company:'Dealer Wuling Lombok NTB',badge:'SALES CONSULTANT TERPERCAYA',photo:'',phIcon:'fa-user-tie',phLabel:'FOTO BAPAK APRIYANA',features:[{text:'Konsultasi gratis pemilihan model sesuai kebutuhan & budget Anda'},{text:'Bantuan proses kredit — DP ringan, bunga kompetitif, approval cepat'},{text:'Test drive diantar langsung ke rumah/kantor di seluruh Pulau Lombok'},{text:'Pendampingan penuh dari pemesanan hingga kendaraan tiba di tangan Anda'}],phoneLabel:'Hubungi Langsung',waText:'Halo Pak Apriyana, saya ingin konsultasi mobil Wuling',btnWa:'Chat WhatsApp',btnCall:'Telepon Sekarang'},map:{sub:'Kunjungi Showroom Kami',t1:'Dealer ',t2:'Wuling Lombok NTB',desc:'Nikmati pengalaman langsung melihat dan mencoba unit display kami di showroom resmi.',src:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63282.92432!2d116.05!3d-8.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdc3f6f6b1c5d1%3A0x3019531001b2f00!2sMataram%2C%20Nusa%20Tenggara%20Bar.!5e0!3m2!1sid!2sid!4v1700000000000',chips:[{icon:'fa-location-dot',label:'Jl. Selaparang, Mataram, Lombok - NTB'},{icon:'fa-clock',label:'Buka Setiap Hari · 08.00 - 17.00 WITA'},{icon:'fa-car',label:'Unit Test Drive Tersedia'},{icon:'fa-mug-hot',label:'Free Coffee & Snack'}]},footer:{logoA:'WULING',logoB:'MOTORS',slogan1:'Drive For A ',slogan2:'Better Life',loc:'Lombok — NTB',desc:'Dealer resmi Wuling untuk wilayah Lombok dan Nusa Tenggara Barat. Melayani penjualan, purna jual, dan suku cadang dengan standar global Wuling Motors.',socials:[{icon:'fa-instagram',label:'Instagram',href:'#',wa:false},{icon:'fa-facebook-f',label:'Facebook',href:'#',wa:false},{icon:'fa-tiktok',label:'TikTok',href:'#',wa:false},{icon:'fa-whatsapp',label:'WhatsApp',href:'',wa:true}],cols:[{title:'Model Kami',links:[{icon:'fa-angle-right',label:'Confero DB',href:'#produk',wa:false},{icon:'fa-angle-right',label:'Binguo EV',href:'#produk',wa:false},{icon:'fa-angle-right',label:'Almaz RS Pro',href:'#produk',wa:false},{icon:'fa-angle-right',label:'Promo Bulan Ini',href:'#produk',wa:false}]},{title:'Navigasi',links:[{icon:'fa-angle-right',label:'Beranda',href:'#hero',wa:false},{icon:'fa-angle-right',label:'Sales Consultant',href:'#sales',wa:false},{icon:'fa-angle-right',label:'Lokasi Dealer',href:'#lokasi',wa:false},{icon:'fa-angle-right',label:'Test Drive',href:'',wa:true}]},{title:'Kontak',links:[{icon:'fa-phone',label:'0812-3456-7890 (Pak Apriyana)',href:'tel:+6281234567890',wa:false},{icon:'fa-whatsapp',label:'WhatsApp 24 Jam',href:'',wa:true},{icon:'fa-location-dot',label:'Mataram, Lombok - NTB',href:'#lokasi',wa:false},{icon:'fa-envelope',label:'sales@wulinglombok.id',href:'mailto:sales@wulinglombok.id',wa:false}]}],bottom:'© 2026 <b>WULING LOMBOK NTB</b><br>DRIVE FOR A BETTER LIFE · ALL RIGHTS RESERVED'}};
 
-/* ===== SKEMA FORM CMS ===== */
 const SCHEMA=[
 {t:'🌐 Situs',f:[
   {p:'site.title',l:'Judul Halaman / OG Title'},
@@ -161,6 +159,7 @@ const SCHEMA=[
     {p:'title',l:'Judul kolom'},
     {p:'links',l:'Daftar link',t:'list',sub:[{p:'icon',l:'Icon (fa-…)'},{p:'label',l:'Label'},{p:'href',l:'Link'},{p:'wa',l:'Pakai WA?',t:'chk'}]}]}]}
 ];
+const GHTAB=SCHEMA.length;
 
 let S=null,activeTab=0;const SUBS={};
 let statusT;function status(m){const el=$('#status');el.textContent=m;clearTimeout(statusT);statusT=setTimeout(()=>el.textContent='',4000);}
@@ -183,16 +182,28 @@ function itemHTML(sub,path){
     <div class="ib"><button data-mv="${path}" data-dir="-1" title="Naik">↑</button><button data-mv="${path}" data-dir="1" title="Turun">↓</button><button class="del" data-del="${path}" title="Hapus">✕</button></div></div>
     <div class="item-body">${sub.map(f=>fieldHTML(f,path+'.'+f.p)).join('')}</div></div>`;
 }
-function renderTabs(){$('#tabs').innerHTML=SCHEMA.map((t,i)=>`<button class="${i===activeTab?'on':''}" data-tab="${i}">${t.t}</button>`).join('');}
+function renderTabs(){$('#tabs').innerHTML=SCHEMA.map((t,i)=>`<button class="${i===activeTab?'on':''}" data-tab="${i}">${t.t}</button>`).join('')+`<button class="${activeTab===GHTAB?'on':''}" data-tab="${GHTAB}">🐙 GitHub</button>`;}
 function renderTab(){
+  if(activeTab===GHTAB){renderGH();return;}
   const t=SCHEMA[activeTab];let h='';
   if(t.f&&t.f.length)h+=`<div class="group"><h3>Pengaturan</h3>${t.f.map(f=>fieldHTML(f,f.p)).join('')}</div>`;
   (t.lists||[]).forEach(L=>{SUBS[L.p]=L.sub;const arr=get(S,L.p)||[];
     h+=`<div class="group"><h3>${L.l}<button class="add" data-add="${L.p}">+ Tambah Item</button></h3>${arr.map((it,i)=>itemHTML(L.sub,L.p+'.'+i)).join('')||'<p class="empty">Belum ada item.</p>'}</div>`;});
   $('#panel').innerHTML=h;
 }
+function renderGH(){
+  $('#panel').innerHTML=`<div class="group"><h3>🐙 Koneksi GitHub Pages (Publish 1 Klik)</h3>
+  <label>Repository (owner/nama-repo)<input data-gh="repo" value="${esc(ghGet('repo'))}" placeholder="contoh: apriyana/wuling-lombok"></label>
+  <label>Branch<input data-gh="branch" value="${esc(ghGet('branch'))}"></label>
+  <label>Path file konten di repo<input data-gh="path" value="${esc(ghGet('path'))}"></label>
+  <label>Personal Access Token (fine-grained · Contents: Read & write)<input type="password" data-gh="token" value="${esc(ghGet('token'))}" placeholder="github_pat_…"></label>
+  <button class="add" onclick="testGH()">Tes Koneksi</button>
+  <p class="hint" style="margin:14px 0 0">Buat token: GitHub → <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</b> → Repository access: <b>Only select repositories</b> (pilih repo ini) → Permissions: <b>Contents = Read and write</b>. Token HANYA tersimpan di browser ini, tidak pernah masuk repo. Setelah terhubung, tombol <b>PUBLISH</b> = commit content.json otomatis → Pages deploy ±1 menit.</p>
+  </div>`;
+}
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(!b)return;activeTab=+b.dataset.tab;renderTabs();renderTab();});
 $('#panel').addEventListener('input',e=>{
+  if(e.target.dataset.gh){localStorage.setItem(GH[e.target.dataset.gh],e.target.value);status('Setting GitHub tersimpan ✓');return;}
   const p=e.target.dataset.p;if(!p)return;
   let v=e.target.value;
   if(e.target.type==='checkbox')v=e.target.checked;
@@ -217,10 +228,8 @@ function tryLogin(){
   if(hash($('#pass').value)===stored){sessionStorage.setItem('wlg_auth','1');boot();}
   else $('#loginErr').textContent='Password salah!';
 }
-function changePass(){
-  const a=prompt('Password BARU admin:');if(!a)return;
-  localStorage.setItem(PASS_KEY,hash(a));status('Password diganti ✓');
-}
+function changePass(){const a=prompt('Password BARU admin:');if(!a)return;localStorage.setItem(PASS_KEY,hash(a));status('Password diganti ✓');}
+
 /* ===== STATE ===== */
 async function loadState(){
   S=clone(DEFAULT_CONTENT);
@@ -236,6 +245,29 @@ async function boot(){
 }
 if(sessionStorage.getItem('wlg_auth'))boot();
 $('#pass').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin();});
+
+/* ===== GITHUB API ===== */
+function b64utf8(s){const b=new TextEncoder().encode(s);let bin='';const CH=0x8000;for(let i=0;i<b.length;i+=CH){bin+=String.fromCharCode.apply(null,b.subarray(i,i+CH));}return btoa(bin);}
+async function ghApi(url,opt={}){
+  opt.headers=Object.assign({Accept:'application/vnd.github+json'},opt.headers||{});
+  const t=ghGet('token');if(t)opt.headers.Authorization='Bearer '+t;
+  const r=await fetch(url,opt);
+  if(!r.ok){let m='';try{m=(await r.json()).message||'';}catch(e){}throw new Error(m||('HTTP '+r.status));}
+  return r.json();
+}
+async function ghPublish(){
+  const repo=ghGet('repo'),branch=ghGet('branch'),path=ghGet('path');
+  const json=JSON.stringify(S,null,2);
+  let sha=null;
+  try{const cur=await ghApi(`https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`);sha=cur.sha;}catch(e){}
+  await ghApi(`https://api.github.com/repos/${repo}/contents/${path}`,{method:'PUT',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({message:'CMS update '+new Date().toLocaleString('id-ID'),content:b64utf8(json),branch,...(sha?{sha}:{})})});
+}
+async function testGH(){
+  try{const j=await ghApi(`https://api.github.com/repos/${ghGet('repo')}`);status('Koneksi OK: '+j.full_name+' ✓');}
+  catch(e){alert('Gagal koneksi: '+e.message);}
+}
 
 /* ===== AKSI ===== */
 function preview(){window.open('index.html?draft=1','_blank');}
@@ -259,21 +291,34 @@ async function loadServer(){
 }
 function resetDef(){if(!confirm('Kembalikan semua isi ke DEFAULT? Draft lokal akan ditimpa.'))return;S=clone(DEFAULT_CONTENT);saveDraft();renderTab();}
 async function publish(){
-  status('Mengupload…');
+  status('Publishing…');
+  /* Jalur 1: GitHub API (untuk GitHub Pages) */
+  if(ghGet('token')&&ghGet('repo')){
+    try{await ghPublish();localStorage.removeItem(DRAFT);status('PUBLISHED ✓ Pages deploy ±1 menit');return;}
+    catch(e){alert('Publish via GitHub gagal: '+e.message);return;}
+  }
+  /* Jalur 2: save.php (hosting PHP) */
   try{
     const r=await fetch('save.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(S)});
     const j=await r.json();
-    if(j&&j.ok){localStorage.removeItem(DRAFT);status('PUBLISHED ✓ website publik sudah update');}
-    else throw 0;
+    if(j&&j.ok){localStorage.removeItem(DRAFT);status('PUBLISHED ✓');return;}
+    throw 0;
   }catch(e){
-    alert('Hosting tidak mendukung save.php (atau file save.php belum diupload).\n\nSolusi: klik "Ekspor content.json" lalu upload file content.json ke folder website (sejajar index.html).');
+    alert('Tidak ada save.php / GitHub belum disetel.\n\nSolusi GitHub Pages: setel tab 🐙 GitHub sekali, atau klik OK untuk mengunduh content.json lalu commit manual ke repo.');
     download();
   }
 }
 async function unpublish(){
-  if(!confirm('Hapus content.json di server? Website kembali ke konten default.'))return;
+  if(!confirm('Hapus content.json? Website kembali ke konten default.'))return;
+  if(ghGet('token')&&ghGet('repo')){
+    try{
+      const cur=await ghApi(`https://api.github.com/repos/${ghGet('repo')}/contents/${ghGet('path')}?ref=${ghGet('branch')}`);
+      await ghApi(`https://api.github.com/repos/${ghGet('repo')}/contents/${ghGet('path')}`,{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'CMS: unpublish',sha:cur.sha,branch:ghGet('branch')})});
+      status('content.json dihapus dari repo');return;
+    }catch(e){status('Gagal hapus via API');}
+  }
   try{await fetch('save.php',{method:'DELETE'});status('content.json dihapus dari server');}
-  catch(e){status('Gagal — hapus manual via file manager hosting');}
+  catch(e){status('Hapus manual via GitHub/file manager');}
 }
 </script>
 </body>
